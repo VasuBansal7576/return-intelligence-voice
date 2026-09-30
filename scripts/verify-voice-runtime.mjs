@@ -39,6 +39,7 @@ async function connection(replay=false){
  const provider=providers.at(-1);provider.emit('open');await flush();
  const config=provider.frames.find(f=>f.type==='session.update').session;
  assert.equal('llm' in config,false);assert.equal(config.tools.some(t=>t.name==='request_resolution'),!replay);
+ if(!replay){const {z}=await import('zod');assert.deepEqual(config.tools.find(t=>t.name==='diagnose_return').parameters,z.toJSONSchema(app.structuredDiagnosisSchema));}
  if(replay){assert.equal(config.tools.some(t=>t.name==='lookup_historical_item'),true);assert.equal(config.tools.some(t=>t.name==='get_customer'),false);}
  return {client,provider,session:s};
 }

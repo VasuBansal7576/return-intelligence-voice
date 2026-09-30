@@ -55,7 +55,20 @@ export interface ReturnDiagnosis {
   frustrated: boolean;
 }
 
-const reasonPatterns: Array<{ label: DiagnosisLabel; reason: string; pattern: RegExp }> = [
+/** Canonical reason keys shared by deterministic diagnosis and model tools.
+ * Labels classify a reason; they are not interchangeable with these keys. */
+export const DIAGNOSIS_REASONS = [
+  'sensitive.skin_reaction','quality.stitching_failure','quality.defect','fulfillment.wrong_item',
+  'fit.shoulders_tight','fit.chest_tight','fit.too_small','fit.too_large',
+  'fit.oversized_beyond_expectation','fit.sleeve_too_long','fit.length',
+  'material.too_heavy','material.too_thin','material.scratchy','material.texture',
+  'comfort.uncomfortable_seams','appearance.expectation_mismatch','appearance.drape',
+  'preference.changed_mind','preference.refund_only','other.unclear','other.unclear_primary',
+] as const;
+export const diagnosisReasonSchema = z.enum(DIAGNOSIS_REASONS).describe(
+  'Canonical dotted reason key, distinct from labels. For heavy fabric use material.too_heavy, NOT material_too_heavy. Use other.unclear or other.unclear_primary and a clarifying question when unsupported or ambiguous.');
+
+const reasonPatterns: Array<{ label: DiagnosisLabel; reason: typeof DIAGNOSIS_REASONS[number]; pattern: RegExp }> = [
   { label: "sensitive_skin_reaction", reason: "sensitive.skin_reaction", pattern: /\b(rash|allerg\w*|skin.{0,12}(itch|react|irritat)|makes? me itch)\b/i },
   { label: "quality_defect", reason: "quality.stitching_failure", pattern: /\b(seam.{0,20}(open\w*|split|torn|apart)|stitch\w*.{0,20}(apart|open\w*|broke\w*|fail\w*))\b/i },
   { label: "quality_defect", reason: "quality.defect", pattern: /\b(defect\w*|torn|tear|broken|peel\w*|damaged|zipper.{0,12}(stuck|broke))\b/i },

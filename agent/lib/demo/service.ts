@@ -1,3 +1,4 @@
+import {diagnosisReasonSchema} from '../engine/diagnosis.ts';
 import {statedAttributes} from '../engine/stated-attributes.ts';
 import { revokesMaterialExploration } from "../engine/consent.ts";
 import { randomUUID } from "node:crypto";
@@ -143,8 +144,8 @@ function updateItemCondition(item: ItemWork, text: string): void {
   if (/\b(tags?.{0,12}(removed|missing|off)|removed.{0,12}tags?|i (wore|washed)|already (worn|washed)|after (one |a |the first )?wash)\b/i.test(text)) item.condition = "not_met";
 }
 export const structuredDiagnosisSchema = z.object({
-  text: z.string().min(1).max(4000), primaryReason: z.string().regex(/^(fit|material|comfort|appearance|product_expectation|quality|fulfillment|logistics|preference|value|sensitive|other)\.[a-z_]+$/),
-  secondaryReasons: z.array(z.string().max(100)).max(8), labels: z.array(diagnosisLabelSchema).min(1).max(8),
+  text: z.string().min(1).max(4000), primaryReason: diagnosisReasonSchema,
+  secondaryReasons: z.array(diagnosisReasonSchema).max(8), labels: z.array(diagnosisLabelSchema).min(1).max(8),
   evidence: z.array(z.object({ label: z.string().max(100), quote: z.string().min(1).max(4000) })).min(1).max(12),
   likedAttributes: z.array(z.enum(["fit", "theme", "color", "length", "material"])).max(5), confidence: z.number().min(0).max(1),
   clarifyingQuestion: z.string().max(250).nullable(), preferences: z.array(extractedPreferenceSchema).max(12),
