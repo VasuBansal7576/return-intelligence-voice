@@ -284,7 +284,7 @@ export function addMessage(id: string, text: string): SessionSnapshot {
   else if (d.clarifyingQuestion) message(session, "assistant", d.clarifyingQuestion);
   else if (item.candidates.length) {
     const top = item.candidates[0];
-    message(session, "assistant", `${d.labels.includes("sensitive_skin_reaction") ? "You asked to explore alternatives. I cannot determine material suitability or guarantee skin comfort. " : ""}${top.name} has a ${top.fit} fit and ${top.gsm ?? "unspecified"} GSM ${top.material.toLowerCase()} fabric, at ₹${top.priceInr}. It is in the simulated inventory in ${top.recommendedSize}. ${top.tradeoffs.length ? `${top.tradeoffs.join(". ")}. Published dimensions and lower GSM do not guarantee comfort or fit. ` : ""}Would you like to compare the options?`);
+    message(session, "assistant", `${d.labels.includes("sensitive_skin_reaction") ? "You asked to explore alternatives. I cannot determine material suitability or guarantee skin comfort. " : ""}${top.name} has ${/^[aeiou]/i.test(top.fit) ? "an" : "a"} ${top.fit} fit and ${top.gsm ?? "unspecified"} GSM ${top.material.toLowerCase()} fabric, at ₹${top.priceInr}. It is in the simulated inventory in ${top.recommendedSize}. ${top.tradeoffs.length ? `${top.tradeoffs.join(". ")}. Published dimensions and lower GSM do not guarantee comfort or fit. ` : ""}Would you like to compare the options?`);
   } else message(session, "assistant", "I do not have a verified in-stock alternative that solves the known problem. We can continue with a refund or support.");
   return snapshot(session);
 }
