@@ -446,8 +446,9 @@ if(rehearsalMode){
  const receipt=new URLSearchParams(location.search).get('receipt');
  if(receipt&&/^[0-9a-f-]{36}$/.test(receipt))state.replayReceipt=receipt;
  const panel=document.createElement('section');panel.style.cssText='position:fixed;bottom:0;left:0;right:0;z-index:200;background:#fff;color:#111;padding:8px;border:2px solid #111';
- panel.innerHTML='<strong>Supervised automated customer audio · standard TTS · not voice clone or physical microphone proof</strong> <label>PCM16 mono24k file <input id="rehearsal-pcm" type="file" accept=".pcm"></label><button id="rehearsal-save" type="button">Prepare local capture downloads</button><span id="rehearsal-downloads"></span>';
+ panel.innerHTML='<strong>Supervised automated customer audio · standard TTS · not voice clone or physical microphone proof</strong> <label>PCM16 mono24k file <input id="rehearsal-pcm" type="file" accept=".pcm"></label><button id="rehearsal-send" type="button">Send selected rehearsal clip during call</button><button id="rehearsal-save" type="button">Prepare local capture downloads</button><span id="rehearsal-downloads"></span>';
  document.body.append(panel);
  panel.querySelector('input').addEventListener('change',async event=>{const file=event.target.files[0];if(!file)return;if(file.size>180*24000*2||file.size%2){state.error='Invalid PCM length';render();return;}rehearsalPcm=await file.arrayBuffer();});
- panel.querySelector('button').addEventListener('click',captureLinks);
+ panel.querySelector('#rehearsal-save').addEventListener('click',captureLinks);
+ panel.querySelector('#rehearsal-send').addEventListener('click',async()=>{if(!state.voiceReady||!state.voice||!rehearsalPcm)return;try{await state.voice.injectTestAudio(rehearsalPcm,{sampleRate:24000,channels:1});}catch(error){state.error=error.message;render();}});
 }
