@@ -7,7 +7,7 @@ const config=JSON.parse(readFileSync('vercel.json','utf8'));
 assert.equal(config.fluid,true);assert.equal(config.framework,null);assert.equal(config.functions['api/server.ts'].maxDuration,300);
 assert.equal(config.installCommand,'npm ci --ignore-scripts');assert.equal(config.buildCommand,'npm run build:demo');
 assert.equal(JSON.parse(readFileSync('package.json','utf8')).engines.node,'24.x');
-assert.deepEqual(readdirSync(config.outputDirectory).sort(),['index.html','styles.css','app.js','icons.js','art.js','voice-client.js','pcm-processor.js','demo-capture.js'].sort());
+assert.deepEqual(readdirSync(config.outputDirectory).sort(),['index.html','styles.css','app.js','icons.js','art.js','catalog-images.js','assets','voice-client.js','pcm-processor.js','demo-capture.js'].sort());
 console.log('PASS Node24, Fluid, 300s function, no-provider build and browser-only static output');
 process.env.VERCEL='1';process.env.RIV_STORAGE='supabase';process.env.SUPABASE_URL='https://fixture.supabase.co';process.env.SUPABASE_SECRET_KEY='sb_secret_TEST_ONLY_NO_NETWORK';process.env.RIV_VOICE_APPROVED='false';
 const db=new PGlite();await db.exec('create role anon;create role authenticated;create role service_role bypassrls;');

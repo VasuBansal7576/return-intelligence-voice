@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { mkdirSync,readFileSync,readdirSync,writeFileSync,copyFileSync,rmSync } from 'node:fs';
+import { mkdirSync,readFileSync,readdirSync,writeFileSync,copyFileSync,cpSync,rmSync } from 'node:fs';
 if (Number(process.versions.node.split('.')[0]) !== 24) throw new Error('Use Node 24 for this deployment.');
 const checked=spawnSync(process.execPath,['node_modules/typescript/bin/tsc'],{stdio:'inherit'});if(checked.status!==0)process.exit(checked.status??1);
 const files=['evals/scenarios.mjs','scripts/evaluate-scenarios.mjs'];
@@ -9,5 +9,6 @@ const sha256=Object.fromEntries(files.sort().map(path=>[path,createHash('sha256'
 mkdirSync('data',{recursive:true});writeFileSync('data/build-manifest.json',JSON.stringify({builtAt:new Date().toISOString(),sha256},null,2)+'\n');
 // Publish only the browser application, never the QA scripts or captured data.
 rmSync('dist/frontend',{recursive:true,force:true});mkdirSync('dist/frontend',{recursive:true});
-for(const file of ['index.html','styles.css','app.js','icons.js','art.js','voice-client.js','pcm-processor.js','demo-capture.js']) copyFileSync(`frontend/${file}`,`dist/frontend/${file}`);
+for(const file of ['index.html','styles.css','app.js','icons.js','art.js','catalog-images.js','voice-client.js','pcm-processor.js','demo-capture.js']) copyFileSync(`frontend/${file}`,`dist/frontend/${file}`);
+cpSync('frontend/assets','dist/frontend/assets',{recursive:true});
 console.log('Local TypeScript build verified. No model catalog, Gateway, or paid service was contacted.');
