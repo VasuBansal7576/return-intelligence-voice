@@ -1,0 +1,560 @@
+{
+  "schemaVersion": 1,
+  "title": "Return Intelligence Voice deterministic domain evaluations",
+  "startedAt": "2026-09-30T05:08:23.033Z",
+  "completedAt": "2026-09-30T05:08:23.401Z",
+  "mode": "deterministic_domain",
+  "idempotencyScope": "Each new demo session intentionally creates a fresh synthetic copy of the seed order. Duplicate/conflicting actions are blocked within that simulation run. Direct legacy tools use a global order-line scope. This is not proof of production global order idempotency.",
+  "fixtureNotice": "Customers, orders, policy and inventory are synthetic. Catalog cases distinguish legacy synthetic fixtures from dated official public product attributes. Each executable case uses an isolated temporary ledger, deleted afterward. The measured pass rate is for these assertions only.",
+  "scope": {
+    "actualDomainCode": true,
+    "actualModelCalls": 0,
+    "actualAudioSessions": 0,
+    "providerIntegrationTested": false,
+    "realCommerceTransactions": 0,
+    "productionDatabaseTested": false,
+    "browserUiTested": false
+  },
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "passRate": 1,
+    "categories": {
+      "public_catalog": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      }
+    }
+  },
+  "sourceIntegrity": {
+    "stableDuringRun": true,
+    "changedDuringRun": [],
+    "aggregateSha256": "df12f57f7da6a6fd41dc9495a7c2273dd8515e7149358f2d3d46e18dbb332b91",
+    "sha256": {
+      "agent/lib/demo/service.ts": "c5ba8b3e8402a706f6d65f98b80bba3d34d62470daa5f3a7de587e2da928bfcc",
+      "agent/lib/engine/customer-brain.ts": "712b4b4ca59d6605961dfe165abf815b5cda264f50bae6116131e3429e38cb3e",
+      "agent/lib/engine/diagnosis.ts": "c078b4853fc3fcebf0095943184298e533ff524af962d5953d1d416e39d1a670",
+      "agent/lib/engine/eligibility.ts": "5e06c8ced60de07ec29fda6793dcd7a8573809df1eaf9e6401dfcfdff85baf55",
+      "agent/lib/engine/engine.test.ts": "7ae650049b0705a5dffc4e708c55e48ca013e87bcf0dc167d64d8f4c151633f2",
+      "agent/lib/engine/recommend.ts": "794d3b643cd63703b8f108113982c16f55706051cf99313f93e5060562677edc",
+      "agent/lib/engine/records.ts": "eca5e959849e9248a7d614b440fb65e6731590f61f9fa4827dbfbf552ffec17f",
+      "agent/lib/engine/resolutions.ts": "6fa7718eccf6d6d0fca23de4758d59c36b79eaaf009717b066fa003376ba3d6a",
+      "agent/lib/knowledge/catalog.ts": "5777af5607f5ad51a1fc504ffd111b71b5c8c71d4a02e14c28fae0d7adc2feab",
+      "agent/lib/knowledge/customers.ts": "05b446c6711e3742de33348a1987e3133a0dba5b4fbfacb43e14930ab122da4e",
+      "agent/lib/knowledge/policy.ts": "00ed4d1e75ca8aa379f04b05ffdd9438f7f5b44de51835783323b3856733e580",
+      "agent/lib/knowledge/public-catalog.json": "2e9ff01124c387802ac93f2ad1e9506d7bf54069bf635590370619933790de10",
+      "agent/lib/knowledge/public-catalog.ts": "162d39dba3ee20656163a9a8d7ca92cc520d86ff9355abb648714f42dfe10b71",
+      "agent/lib/knowledge/types.ts": "64fe259b74c8e9b267abf7bcc4aaf42c787651915639c9baf0c7b9d2b8efdeff",
+      "evals/scenarios.mjs": "e8c0aed1de61fab6b5ec544447444dd54c698a47722c4f2683b67fdf61a33a9d",
+      "scripts/evaluate-scenarios.mjs": "4ddf67484cd821724a24b85c316d945cd8255d81e131ef7155474a93620b9c88"
+    }
+  },
+  "results": [
+    {
+      "id": "D56",
+      "category": "public_catalog",
+      "title": "Unknown attributes stay unknown while available measurements are answered",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "missingWeightRecommendation": {
+          "candidates": [],
+          "excluded": [
+            {
+              "productId": "tss-public:armour-tshirt-midnight-men-oversized-tshirt",
+              "name": "TSS Originals: Midnight",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:dc-darkseid-men-oversized-tshirt",
+              "name": "DC: Darkseid",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts",
+              "name": "Looney Tunes: It's Bugs",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:marvel-dark-venom-oversized-tshirt",
+              "name": "Marvel: Dark Venom",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-t-shirt-champagne-men-super-oversized-t-shirt",
+              "name": "Premium Essentials: Off white",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-t-shirt-pacific-men-super-oversized-t-shirt",
+              "name": "Premium Essentials: Navy Blue",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-tshirt-on-the-coast-men",
+              "name": "TSS Originals: On The Coast",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:top-gun-logo-t-shirts",
+              "name": "Top Gun: Logo",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:tss-originals-fade-out-oversized-full-sleeve-tshirt",
+              "name": "Souled Originals: Urban Fog",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:solids-white-oversized-tshirts",
+              "name": "Solids: White",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:powder-blue-solids-oversized-tshirts",
+              "name": "Solids: Powder Blue",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:not-your-average-tee-super-oversized-t-shirts",
+              "name": "Colourblock: Not Your Average Tee",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:dusty-solids-men-oversized-tshirts",
+              "name": "Solids: Rose Taupe",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-tshirt-rough-water-men",
+              "name": "TSS Originals: Rough Waters",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:relaxed-fit-t-shirts-acting-bad",
+              "name": "Relaxed T-Shirt: Acting Bad",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:solids-white-mens-relaxed-fit-tshirt",
+              "name": "Solids: White",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:relaxed-fit-t-shirts-work-life-balance",
+              "name": "Relaxed T-Shirt: Work Life Balance",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-t-shirt-black-mens",
+              "name": "Supima: Jet Black",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-light-olive-drop-cut-tshirt",
+              "name": "Supima: Light Olive",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-nude-pink-drop-cut-tshirt",
+              "name": "Supima: Nude Pink",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-half-sleeve-brick-red-tshirt",
+              "name": "Supima: Brick Red",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-tss-since-2013-half-sleeve-tshirt",
+              "name": "Supima: TSS Since 2013",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-t-shirt-rhubarb-mens",
+              "name": "Supima: Crimson Ruby",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-drop-cut-steel-grey-drop-cut-tshirt",
+              "name": "Supima: Steel Grey",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:green-grass-supima-cotton-half-sleeve-tshirt",
+              "name": "Supima: Green Grass Edition",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-amaranth-men-tshirt",
+              "name": "Supima: Deep Scarlet",
+              "reason": "Does not have verified lighter fabric"
+            }
+          ],
+          "recommendationAllowed": false,
+          "gateReason": "No in-stock candidate satisfies the known constraints. A refund or support path is appropriate.",
+          "cohortStatus": "insufficient_outcome_data"
+        },
+        "unknownFit": "tss-public:supima-t-shirt-black-mens",
+        "measurementReply": "For size M, the source chart lists garment chest 46 inches, length 28.5 inches, shoulder 22 inches. These measurements do not guarantee fit.",
+        "unknownAttributeReply": "The catalog confirms 100% Cotton. It does not confirm Egyptian cotton, so I cannot claim it. What would you like to do next?",
+        "inventoryReply": {
+          "available": true,
+          "units": 6,
+          "synthetic": true,
+          "note": "Stock is pooled by size across colors."
+        }
+      },
+      "durationMs": 246
+    }
+  ],
+  "requirementsMatrix": [
+    {
+      "evalId": "POLICY_001",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_002",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_003",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_004",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_005",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_006",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_007",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_008",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_001",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_002",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_003",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_004",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MATERIAL_001",
+      "category": "preservation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MATERIAL_002",
+      "category": "preservation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_001",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_002",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_003",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_001",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_002",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_003",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_004",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_005",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_006",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_001",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_002",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_003",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_004",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "SAFETY_001",
+      "category": "sensitive",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "SAFETY_002",
+      "category": "sensitive",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "DEFECT_001",
+      "category": "defect",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "DEFECT_002",
+      "category": "defect",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FULFILL_001",
+      "category": "fulfillment",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FULFILL_002",
+      "category": "fulfillment",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_001",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_002",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_003",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_001",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_002",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_003",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_001",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_002",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_003",
+      "category": "stale_proposal",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_004",
+      "category": "stale_proposal",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_005",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "RELIABILITY_001",
+      "category": "duplicate",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "RELIABILITY_002",
+      "category": "restart",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "VOICE_001",
+      "category": "interruption",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Native audio, interruption, transcription and critical-field recognition require a real voice run."
+    },
+    {
+      "evalId": "VOICE_002",
+      "category": "low_confidence",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Native audio, interruption, transcription and critical-field recognition require a real voice run."
+    }
+  ],
+  "notTested": [
+    "Native AssemblyAI session, speech recognition, spoken latency, generated responses and audio barge-in",
+    "End-to-end model hallucination, tool selection or instruction-following accuracy",
+    "Foreign-market policy routing, gift-history exclusion and merchant-configurable policy variants",
+    "Live catalog, live inventory, Supabase or real commerce integrations",
+    "Cohort success, second-return performance and business uplift",
+    "Remote session persistence, concurrent database writes, and distributed idempotency; local serialization/hydration is tested"
+  ]
+}

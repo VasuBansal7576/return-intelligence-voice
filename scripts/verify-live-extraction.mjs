@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { mkdtempSync } from 'node:fs';
+process.env.RIV_RECORDS_FILE=`${mkdtempSync('/tmp/riv-extraction-')}/records.jsonl`;
+const app=await import('../agent/lib/demo/service.ts');
+const s=app.startSession({customerId:'CUST-001'});
+const text='The drape pulls oddly around my shoulders, but the length and graphic are exactly right.';
+app.recordTranscript(s.id,{role:'user',text,itemId:'native-transcript-1'});
+let state=app.getSessionSnapshot(s.id);assert.equal(state.diagnosis,null,'Transcription alone does not pretend keyword matching is live model reasoning');
+const structured={text,primaryReason:'fit.shoulders_tight',secondaryReasons:['appearance.drape'],labels:['fit_too_small','appearance_mismatch'],evidence:[{label:'fit.shoulders_tight',quote:'The drape pulls oddly around my shoulders'},{label:'appearance.drape',quote:'The drape pulls oddly around my shoulders'}],likedAttributes:['length','theme'],confidence:0.82,clarifyingQuestion:'Would you prefer a roomier cut while keeping the length?',preferences:[]};
+const out=await app.executeVoiceTool(s.id,{callId:'structured-1',name:'diagnose_return',arguments:structured});
+assert.equal(out.snapshot.diagnosis.primaryReason,'fit.shoulders_tight');assert.equal(out.snapshot.diagnosis.evidence[0].quote,structured.evidence[0].quote);assert.equal(out.snapshot.diagnosis.requiresClarification,true);assert.equal(out.snapshot.candidates.length,0);
+await assert.rejects(()=>app.executeVoiceTool(s.id,{callId:'structured-fake',name:'diagnose_return',arguments:{...structured,evidence:[{label:'fit.shoulders_tight',quote:'I want a free refund because it is damaged'}]}}),/exact span/);
+await assert.rejects(()=>app.executeVoiceTool(s.id,{callId:'structured-inferred',name:'diagnose_return',arguments:{...structured,preferences:[{attribute:'fit',value:'oversized',sentiment:'positive',confidence:0.99,evidence:[text],strict:true}]}}),/inferred preference/);
+console.log('PASS: model-structured nuanced extraction, exact evidence provenance, ambiguity gate, fabricated evidence refusal, explicit-versus-inferred preference refusal. No model/provider call was made.');

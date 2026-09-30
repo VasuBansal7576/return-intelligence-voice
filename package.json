@@ -1,0 +1,50 @@
+{
+  "name": "return-intelligence-voice",
+  "version": "0.0.0",
+  "type": "module",
+  "imports": {
+    "#*": "./agent/*",
+    "#evals/*": "./evals/*"
+  },
+  "scripts": {
+    "build": "eve build",
+    "deploy": "eve deploy",
+    "dev": "eve dev",
+    "eval": "eve eval",
+    "start": "eve start",
+    "test": "node --test agent/lib/engine/engine.test.ts",
+    "typecheck": "tsc",
+    "dev:demo": "node server/main.ts",
+    "test:resolutions": "node scripts/verify-resolutions.mjs",
+    "build:demo": "node scripts/build-demo.mjs",
+    "test:scenarios": "node scripts/evaluate-scenarios.mjs",
+    "test:database": "node scripts/verify-database.mjs",
+    "test:live-contract": "node scripts/verify-live-extraction.mjs",
+    "test:integration-gaps": "node scripts/verify-integration-gaps.mjs",
+    "verify": "npm run test:private-history && npm run test:replay && npm run test:private-http && npm run test:voice-client && npm run test:integration-gaps && npm run typecheck && npm test && npm run test:resolutions && npm run test:scenarios && npm run test:database && npm run test:live-contract && npm run test:storage && npm run test:voice-coordination && npm run test:voice-runtime && npm run test:deployment",
+    "test:storage": "node scripts/verify-storage-adapter.mjs",
+    "test:voice-coordination": "node scripts/verify-voice-coordination.mjs",
+    "test:voice-runtime": "node --experimental-test-module-mocks scripts/verify-voice-runtime.mjs",
+    "test:deployment": "npm run build:demo && node scripts/verify-deployment.mjs",
+    "test:private-history": "node scripts/verify-private-history.mjs",
+    "test:replay": "node scripts/verify-replay.mjs",
+    "test:voice-client": "node --test frontend/qa/voice-client.test.mjs",
+    "test:private-http": "node scripts/verify-private-http.mjs"
+  },
+  "dependencies": {
+    "@vercel/connect": "2.2.0",
+    "ai": "^7.0.105",
+    "eve": "0.68.0",
+    "ws": "^8.22.0",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@types/node": "24.x",
+    "@types/ws": "^8.18.2",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

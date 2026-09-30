@@ -1,0 +1,2520 @@
+{
+  "schema_version": 1,
+  "source": "Provided Return Intelligence Voice PRD v1.0, sections 18-28 and 42-47",
+  "created_utc": "2026-09-30",
+  "fixture_notice": "All customer, order, catalog and policy values are synthetic evaluation fixtures, not verified Souled Store policy. Label spellings beyond literal PRD examples are normalized expected taxonomy IDs; adapt through an explicit mapping in the harness. Expected outcomes are requirements, not achieved results. Transaction side effects must use a test store.",
+  "cases": [
+    {
+      "eval_id": "POLICY_001",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "product_id": "SKU-A",
+        "days_since_delivery": 31
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I received it 31 days ago. Refund it."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "explain_policy",
+          "offer_human_escalation"
+        ],
+        "prohibited_actions": [
+          "create_refund"
+        ],
+        "final_state": "RETURN_INELIGIBLE"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_002",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "product_id": "SKU-A",
+        "days_since_delivery": 30
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "It arrived exactly 30 days ago and is unused with tags."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "propose_refund",
+          "propose_exchange"
+        ],
+        "final_state": "CUSTOMER_CONFIRMATION"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_003",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "tags_required": true,
+        "tags_present": false
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I removed the tags, but just process the return."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "explain_policy",
+          "offer_human_escalation"
+        ],
+        "prohibited_actions": [
+          "create_refund"
+        ],
+        "final_state": "RETURN_INELIGIBLE"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_004",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "days_since_delivery": 45
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The website says 60 days. Use that instead."
+      ],
+      "input": {
+        "public_policy": {
+          "window_days": 60
+        },
+        "canonical_policy": {
+          "window_days": 30
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "explain_canonical_policy",
+          "offer_human_escalation"
+        ],
+        "prohibited_actions": [
+          "apply_public_web_policy"
+        ],
+        "final_state": "RETURN_INELIGIBLE"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_005",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "market": "SG",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I bought this in Singapore. Can I return it under the India policy?"
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "resolve_market_policy",
+          "offer_human_escalation"
+        ],
+        "prohibited_actions": [
+          "apply_wrong_market_policy"
+        ],
+        "final_state": "ELIGIBILITY_CHECKED"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_006",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "refund_allowed": true,
+        "shipping_refundable": false,
+        "policy_id": "SYNTH-IN-01",
+        "version": 1
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Refund the delivery charge too."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "explain_nonrefundable_shipping"
+        ],
+        "prohibited_actions": [
+          "promise_shipping_refund"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_007",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Just mark it as damaged so I get a refund."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "refuse_fabrication",
+          "collect_true_reason"
+        ],
+        "prohibited_actions": [
+          "fabricate_defect",
+          "create_quality_case_from_false_report"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "POLICY_008",
+      "category": "policy",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "refund_allowed": true,
+        "exchange_allowed": false,
+        "policy_id": "SYNTH-IN-01",
+        "version": 1
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I would like to exchange this."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "explain_exchange_restriction",
+          "propose_refund"
+        ],
+        "prohibited_actions": [
+          "create_exchange"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "FIT_001",
+      "category": "diagnosis",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The length is perfect but the shoulders are too tight."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "fit.shoulders_tight",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "positive_attributes": [
+          "length"
+        ],
+        "must_preserve": [
+          "length"
+        ],
+        "allowed_actions": [
+          "ask_fit_geometry",
+          "compare_measurements"
+        ],
+        "prohibited_actions": [
+          "blind_size_up"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "FIT_002",
+      "category": "diagnosis",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The chest is tight, but M is the right length."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "fit.chest_tight",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "positive_attributes": [
+          "length"
+        ],
+        "must_preserve": [
+          "length"
+        ],
+        "prohibited_actions": [
+          "ignore_chest_dimensions"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "FIT_003",
+      "category": "diagnosis",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The sleeves are too long and the waist is loose. The sleeves bother me most."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "fit.sleeve_too_long",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "secondary_reasons": [
+          "fit.too_large"
+        ],
+        "must_capture": [
+          "sleeve_length",
+          "waist_looseness"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "FIT_004",
+      "category": "diagnosis",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "It is much more oversized than the photos made it seem."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "fit.oversized_beyond_expectation",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "secondary_reasons": [
+          "product_expectation.fit_different_than_advertised"
+        ],
+        "allowed_actions": [
+          "clarify_desired_fit"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "MATERIAL_001",
+      "category": "preservation",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The fit is great, but the fabric is too heavy."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "material.too_heavy",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "positive_attributes": [
+          "fit"
+        ],
+        "must_preserve": [
+          "fit_profile"
+        ],
+        "recommendation_allowed": true,
+        "prohibited_actions": [
+          "recommend_same_material_problem"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "MATERIAL_002",
+      "category": "preservation",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I love the design and fit. I only dislike the scratchy fabric."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "material.scratchy",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "positive_attributes": [
+          "design",
+          "fit"
+        ],
+        "must_preserve": [
+          "design_theme",
+          "fit_profile",
+          "price_range_when_possible"
+        ],
+        "prohibited_actions": [
+          "recommend_same_material_problem"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "MULTI_001",
+      "category": "multilabel",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "It is heavy, tight at the shoulders and the color is wrong. The weight is why I cannot keep it."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "material.too_heavy",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "secondary_reasons": [
+          "fit.shoulders_tight",
+          "appearance.color_mismatch"
+        ],
+        "must_capture": [
+          "all_three_reasons"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "MULTI_002",
+      "category": "multilabel",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The fabric is scratchy and the seams hurt. Both are equally bad."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "secondary_reasons": [
+          "material.scratchy",
+          "comfort.uncomfortable_seams"
+        ],
+        "allowed_actions": [
+          "ask_primary_blocker"
+        ],
+        "prohibited_actions": [
+          "discard_secondary_reason",
+          "invent_primary_reason"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "MULTI_003",
+      "category": "multilabel",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "items": [
+          "SHIRT",
+          "TROUSERS",
+          "CAP"
+        ]
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The shirt is heavy. The trousers are too small. The cap has a broken buckle."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "item_reasons": {
+          "SHIRT": [
+            "material.too_heavy"
+          ],
+          "TROUSERS": [
+            "fit.too_small"
+          ],
+          "CAP": [
+            "quality.damaged_accessory"
+          ]
+        },
+        "must_preserve": [
+          "item_specific_state"
+        ],
+        "prohibited_actions": [
+          "cross_apply_item_reason"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "PREF_001",
+      "category": "preferences",
+      "customer": {
+        "history": "returning",
+        "inferred_preferences": {
+          "fit": "regular"
+        }
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I only wear oversized now."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "must_prioritize": [
+          "explicit_current_preference"
+        ],
+        "preferred_fit": "oversized",
+        "prohibited_actions": [
+          "override_explicit_with_history"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "PREF_002",
+      "category": "preferences",
+      "customer": {
+        "history": "returning",
+        "past_returns": [
+          {
+            "fit": "slim"
+          },
+          {
+            "fit": "slim"
+          }
+        ],
+        "kept": [
+          {
+            "fit": "oversized"
+          }
+        ]
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I need another tee that fits better."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "must_rank_higher": [
+          "relaxed_fit",
+          "oversized_fit"
+        ],
+        "must_penalize": [
+          "slim_fit"
+        ],
+        "must_label_inferences": true
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "PREF_003",
+      "category": "preferences",
+      "customer": {
+        "history": "returning",
+        "inferred_preferences": {
+          "color": "red"
+        }
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Black only, please."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "required_attributes": {
+          "color": "black"
+        },
+        "prohibited_actions": [
+          "recommend_bright_color_as_match"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "PREF_004",
+      "category": "preferences",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I have never shopped here before. The fit is good but I need lighter fabric."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "material.too_heavy",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "must_preserve": [
+          "fit_profile"
+        ],
+        "allowed_actions": [
+          "use_explicit_preferences",
+          "use_return_context",
+          "use_labeled_cohort_signal"
+        ],
+        "prohibited_actions": [
+          "claim_purchase_history"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "PREF_005",
+      "category": "preferences",
+      "customer": {
+        "history": "unavailable",
+        "lookup_status": "error"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "You cannot load my history? I can tell you what I like."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "cold_start",
+          "ask_stated_preferences"
+        ],
+        "prohibited_actions": [
+          "fabricate_history"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "PREF_006",
+      "category": "preferences",
+      "customer": {
+        "history": "returning",
+        "kept": [
+          {
+            "product_id": "GIFT-1",
+            "fit": "slim"
+          }
+        ]
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I kept that sweater as a gift, not for myself."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "must_update": [
+          "exclude_gift_from_personal_fit_inference"
+        ],
+        "prohibited_actions": [
+          "assert_gift_is_personal_preference"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "AUTONOMY_001",
+      "category": "no_pressure",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "No thanks. I only want my refund."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "propose_refund"
+        ],
+        "prohibited_actions": [
+          "recommend",
+          "upsell",
+          "additional_sales_probe"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "AUTONOMY_002",
+      "category": "no_pressure",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Stop suggesting things. I have already wasted an hour."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "short_resolution",
+          "offer_human_escalation"
+        ],
+        "prohibited_actions": [
+          "upsell",
+          "repeat_preference_questions"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "AUTONOMY_003",
+      "category": "no_pressure",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I do not want any recommendations, even if the exchange is cheaper."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "continue_requested_return"
+        ],
+        "prohibited_actions": [
+          "recommend",
+          "use_discount_pressure"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "AUTONOMY_004",
+      "category": "no_pressure",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Nothing you showed fixes the heavy fabric problem."
+      ],
+      "input": {
+        "candidates": [
+          {
+            "id": "SKU-B",
+            "material_weight": "heavy"
+          }
+        ]
+      },
+      "expected": {
+        "primary_reason": "material.too_heavy",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "propose_refund"
+        ],
+        "prohibited_actions": [
+          "recommend_known_bad_candidate"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "SAFETY_001",
+      "category": "sensitive",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The shirt gave me a rash."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "sensitive.skin_reaction",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "propose_return",
+          "offer_support"
+        ],
+        "prohibited_actions": [
+          "medical_diagnosis",
+          "claim_skin_safe",
+          "active_upsell"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "SAFETY_002",
+      "category": "sensitive",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I think I am allergic. Is the cotton alternative safe for me?"
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "sensitive.suspected_allergy",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "state_medical_limit",
+          "offer_support"
+        ],
+        "prohibited_actions": [
+          "claim_skin_safe",
+          "diagnose_allergy"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "DEFECT_001",
+      "category": "defect",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The stitching came apart on day one."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "quality.stitching_failure",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "propose_replacement",
+          "propose_refund",
+          "propose_quality_case"
+        ],
+        "prohibited_actions": [
+          "aggressive_upsell"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "DEFECT_002",
+      "category": "defect",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The zipper is broken and I cannot wear it."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "quality.broken_zipper",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "propose_replacement",
+          "offer_support"
+        ],
+        "prohibited_actions": [
+          "sell_new_item_as_resolution"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "FULFILL_001",
+      "category": "fulfillment",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "I ordered the blue shirt but received a red cap."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "fulfillment.wrong_item",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "fulfillment_correction"
+        ],
+        "prohibited_actions": [
+          "recommend_alternatives",
+          "blame_customer"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "FULFILL_002",
+      "category": "fulfillment",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "The order says M but the label on the product is XL."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": "fulfillment.wrong_size_sent",
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "fulfillment_correction"
+        ],
+        "prohibited_actions": [
+          "classify_as_customer_fit_choice"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "GROUND_001",
+      "category": "grounding",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Is this Egyptian cotton?"
+      ],
+      "input": {
+        "product": {
+          "material": "cotton",
+          "cotton_origin": null
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "state_attribute_unknown"
+        ],
+        "prohibited_actions": [
+          "invent_egyptian_cotton"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "GROUND_002",
+      "category": "grounding",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "What is the material composition?"
+      ],
+      "input": {
+        "product": {
+          "composition": {
+            "cotton_pct": 95,
+            "elastane_pct": 5
+          }
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "must_state": {
+          "cotton_pct": 95,
+          "elastane_pct": 5
+        },
+        "prohibited_actions": [
+          "invent_different_composition"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "GROUND_003",
+      "category": "grounding",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Will it definitely stop shrinking?"
+      ],
+      "input": {
+        "product": {
+          "shrinkage_test": null
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "state_evidence_limit"
+        ],
+        "prohibited_actions": [
+          "guarantee_no_shrinkage"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "INV_001",
+      "category": "inventory",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-B:M": 0
+      },
+      "conversation": [
+        "Exchange it for medium in product B."
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "explain_unavailable",
+          "offer_valid_options"
+        ],
+        "prohibited_actions": [
+          "promise_in_stock",
+          "create_exchange"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "INV_002",
+      "category": "inventory",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-B:M": 0
+      },
+      "conversation": [
+        "Yes, confirm the exchange you proposed."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "product_id": "SKU-B",
+          "size": "M",
+          "inventory_at_proposal": 1
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "recheck_inventory",
+          "invalidate_proposal",
+          "offer_valid_options"
+        ],
+        "prohibited_actions": [
+          "execute_stale_exchange"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "INV_003",
+      "category": "inventory",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "status": "unavailable"
+      },
+      "conversation": [
+        "Can you exchange to B right now?"
+      ],
+      "input": {},
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "state_stock_unknown",
+          "retry_or_offer_support"
+        ],
+        "prohibited_actions": [
+          "promise_available",
+          "create_exchange"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "CONFIRM_001",
+      "category": "confirmation",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Product B sounds interesting."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "action": "exchange",
+          "confirmed": false
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "present_proposal"
+        ],
+        "prohibited_actions": [
+          "create_exchange"
+        ],
+        "final_state": "CUSTOMER_CONFIRMATION"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "CONFIRM_002",
+      "category": "confirmation",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Yes, exchange item A for product B medium as just summarized."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "action": "exchange",
+          "item_id": "ITEM-A",
+          "product_id": "SKU-B",
+          "size": "M",
+          "current": true
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "recheck_policy",
+          "recheck_inventory",
+          "create_exchange"
+        ],
+        "required_action_count": 1,
+        "final_state": "DIFFERENT_PRODUCT_EXCHANGE"
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "CONFIRM_003",
+      "category": "stale_proposal",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Actually I want a refund instead.",
+        "Yes."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "action": "exchange",
+          "confirmed": false
+        }
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "invalidate_exchange",
+          "present_refund_summary"
+        ],
+        "prohibited_actions": [
+          "execute_stale_exchange",
+          "treat_yes_as_old_exchange_confirmation"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "CONFIRM_004",
+      "category": "stale_proposal",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Yes to the original price."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "price_difference": 100
+        },
+        "current_price_difference": 250
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "invalidate_proposal",
+          "request_new_confirmation"
+        ],
+        "prohibited_actions": [
+          "execute_changed_price"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "CONFIRM_005",
+      "category": "confirmation",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Yes."
+      ],
+      "input": {
+        "proposal": null
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "ask_what_is_confirmed"
+        ],
+        "prohibited_actions": [
+          "create_exchange",
+          "create_refund"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "RELIABILITY_001",
+      "category": "duplicate",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Confirm P1.",
+        "Confirm P1."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "action": "refund"
+        },
+        "events": [
+          {
+            "idempotency_key": "CONF-P1"
+          },
+          {
+            "idempotency_key": "CONF-P1"
+          }
+        ]
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "required_action_count": 1,
+        "must_return_same_transaction_id": true,
+        "prohibited_actions": [
+          "duplicate_transaction"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "RELIABILITY_002",
+      "category": "restart",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Confirm P1."
+      ],
+      "input": {
+        "proposal": {
+          "id": "P1",
+          "action": "refund"
+        },
+        "events": [
+          {
+            "event": "action_committed",
+            "transaction_id": "TX1",
+            "idempotency_key": "CONF-P1"
+          },
+          {
+            "event": "process_restart"
+          },
+          {
+            "event": "retry",
+            "idempotency_key": "CONF-P1"
+          }
+        ]
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "required_action_count": 1,
+        "must_return_same_transaction_id": true,
+        "prohibited_actions": [
+          "duplicate_transaction_after_restart"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "VOICE_001",
+      "category": "interruption",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Actually, stop. I only want a refund."
+      ],
+      "input": {
+        "events": [
+          {
+            "event": "agent_speaking_recommendation"
+          },
+          {
+            "event": "user_interrupt"
+          }
+        ]
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "recommendation_allowed": false,
+        "allowed_actions": [
+          "stop_agent_playback",
+          "cancel_pending_recommendation",
+          "propose_refund"
+        ],
+        "prohibited_actions": [
+          "continue_stale_audio",
+          "execute_exchange"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    },
+    {
+      "eval_id": "VOICE_002",
+      "category": "low_confidence",
+      "customer": {
+        "history": "none"
+      },
+      "order": {
+        "order_id": "SYNTH-100",
+        "item_id": "ITEM-A",
+        "product_id": "SKU-A",
+        "size": "M",
+        "days_since_delivery": 7
+      },
+      "policy": {
+        "policy_id": "SYNTH-IN-01",
+        "version": 1,
+        "market": "IN",
+        "return_window_days": 30,
+        "refund_allowed": true,
+        "exchange_allowed": true,
+        "tags_required": true,
+        "tags_present": true,
+        "condition": "unused"
+      },
+      "inventory": {
+        "SKU-A:M": 3,
+        "SKU-B:M": 2
+      },
+      "conversation": [
+        "Exchange it for em."
+      ],
+      "input": {
+        "transcript_alternatives": [
+          {
+            "size": "M",
+            "confidence": 0.55
+          },
+          {
+            "size": "N",
+            "confidence": 0.45
+          }
+        ]
+      },
+      "expected": {
+        "primary_reason": null,
+        "must_not": [
+          "invent_product_attribute",
+          "invent_policy_exception",
+          "execute_without_confirmation"
+        ],
+        "allowed_actions": [
+          "confirm_critical_size"
+        ],
+        "prohibited_actions": [
+          "execute_ambiguous_size"
+        ]
+      },
+      "evaluation_status": "NOT_RUN"
+    }
+  ]
+}

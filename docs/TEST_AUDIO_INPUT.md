@@ -1,0 +1,9 @@
+# Automated customer audio input
+
+createVoiceClient supports inputMode='test-audio' and injectTestAudio(arrayBuffer,{sampleRate:24000,channels:1}). Input is signed PCM16 little-endian mono 24 kHz, not canned agent text. Injection waits for actual session.ready, paces 20 ms chunks and sends the same input.audio frames through the same-origin /api/voice/ws proxy. It never requests a physical microphone in this mode. It cannot bypass server approval, credit, durable budget, voice-ticket or duration checks. Both server and client cap calls at 180 seconds.
+
+Input may come from an explicitly labeled standard local TTS clip or user-recorded clip converted offline. No cloning model is installed, no clone is claimed, and no provider has received a clip. Output remains actual managed provider reply.audio when enabled; test fixtures are verification only.
+
+onTimeline / getTimeline capture locally observed status, session.ready, input/output audio metadata, genuine transcript IDs, tool call IDs/results and snapshot phase/proposal/resolution changes. Local observation elapsedMs is not provider processing time. Audio bytes and transcript text are omitted from timeline; tool results can contain session data, so timelines remain memory-only and must not be uploaded without sanitization and authorization. Automated injection and physical microphone testing are distinct.
+
+Remaining bindings: select an authorized local PCM clip, explicitly display automated test-input status, run the existing client with test-audio mode, inject only after readiness, capture a sanitized timeline, and stop on limits. Real-provider recording is blocked until free credits/configuration and durable approved budget are verified. Voice remains off by default, budget zero. Replay/history data is not yet connected to provider tools or prompts.

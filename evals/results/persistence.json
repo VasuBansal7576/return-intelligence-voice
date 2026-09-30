@@ -1,0 +1,509 @@
+{
+  "schemaVersion": 1,
+  "title": "Return Intelligence Voice deterministic domain evaluations",
+  "startedAt": "2026-09-30T04:33:09.824Z",
+  "completedAt": "2026-09-30T04:33:11.500Z",
+  "mode": "deterministic_domain",
+  "idempotencyScope": "Each new demo session intentionally creates a fresh synthetic copy of the seed order. Duplicate/conflicting actions are blocked within that simulation run. Direct legacy tools use a global order-line scope. This is not proof of production global order idempotency.",
+  "fixtureNotice": "All customers, orders, policy, catalog and inventory are synthetic. Each executable case uses an isolated temporary ledger, deleted afterward. The measured pass rate is for these assertions only.",
+  "scope": {
+    "actualDomainCode": true,
+    "actualModelCalls": 0,
+    "actualAudioSessions": 0,
+    "providerIntegrationTested": false,
+    "realCommerceTransactions": 0,
+    "productionDatabaseTested": false,
+    "browserUiTested": false
+  },
+  "summary": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "passRate": 1,
+    "categories": {
+      "persistence": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      }
+    }
+  },
+  "sourceIntegrity": {
+    "stableDuringRun": true,
+    "changedDuringRun": [],
+    "sha256": {
+      "agent/lib/demo/service.ts": "43c726d3424c1eeb8c9f96d2c2830e13c430c8b8dc589b545ec0bbd08f42fd74",
+      "agent/lib/engine/customer-brain.ts": "55e09e8a71b2683f186203576144a79bf7878c9a19920a1c5d720f8400ffa5e1",
+      "agent/lib/engine/diagnosis.ts": "00074eacc02e365d7fe03d095935c32462593762a792edd1eb5086b18a1397f6",
+      "agent/lib/engine/eligibility.ts": "5e06c8ced60de07ec29fda6793dcd7a8573809df1eaf9e6401dfcfdff85baf55",
+      "agent/lib/engine/engine.test.ts": "7ae650049b0705a5dffc4e708c55e48ca013e87bcf0dc167d64d8f4c151633f2",
+      "agent/lib/engine/recommend.ts": "672fa51156c0b83004c4ab2979a2847c5546c1fb57d25c986cf299550efb7b1a",
+      "agent/lib/engine/records.ts": "eca5e959849e9248a7d614b440fb65e6731590f61f9fa4827dbfbf552ffec17f",
+      "agent/lib/engine/resolutions.ts": "6fa7718eccf6d6d0fca23de4758d59c36b79eaaf009717b066fa003376ba3d6a",
+      "agent/lib/knowledge/catalog.ts": "81a0b8fb4e95919f0805b8856ba3bfc8e40e4bc33317b1ab909dfbcfadc63ece",
+      "agent/lib/knowledge/customers.ts": "20b31377d86dca323072544b3ae042ff0ba45b9ef3877e2efe47dadd46f3725a",
+      "agent/lib/knowledge/policy.ts": "0f92f6d0916291923fcc8b788cb470aee37255c8c3685e63bd9fc63f08607a97",
+      "agent/lib/knowledge/types.ts": "8c6c88c23194e580694d4f6a64a323a12f2380f57202ef12bc11c9f97851bf77",
+      "evals/scenarios.mjs": "047e131e03cd587d7c619130b4b0efd6bcaeaf60114a2413ab3ce0a3741ab6f1",
+      "scripts/evaluate-scenarios.mjs": "ae46c3cb420d7d4c42cd3e239551dc15156a10bdb355010844d784be859761de"
+    }
+  },
+  "results": [
+    {
+      "id": "D47",
+      "category": "persistence",
+      "title": "Resolution survives a fresh process and conflicting retry stays rejected",
+      "requirements": [
+        "RELIABILITY_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "globalLedgerRestart": {
+          "retried": {
+            "created": false,
+            "reasonCode": "already_resolved",
+            "existingResolutionId": "RET-45b72860-61ce-47ad-8fc7-e61860f63f8a",
+            "message": "This order item already has a resolution. No duplicate return was created."
+          },
+          "opposite": {
+            "created": false,
+            "reasonCode": "already_resolved",
+            "existingResolutionId": "RET-45b72860-61ce-47ad-8fc7-e61860f63f8a",
+            "message": "This order item already has a resolution. No duplicate exchange was created."
+          },
+          "stored": {
+            "customerId": "CUST-001",
+            "orderId": "TSS-10432",
+            "itemId": "TSS-10432-1",
+            "scopeId": "global",
+            "productId": "TSS-RGT-001",
+            "productName": "Essential Crew Tee",
+            "size": "L",
+            "reasonLabel": "changed_mind",
+            "reasonNotes": null,
+            "outcome": "refund_requested",
+            "refundAmountInr": 699,
+            "refundProcessingDays": 7,
+            "simulated": true,
+            "recordId": "RET-45b72860-61ce-47ad-8fc7-e61860f63f8a",
+            "kind": "return",
+            "sessionId": "eval-restart",
+            "createdAt": "2026-09-30T04:33:10.110Z"
+          },
+          "transactionCount": 1
+        },
+        "pendingSessionHydration": {
+          "id": "ea8c29d7-c0fa-4770-ad0d-81de60fdbe8c",
+          "proposalId": "61c4716e-fc0b-450a-9283-4fc251f67297",
+          "first": "RET-b1f689c8-bca3-4f77-9c83-ae5d04ec8895",
+          "again": "RET-b1f689c8-bca3-4f77-9c83-ae5d04ec8895",
+          "phase": "COMPLETED",
+          "scopedCount": 1
+        },
+        "completedSessionHydration": {
+          "recordId": "RET-b1f689c8-bca3-4f77-9c83-ae5d04ec8895",
+          "scopedCount": 1
+        }
+      },
+      "durationMs": 875
+    },
+    {
+      "id": "D48",
+      "category": "persistence",
+      "title": "Explicit preference evidence survives a fresh process",
+      "requirements": [
+        "PREF_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "written": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "explicit_statement",
+            "confidence": 0.98,
+            "evidence": [
+              "This is too small. I only wear oversized now."
+            ],
+            "updatedAt": "2026-09-30T04:33:11.048Z",
+            "strict": true
+          }
+        ],
+        "readAfterRestart": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "explicit_statement",
+            "confidence": 0.98,
+            "evidence": [
+              "This is too small. I only wear oversized now."
+            ],
+            "updatedAt": "2026-09-30T04:33:11.048Z",
+            "strict": true
+          }
+        ]
+      },
+      "durationMs": 578
+    }
+  ],
+  "requirementsMatrix": [
+    {
+      "evalId": "POLICY_001",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_002",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_003",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_004",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_005",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_006",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_007",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_008",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_001",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_002",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_003",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_004",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MATERIAL_001",
+      "category": "preservation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MATERIAL_002",
+      "category": "preservation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_001",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_002",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_003",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_001",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D48",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_002",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_003",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_004",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_005",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_006",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_001",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_002",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_003",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_004",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "SAFETY_001",
+      "category": "sensitive",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "SAFETY_002",
+      "category": "sensitive",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "DEFECT_001",
+      "category": "defect",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "DEFECT_002",
+      "category": "defect",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FULFILL_001",
+      "category": "fulfillment",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FULFILL_002",
+      "category": "fulfillment",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_001",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_002",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_003",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_001",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_002",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_003",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_001",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_002",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_003",
+      "category": "stale_proposal",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_004",
+      "category": "stale_proposal",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_005",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "RELIABILITY_001",
+      "category": "duplicate",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "RELIABILITY_002",
+      "category": "restart",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D47",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "VOICE_001",
+      "category": "interruption",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Native audio, interruption, transcription and critical-field recognition require a real voice run."
+    },
+    {
+      "evalId": "VOICE_002",
+      "category": "low_confidence",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Native audio, interruption, transcription and critical-field recognition require a real voice run."
+    }
+  ],
+  "notTested": [
+    "Native AssemblyAI session, speech recognition, spoken latency, generated responses and audio barge-in",
+    "End-to-end model hallucination, tool selection or instruction-following accuracy",
+    "Foreign-market policy routing, gift-history exclusion and merchant-configurable policy variants",
+    "Live catalog, live inventory, Supabase or real commerce integrations",
+    "Cohort success, second-return performance and business uplift",
+    "Remote session persistence, concurrent database writes, and distributed idempotency; local serialization/hydration is tested"
+  ]
+}

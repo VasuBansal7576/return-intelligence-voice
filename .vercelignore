@@ -1,0 +1,14 @@
+node_modules
+.env*
+.eve
+.next
+.output
+.nitro
+dist
+frontend/qa
+frontend/README.md
+RECOVERY_MANIFEST.json
+agent/data
+data/records.jsonl
+data/voice-budget.json
+.private/
