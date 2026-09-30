@@ -490,7 +490,7 @@ export function hydrateSession(value: unknown): string {
     const item = order.items.find((i) => i.itemId === state.itemId); const product = item ? getProduct(item.productId) : undefined;
     if (!item || !product) throw new DomainError("invalid_stored_item", "Stored item is outside the selected order.", 500);
     const eligibility = checkEligibility({ customer, order, item, product, reasonLabel: state.diagnosis?.labels.find((l) => l === "quality_defect" || l === "wrong_item") ?? state.diagnosis?.labels[0] });
-    const recommendation = state.diagnosis && eligibility.eligible ? recommendForCustomer({ source: product, catalog: product.catalogSource ? PUBLIC_CATALOG : CATALOG, diagnosis: state.diagnosis, brain: brain(session), size: item.size, allowSensitiveExploration: state.sensitiveExplorationConsent }) : { candidates: [], excluded: [], gateReason: null };
+    const recommendation = state.diagnosis && eligibility.eligible && eligibility.allowedActions.includes("exchange_different_product") ? recommendForCustomer({ source: product, catalog: product.catalogSource ? PUBLIC_CATALOG : CATALOG, diagnosis: state.diagnosis, brain: brain(session), size: item.size, allowSensitiveExploration: state.sensitiveExplorationConsent }) : { candidates: [], excluded: [], gateReason: null };
     session.work.set(item.itemId, { item, product, diagnosis: state.diagnosis, eligibility, candidates: recommendation.candidates, excluded: recommendation.excluded,
       recommendationGate: recommendation.gateReason, pendingAction: state.pendingAction, resolution: state.resolution === null ? null : parseStoredRecord(state.resolution), condition: state.condition, sensitiveExplorationConsent: state.sensitiveExplorationConsent });
   }

@@ -27,4 +27,12 @@ await assert.rejects(()=>withKnownOwner(other,()=>persisted(s.id,()=>app.getSess
 const otherDashboard=await withKnownOwner(other,()=>persisted(null,()=>app.merchantInsights(),'all'));assert.equal(otherDashboard.insights.length,0);assert.equal(otherDashboard.sessions.length,0);
 const ledger=await db.query("select count(*)::integer n from riv_private.records where kind='exchange'");assert.equal(ledger.rows[0].n,1);
 console.log('PASS: real domain -> request-scoped store -> SQL RPC -> fresh request hydration -> idempotent confirmation; cross-owner session and merchant dashboard denied. All fetches intercepted locally; no Supabase account or network used.');
+const stopping=await run(null,()=>app.startSession({customerId:'CUST-001'}));
+await run(stopping.id,()=>app.addMessage(stopping.id,"The fit is too tight."));
+let active=true;const commitsBefore=calls.filter(n=>n==='riv_commit_session').length;
+await assert.rejects(()=>withKnownOwner(owner,()=>persisted(stopping.id,async()=>{const result=app.proposeResolution(stopping.id,{action:'refund'});active=false;return result;},'write',()=>{if(!active)throw new Error('voice stopped');})),/voice stopped/);
+assert.equal(calls.filter(n=>n==='riv_commit_session').length,commitsBefore,'stop before commit must not issue SQL commit');
+assert.equal((await run(stopping.id,()=>app.getSessionSnapshot(stopping.id),'read')).pendingAction,null);
+assert.equal((await run(s.id,()=>app.getSessionSnapshot(s.id),'read')).resolution.recordId,completed.resolution.recordId,'previously committed resolution preserved');
+console.log('PASS stop at actual SQL commit boundary aborts staged proposal and preserves previous committed actions');
 await db.close();

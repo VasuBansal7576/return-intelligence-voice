@@ -206,7 +206,8 @@ export function recommendForCustomer(input: {
   const result: RecommendationResult = { candidates: [], excluded: [], recommendationAllowed: false,
     gateReason: diagnosis.gateReason, cohortStatus: "insufficient_outcome_data" };
   const sensitiveExploration = diagnosis.labels.includes("sensitive_skin_reaction") && input.allowSensitiveExploration === true;
-  if (!diagnosis.recommendationAllowed && !sensitiveExploration) return result;
+  const hardGate = diagnosis.refundOnly || diagnosis.frustrated || diagnosis.labels.some((label) => label === "quality_defect" || label === "wrong_item");
+  if (hardGate || (!diagnosis.recommendationAllowed && !sensitiveExploration)) return result;
   const relevant = catalog.filter((p) => p.id !== source.id && p.returnable
     && (p.category === source.category || (ADJACENT[source.category] ?? []).includes(p.category)));
   for (const product of relevant) {

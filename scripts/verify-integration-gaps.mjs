@@ -38,3 +38,30 @@ await diagnose('No thanks. I only want a refund.',['changed_mind'],'preference.r
 hydrateSession(JSON.parse(JSON.stringify(serializeSession(native.id))));
 assert.equal(getSessionSnapshot(native.id).candidates.length,0);
 console.log('PASS integration gaps: text and native consent/hydration/revocation, no safety guarantees, discount no proposal/price/escalation mutation, item IDs, tool provenance. No provider calls.');
+// A skin-consent override cannot relax defect, refund or fulfillment policy.
+const {withRecordTransaction}=await import('../agent/lib/engine/records.ts');
+for(const nativePath of [false,true]) {
+ const gated=startSession({customerId:'CUST-002'});
+ const say=async(text,labels,reason,callId)=>nativePath?executeVoiceTool(gated.id,{callId,name:'diagnose_return',arguments:{text,primaryReason:reason,secondaryReasons:[],labels,evidence:[{label:reason,quote:text}],likedAttributes:[],confidence:0.95,clarifyingQuestion:null,preferences:[]}}):addMessage(gated.id,text);
+ await say('This makes my skin itch.',['sensitive_skin_reaction'],'sensitive.skin_reaction','g-skin');
+ await say('Show alternatives with a different material',['other'],'other.unclear','g-consent');
+ assert.ok(getSessionSnapshot(gated.id).candidates.length>0);
+ await say('It also arrived with a torn seam on day one.',['quality_defect'],'quality.defect','g-defect');
+ assert.equal(getSessionSnapshot(gated.id).candidates.length,0);
+ await withRecordTransaction([],()=>{hydrateSession(JSON.parse(JSON.stringify(serializeSession(gated.id))));assert.equal(getSessionSnapshot(gated.id).candidates.length,0);});
+ await say('Do not show alternatives or materials',['other'],'other.unclear','g-revoke');
+ assert.equal(serializeSession(gated.id).work[0].sensitiveExplorationConsent,false);
+ hydrateSession(JSON.parse(JSON.stringify(serializeSession(gated.id))));assert.equal(getSessionSnapshot(gated.id).candidates.length,0);
+}
+// Inspect the actual UI object passed to createVoiceClient; duplicates fail closed.
+const {readFileSync}=await import('node:fs');
+const ui=readFileSync(new URL('../frontend/app.js',import.meta.url),'utf8');
+const options=ui.split('state.voice=createVoiceClient(')[1].split('await state.voice.start()')[0];
+const callbackNames=[...options.matchAll(/(?:^|\n)\s*(on\w+)\([^)]*\)\{/g)].map(m=>m[1]);
+assert.equal(new Set(callbackNames).size,callbackNames.length,'duplicate frontend callback property');
+const body=options.match(/onTool\(event\)\{([^}]+)\}/)[1];
+const state={};let renders=0;const render=()=>renders++;
+const actualHandler=new Function('state','render','event',body);
+const event={callId:'actual-binding',name:'request_resolution',status:'discarded'};
+actualHandler(state,render,event);assert.equal(state.voiceTools.get(event.callId),event);assert.equal(renders,1);
+console.log('PASS sensitive + defect text/native/transaction/hydration and executed actual frontend onTool duplicate guard');

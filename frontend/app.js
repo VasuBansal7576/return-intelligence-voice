@@ -325,7 +325,6 @@ async function startVoice() {
       onStatus(event){state.voiceStatus=event.status;state.voiceReady=Boolean(event.ready);render();if(['ended','error'].includes(event.status)){state.voice=null;state.voiceReady=false;state.voiceTranscript=[];render();}},
       onTool(event){state.voiceTools=state.voiceTools||new Map();state.voiceTools.set(event.callId,event);render();},
       onTranscript(event){state.voiceTranscript=state.voiceTranscript.filter(m=>!event.itemId || m.itemId!==event.itemId || m.role!==event.role);state.voiceTranscript.push({...event,at:new Date().toISOString()});render();scrollTranscript();},
-      onTool(){},
       onError(error){state.error=error.message||String(error);render();},
       onSession(snapshot){acceptSession(snapshot);state.voiceTranscript=[];if(state.session.pendingAction&&!state.dialog)state.dialog={type:'confirm'};render();scrollTranscript();},
     });

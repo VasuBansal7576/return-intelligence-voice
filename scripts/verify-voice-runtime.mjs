@@ -54,6 +54,14 @@ try{
  console.log('PASS browser model overrides rejected before forwarding');
  const fourth=await connection();fourth.client.emit('message',Buffer.from('{"type":"session.end"}'));assert.equal(fourth.provider.frames.at(-1).type,'session.end');
  console.log('PASS client session.end terminates the connection-owning instance');
+ const queued=await connection();
+ app.addMessage(queued.session.id,"The fit is too tight.");
+ queued.provider.emit('message',Buffer.from(JSON.stringify({type:'tool.call',call_id:'queued-refund',name:'request_resolution',arguments:{action:'refund'}})));
+ queued.client.emit('message',Buffer.from('{"type":"session.end"}'));
+ await flush(); await flush();
+ assert.equal(app.getSessionSnapshot(queued.session.id).pendingAction,null,'queued refund must not create proposal after stop');
+ assert.ok(!app.getSessionSnapshot(queued.session.id).tools.some(t=>t.callId==='queued-refund'));
+ console.log('PASS queued tool then immediate stop cancels before serialized dispatch');
  const cancelled=app.startSession({customerId:'CUST-001'});const ticket=await voice.createVoiceTicket(request,cancelled.id);
  assert.deepEqual(await voice.endVoice(cancelled.id),{stopRequested:true,providerEnded:false});const before=providerRequests;
  let rejected=false;await voice.upgradeVoice({...request,url:ticket.websocketUrl},{write(){rejected=true;},destroy(){}},Buffer.alloc(0));await flush();

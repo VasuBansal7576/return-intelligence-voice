@@ -224,9 +224,9 @@ async function connectProvider(client: WebSocket, sessionId: string, ticketHash:
         }
         if (call.success) {
           const c = call.data;
-          if (arrivalGeneration !== generation) { sendClient({ type: "app.tool.discarded", callId: c.call_id, name: c.name }); return; }
+          if (finished || arrivalGeneration !== generation) { sendClient({ type: "app.tool.discarded", callId: c.call_id, name: c.name }); return; }
           try {
-            const output = await withKnownOwner(owner, () => persisted(sessionId, () => executeVoiceTool(sessionId, { callId: c.call_id, name: c.name, arguments: c.arguments })));
+            const output = await withKnownOwner(owner, () => persisted(sessionId, () => executeVoiceTool(sessionId, { callId: c.call_id, name: c.name, arguments: c.arguments }), "write", () => { if (finished || arrivalGeneration !== generation) throw new DomainError("voice_stopped", "Voice tool cancelled before dispatch or commit.", 409); }));
             if (!interrupted && arrivalGeneration === generation) pending.set(c.call_id, { name: c.name, result: output.result, isError: false });
             else sendClient({ type: "app.tool.discarded", callId: c.call_id, name: c.name });
             sendClient({ type: "app.tool.result", callId: c.call_id, name: c.name, result: output.result, isError: false });

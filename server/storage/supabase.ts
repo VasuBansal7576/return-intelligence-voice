@@ -34,9 +34,9 @@ export async function rpc(name: "riv_load_state" | "riv_voice_status" | "riv_com
 /** Load -> isolated domain transaction -> one atomic Postgres commit.
  * An optimistic revision prevents two tabs/instances approving stale state.
  */
-export async function persisted<T>(id: string | null, work: () => T | Promise<T>, mode: "write" | "read" | "all" = "write"): Promise<T> {
+export async function persisted<T>(id: string | null, work: () => T | Promise<T>, mode: "write" | "read" | "all" = "write", assertActive?: () => void): Promise<T> {
   assertHostingConfiguration();
-  if (!usesSupabase()) return work();
+  if (!usesSupabase()) { assertActive?.(); return work(); }
   const owner = requestOwner();
   const loaded = z.object({ sessions: z.array(sessionRowSchema), records: z.array(recordRowSchema) }).parse(
     await rpc("riv_load_state", { p_owner_id: owner, p_session_id: id, p_all: mode === "all" }));
@@ -46,6 +46,7 @@ export async function persisted<T>(id: string | null, work: () => T | Promise<T>
   const records = z.array(recordRowSchema).parse(recordData).map((row) => parseStoredRecord(row.payload));
   return withSessionContext(async () => {
     for (const row of rows) hydrateSession(row.state);
+    assertActive?.();
     const staged = await withRecordTransaction(records, work);
     if (mode !== "write") {
       if (staged.pending.length) throw new DomainError("unexpected_write", "Read request attempted a state change.", 500);
@@ -55,6 +56,7 @@ export async function persisted<T>(id: string | null, work: () => T | Promise<T>
     const targetId = id ?? ids[0];
     if (!targetId || ids.length !== 1) throw new DomainError("invalid_transaction", "Exactly one session must be committed.", 500);
     const expectedRevision = rows[0]?.revision ?? -1;
+    assertActive?.();
     await rpc("riv_commit_session", { p_id: targetId, p_owner_id: owner, p_expected_revision: expectedRevision, p_state: serializeSession(targetId), p_records: staged.pending });
     return staged.value;
   });
