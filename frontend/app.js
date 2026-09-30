@@ -376,6 +376,14 @@ async function startVoice() {
 }
 async function stopVoice(){captureLinks();const voice=state.voice;state.voice=null;if(voice)await voice.stop('user');state.voiceStatus='ended';state.voiceTranscript=[];render();}
 async function performAction(action) {
+  if(action==='enter-demo') {
+    try{sessionStorage.setItem('riv-welcome-seen','1');}catch{}
+    history.replaceState(null,'','#workspace');state.view='workspace';
+    $('#app').innerHTML='<main class="initial-loading" id="main" aria-live="polite"><p>Opening the merchant demo…</p></main>';
+    await initialize();
+    const heading=$('#main h1');if(heading){heading.tabIndex=-1;heading.focus();}
+    return;
+  }
   switch(action) {
     case 'replay-sources':await withBusy(async()=>{state.replaySources=await api('/api/replays/sources');});openDialog('replay-sources');break;
     case 'exit-replay':if(state.voice)await stopVoice();state.replaySnapshot=null;state.replayReceipt=null;state.session=null;render();break;
@@ -440,7 +448,29 @@ async function initialize() {
   try {state.bootstrap=await api('/api/bootstrap');if(!state.session&&!state.replaySnapshot){try{const saved=sessionStorage.getItem('riv-demo-session');if(saved){const snapshot=await api('/api/sessions/'+encodeURIComponent(saved));if((snapshot.session||snapshot).kind!=='historical-replay')acceptSession(snapshot);}}catch{try{sessionStorage.removeItem('riv-demo-session');}catch{}}}if(!state.selectedScenario&&!state.session)state.selectedScenario=state.bootstrap.scenarios?.find(s=>s.id==='grounded')||null;state.error='';render();if(state.view==='intelligence')await fetchInsights();if(state.view==='evaluations')await fetchEvals();}
   catch(error){$('#app').innerHTML=`<main class="reload-screen"><div class="brand-mark">r<span>↗</span></div><h1>The workspace needs its local service.</h1><p>${e(error.message)}<br>Start the project’s demo server, then reload this page.</p>${button('Try again','reload','primary','refresh')}</main>`;}
 }
-initialize();
+function shouldShowWelcome(route,seen=false,savedSession=false) {
+  const recording=['127.0.0.1','localhost'].includes(route.hostname)&&/(?:^|[?&])testAudio=1(?:&|$)/.test(route.search||'');
+  return !recording&&!seen&&!savedSession&&!route.hash;
+}
+function welcomeView() {
+  return `<main class="welcome" id="main">
+    <header class="welcome-brand"><strong>RIV<span class="desk-period">.</span></strong><span>Return intelligence voice</span><span class="badge neutral">Public text demo</span></header>
+    <section class="welcome-hero" aria-labelledby="welcome-title">
+      <div class="welcome-intro"><span class="eyebrow">For brand customer experience teams</span><h1 id="welcome-title">A brand-side voice return assistant.</h1><p class="welcome-lead">Hear what didn’t work.<br>Find a resolution that does.</p><p class="welcome-summary">Turn customer feedback into an appropriate alternative or refund—and product insight the brand can act on.</p><button class="btn lime welcome-cta" data-action="enter-demo">Open the merchant demo ${icon('arrow')}</button><p class="welcome-mode">Try the workflow in text here. Real AssemblyAI voice is shown in the recording; live audio is disabled in this public demo.</p></div>
+      <figure class="welcome-sequence" aria-labelledby="sequence-title"><figcaption><span class="eyebrow" id="sequence-title">From customer words to brand insight</span><span class="sequence-label">Illustrative · not live</span></figcaption><ol class="sequence-flow">
+        <li class="sequence-step words"><div class="sequence-number">01</div><div><span class="sequence-kicker">Customer feedback</span><blockquote>“The fabric is too heavy and the fit is too loose. I like the theme.”</blockquote></div></li>
+        <li class="sequence-step intent"><div class="sequence-number">02</div><div><span class="sequence-kicker">Understand the trade-off</span><div class="sequence-attributes"><span><b>KEEP</b> Theme</span><span><b>CHANGE</b> Fabric weight · fit</span></div></div></li>
+        <li class="sequence-step comparison"><div class="sequence-number">03</div><div><span class="sequence-kicker">Compare dated catalog facts</span><div class="sequence-products"><div><img src="/assets/catalog/midnight.png" alt="Returned Midnight catalog photograph"><strong>Midnight · M</strong><span>250 GSM · 46 in chest</span></div><span class="sequence-arrow" aria-hidden="true">→</span><div><img src="/assets/catalog/coast.png" alt="On The Coast alternative catalog photograph"><strong>On The Coast · S</strong><span>220 GSM · 44 in chest</span></div></div><p class="sequence-source">The Souled Store public snapshot · 30 Sep 2026<br>Garment measurements. Fit and comfort not guaranteed.</p></div></li>
+        <li class="sequence-step outcome"><div class="sequence-number">04</div><div><span class="sequence-kicker">Only after customer confirmation</span><strong class="sequence-result">Simulated exchange → brand insight</strong><p>Record the reason, preserved preference, and outcome. A refund remains a choice when policy allows.</p></div></li>
+      </ol></figure>
+    </section>
+    <section class="welcome-how" aria-labelledby="welcome-steps"><div class="welcome-section-title"><span class="eyebrow">How it works</span><h2 id="welcome-steps">Three steps to try it</h2></div><ol class="welcome-steps"><li><span>01</span><h3>Tell us what didn’t work</h3><p>Choose a synthetic customer story and send its suggested message, or describe a fit or fabric issue yourself.</p></li><li><span>02</span><h3>Review the resolution</h3><p>Inspect sourced alternatives and trade-offs, or request a refund. Confirm the exact terms before any simulated action.</p></li><li><span>03</span><h3>See what the brand learned</h3><p>After confirming, open the brand insight to see the recorded feedback, preference evidence, and outcome.</p></li></ol></section>
+    <footer class="welcome-boundary"><strong>A clearly labeled simulation</strong><p>Customers, order histories, inventory, and actions are synthetic. No real refund, payment, order, or delivery takes place. Product facts have dated public sources. This independent prototype is not affiliated with The Souled Store.</p></footer>
+  </main>`;
+}
+let welcomeSeen=false,savedDemo=false;
+try{welcomeSeen=sessionStorage.getItem('riv-welcome-seen')==='1';savedDemo=Boolean(sessionStorage.getItem('riv-demo-session'));}catch{}
+if(shouldShowWelcome(location,welcomeSeen,savedDemo))$('#app').innerHTML=welcomeView();else initialize();
 
 if(rehearsalMode){
  const receipt=new URLSearchParams(location.search).get('receipt');
