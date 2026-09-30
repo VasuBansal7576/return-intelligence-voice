@@ -1,0 +1,16 @@
+node_modules
+.env*
+.eve
+.vercel
+.next
+.output
+.nitro
+dist
+.DS_Store
+*.tsbuildinfo
+data/records.jsonl
+data/voice-budget.json
+agent/data/*.jsonl
+frontend/qa/tmp/
+RECOVERY_MANIFEST.json
+.private/

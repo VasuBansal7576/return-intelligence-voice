@@ -1,0 +1,76 @@
+{
+  "engine": "PGlite embedded PostgreSQL; not deployed Supabase",
+  "at": "2026-09-30T08:31:05.169Z",
+  "checks": [
+    {
+      "name": "RLS enabled on all four private tables",
+      "passed": true
+    },
+    {
+      "name": "anon cannot read private tables or execute privileged RPCs",
+      "passed": true
+    },
+    {
+      "name": "authenticated cannot read private tables or execute privileged RPCs",
+      "passed": true
+    },
+    {
+      "name": "All seven RPCs are SECURITY INVOKER",
+      "passed": true
+    },
+    {
+      "name": "Server role can create a session",
+      "passed": true
+    },
+    {
+      "name": "Owner-scoped state load blocks another visitor",
+      "passed": true
+    },
+    {
+      "name": "Stale concurrent revision rejected",
+      "passed": true
+    },
+    {
+      "name": "Cross-owner commit rejected",
+      "passed": true
+    },
+    {
+      "name": "Conflicting resolution rolls back both revision and ledger",
+      "passed": true
+    },
+    {
+      "name": "Voice budget defaults to zero and fails closed",
+      "passed": true
+    },
+    {
+      "name": "Only one durable active reservation allowed",
+      "passed": true
+    },
+    {
+      "name": "Voice ticket bound to browser owner",
+      "passed": true
+    },
+    {
+      "name": "Voice ticket is single use",
+      "passed": true
+    },
+    {
+      "name": "Clean release never refunds reserved allowance",
+      "passed": true
+    },
+    {
+      "name": "Cumulative cap remains exhausted after sessions end",
+      "passed": true
+    },
+    {
+      "name": "Migration reapplication does not reset budget",
+      "passed": true
+    },
+    {
+      "name": "Lower runtime cap enforced atomically after stale availability reads",
+      "passed": true
+    }
+  ],
+  "passed": 17,
+  "failed": 0
+}

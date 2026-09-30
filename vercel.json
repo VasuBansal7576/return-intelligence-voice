@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "fluid": true,
+  "installCommand": "npm ci --ignore-scripts",
+  "buildCommand": "npm run build:demo",
+  "outputDirectory": "dist/frontend",
+  "functions": {
+    "api/server.ts": {
+      "maxDuration": 300,
+      "includeFiles": "{dist/frontend/**,data/evaluation-results.json,data/build-manifest.json}"
+    }
+  },
+  "headers": [{ "source": "/(.*)", "headers": [
+    { "key": "X-Content-Type-Options", "value": "nosniff" },
+    { "key": "Referrer-Policy", "value": "no-referrer" },
+    { "key": "Permissions-Policy", "value": "camera=(), geolocation=()" }
+  ] }],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/server"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import {writeFileSync,readFileSync,rmSync,readdirSync} from 'node:fs';
+import {spawnSync} from 'node:child_process';
+import {startReplay,getReplay,addReplayFeedback,presentReplayAlternatives,selectReplayAlternative} from '../server/private/replay.ts';
+import {MERCHANDISING_COLLECTION} from '../agent/lib/knowledge/merchandising.ts';
+const file='.private/test-replay-history.json';
+const item={itemRef:'fixture-refunded',name:'Synthetic historical polo',size:'XL',orderedOn:'2026-01-02',deliveredOn:null,status:'Refund Completed',publicUrl:'https://www.thesouledstore.com/product/fixture',currentPublicMaterial:'cotton blend',returnReason:null,keptOutcome:null,likedOutcome:null,variantId:null,sku:null,gsm:null};
+const history={customerRef:'fixture-customer',source:{accountSource:'https://www.thesouledstore.com/orders',observedAt:'2026-09-01T00:00:00Z',method:'user-authorized account UI observation',merchantIntegration:false,materialScope:'current public product attribute, not verified purchase composition'},items:[item]};
+const ids=[];
+try{
+ writeFileSync(file,JSON.stringify(history)); const before=readFileSync(file,'utf8');
+ const s=startReplay({customerRef:'fixture-customer',itemRef:item.itemRef,historyFile:file});ids.push(s.id);
+ assert.equal(s.replay,true);assert.equal(s.nonTransactional,true);assert.equal(s.currentMerchantEligibility,null);assert.equal(s.currentFeedback,null);assert.equal(s.diagnosis,null);assert.equal(s.sourceItem.returnReason,null);assert.equal(s.sourceItem.orderedOn,'2026-01-02');assert.equal(s.sourceItem.status,'Refund Completed');assert.equal(s.canonicalDiscountDecision.allowed,false);
+ const ref=MERCHANDISING_COLLECTION.items[0].ref;
+ assert.throws(()=>presentReplayAlternatives(s.id,[ref]),/current feedback/);
+ addReplayFeedback(s.id,'I like the design, but the fabric feels heavy.');
+ const shown=presentReplayAlternatives(s.id,[ref]);assert.equal(shown.alternatives.length,1);assert.equal(shown.alternatives[0].stock,null);assert.equal(shown.alternatives[0].solvesComplaint,null);assert.equal(shown.alternatives[0].cohortSuccess,null);assert.equal(shown.alternatives[0].executableExchangeCandidate,false);
+ assert.throws(()=>selectReplayAlternative(s.id,ref,false),/confirmation/);
+ const selected=selectReplayAlternative(s.id,ref,true);assert.equal(selected.selection.kind,'replay_selection');assert.equal(selected.selection.merchantActionExecuted,false);assert.equal(selectReplayAlternative(s.id,ref,true).selection.recordId,selected.selection.recordId);
+ const fresh=spawnSync(process.execPath,['--input-type=module','-e',`import {getReplay} from './server/private/replay.ts';import assert from 'node:assert/strict';assert.equal(getReplay(process.argv[1]).selection.recordId,process.argv[2]);`,s.id,selected.selection.recordId],{encoding:'utf8'});assert.equal(fresh.status,0,fresh.stderr);
+ assert.equal(readFileSync(file,'utf8'),before,'source history unchanged');
+ assert.throws(()=>presentReplayAlternatives(s.id,['invented']),/already recorded/);
+ const sensitive=startReplay({customerRef:'fixture-customer',itemRef:item.itemRef,historyFile:file});ids.push(sensitive.id);
+ addReplayFeedback(sensitive.id,'This makes my skin itch.');assert.equal(presentReplayAlternatives(sensitive.id,[ref]).alternatives.length,0);
+ addReplayFeedback(sensitive.id,'Show alternatives with a different material');assert.equal(presentReplayAlternatives(sensitive.id,[ref]).alternatives.length,1);assert.match(getReplay(sensitive.id).boundaryNotice,/not guaranteed/);
+ addReplayFeedback(sensitive.id,'Stop showing alternative materials.');assert.equal(presentReplayAlternatives(sensitive.id,[ref]).alternatives.length,0);assert.throws(()=>selectReplayAlternative(sensitive.id,ref,true),/permitted grounded alternative/i);
+ const revoked=spawnSync(process.execPath,['--input-type=module','-e',`import {getReplay,presentReplayAlternatives} from './server/private/replay.ts';import assert from 'node:assert/strict';assert.equal(presentReplayAlternatives(process.argv[1],[process.argv[2]]).alternatives.length,0);`,sensitive.id,ref],{encoding:'utf8'});assert.equal(revoked.status,0,revoked.stderr);
+ addReplayFeedback(sensitive.id,"Don't show alternatives with a different material.");assert.equal(presentReplayAlternatives(sensitive.id,[ref]).alternatives.length,0);
+ addReplayFeedback(sensitive.id,'No thanks. I only want a refund.');assert.equal(presentReplayAlternatives(sensitive.id,[ref]).alternatives.length,0);
+ history.items[0].status='Cancelled';writeFileSync(file,JSON.stringify(history));assert.throws(()=>getReplay(sensitive.id),/Historical source changed/);assert.throws(()=>startReplay({customerRef:'fixture-customer',itemRef:item.itemRef,historyFile:file}),/already-refunded/);
+ console.log('PASS replay: immutable dated refunded source, null unknowns/eligibility, current-feedback-only diagnosis, grounded unknown-stock alternatives, canonical discount refusal, explicit app-owned selection, idempotency and fresh-process persistence, skin-consent/revocation. Synthetic input only; zero merchant/provider operations.');
+}finally{rmSync(file,{force:true});for(const id of ids)rmSync('.private/replays/'+id+'.json',{force:true});}

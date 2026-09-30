@@ -1,0 +1,5182 @@
+{
+  "schemaVersion": 1,
+  "title": "Return Intelligence Voice deterministic domain evaluations",
+  "startedAt": "2026-09-30T08:30:57.608Z",
+  "completedAt": "2026-09-30T08:31:04.174Z",
+  "mode": "deterministic_domain",
+  "idempotencyScope": "Each new demo session intentionally creates a fresh synthetic copy of the seed order. Duplicate/conflicting actions are blocked within that simulation run. Direct legacy tools use a global order-line scope. This is not proof of production global order idempotency.",
+  "fixtureNotice": "Customers, orders, policy and inventory are synthetic. Catalog cases distinguish legacy synthetic fixtures from dated official public product attributes. Each executable case uses an isolated temporary ledger, deleted afterward. The measured pass rate is for these assertions only.",
+  "scope": {
+    "actualDomainCode": true,
+    "actualModelCalls": 0,
+    "actualAudioSessions": 0,
+    "providerIntegrationTested": false,
+    "realCommerceTransactions": 0,
+    "productionDatabaseTested": false,
+    "browserUiTested": false
+  },
+  "summary": {
+    "total": 59,
+    "passed": 59,
+    "failed": 0,
+    "passRate": 1,
+    "categories": {
+      "policy": {
+        "passed": 9,
+        "failed": 0,
+        "total": 9
+      },
+      "diagnosis": {
+        "passed": 7,
+        "failed": 0,
+        "total": 7
+      },
+      "recommendation": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      },
+      "preferences": {
+        "passed": 7,
+        "failed": 0,
+        "total": 7
+      },
+      "autonomy": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      },
+      "safety": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      },
+      "defect": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      },
+      "fulfillment": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      },
+      "grounding": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      },
+      "inventory": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      },
+      "confirmation": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6
+      },
+      "multi_item": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "persistence": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      },
+      "feedback": {
+        "passed": 1,
+        "failed": 0,
+        "total": 1
+      },
+      "tool_contract": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      },
+      "public_catalog": {
+        "passed": 6,
+        "failed": 0,
+        "total": 6
+      }
+    }
+  },
+  "sourceIntegrity": {
+    "stableDuringRun": true,
+    "changedDuringRun": [],
+    "aggregateSha256": "b5efa414586d6174621254121853c483412f293c923d5cad05f0a94f7f2db84a",
+    "sha256": {
+      "agent/lib/demo/service.ts": "97ac8e19d05318c6fe14808216e9daf385661049de3edebfb315124fce44a244",
+      "agent/lib/engine/customer-brain.ts": "712b4b4ca59d6605961dfe165abf815b5cda264f50bae6116131e3429e38cb3e",
+      "agent/lib/engine/diagnosis.ts": "3aba514c3ec936dacc62e80134f212cbed8ec368600b7b5b8da0228a26d2b530",
+      "agent/lib/engine/eligibility.ts": "5e06c8ced60de07ec29fda6793dcd7a8573809df1eaf9e6401dfcfdff85baf55",
+      "agent/lib/engine/engine.test.ts": "7ae650049b0705a5dffc4e708c55e48ca013e87bcf0dc167d64d8f4c151633f2",
+      "agent/lib/engine/recommend.ts": "794d3b643cd63703b8f108113982c16f55706051cf99313f93e5060562677edc",
+      "agent/lib/engine/records.ts": "eca5e959849e9248a7d614b440fb65e6731590f61f9fa4827dbfbf552ffec17f",
+      "agent/lib/engine/resolutions.ts": "6fa7718eccf6d6d0fca23de4758d59c36b79eaaf009717b066fa003376ba3d6a",
+      "agent/lib/knowledge/catalog.ts": "5777af5607f5ad51a1fc504ffd111b71b5c8c71d4a02e14c28fae0d7adc2feab",
+      "agent/lib/knowledge/customers.ts": "05b446c6711e3742de33348a1987e3133a0dba5b4fbfacb43e14930ab122da4e",
+      "agent/lib/knowledge/merchandising.ts": "0e6b7a1c1e2faf9737b63fe7c3d905e88220617881dccfb5a322abd5f0919098",
+      "agent/lib/knowledge/policy.ts": "4defee30910143d5f65d2d52545e26abe45748afb1812e7380d528b12b01c49b",
+      "agent/lib/knowledge/public-catalog.json": "2e9ff01124c387802ac93f2ad1e9506d7bf54069bf635590370619933790de10",
+      "agent/lib/knowledge/public-catalog.ts": "162d39dba3ee20656163a9a8d7ca92cc520d86ff9355abb648714f42dfe10b71",
+      "agent/lib/knowledge/types.ts": "64fe259b74c8e9b267abf7bcc4aaf42c787651915639c9baf0c7b9d2b8efdeff",
+      "evals/scenarios.mjs": "e8c0aed1de61fab6b5ec544447444dd54c698a47722c4f2683b67fdf61a33a9d",
+      "scripts/evaluate-scenarios.mjs": "4ddf67484cd821724a24b85c316d945cd8255d81e131ef7155474a93620b9c88"
+    }
+  },
+  "results": [
+    {
+      "id": "D01",
+      "category": "policy",
+      "title": "Reject an item delivered 31 days ago",
+      "requirements": [
+        "POLICY_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "eligible": false,
+        "reasonCode": "outside_window",
+        "allowedActions": [],
+        "qualityCase": false,
+        "explanation": "This item was delivered 31 days ago. Policy tss-returns-demo v2026.09-demo.2 allows returns within 30 days of delivery.",
+        "daysSinceDelivery": 31,
+        "windowDays": 30,
+        "policyCitation": {
+          "policyId": "tss-returns-demo",
+          "version": "2026.09-demo.2",
+          "effectiveDate": "2026-09-01",
+          "source": "canonical demo policy snapshot"
+        }
+      },
+      "durationMs": 64
+    },
+    {
+      "id": "D02",
+      "category": "policy",
+      "title": "Accept the exact 30-day boundary",
+      "requirements": [
+        "POLICY_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "eligible": true,
+        "reasonCode": "ok",
+        "allowedActions": [
+          "refund",
+          "exchange_same_product",
+          "exchange_different_product"
+        ],
+        "qualityCase": false,
+        "explanation": "This item was delivered 30 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+        "daysSinceDelivery": 30,
+        "windowDays": 30,
+        "policyCitation": {
+          "policyId": "tss-returns-demo",
+          "version": "2026.09-demo.2",
+          "effectiveDate": "2026-09-01",
+          "source": "canonical demo policy snapshot"
+        }
+      },
+      "durationMs": 67
+    },
+    {
+      "id": "D03",
+      "category": "policy",
+      "title": "Reported removed tags cannot be overridden by a checkbox",
+      "requirements": [
+        "POLICY_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": null,
+          "requiresClarification": true,
+          "clarifyingQuestion": "What specifically did not work for you: the fit, fabric, appearance, or something else?",
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "a1de467a-277e-4d85-97e0-9bbf512fbaa8",
+          "action": "refund",
+          "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": null,
+          "productName": null,
+          "size": null,
+          "color": null,
+          "refundAmountInr": 699,
+          "priceDeltaInr": 0,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "The reported item condition needs support review under the demo policy. I can prepare a quality or support case; I cannot automatically waive the condition requirement."
+      },
+      "durationMs": 76
+    },
+    {
+      "id": "D04",
+      "category": "policy",
+      "title": "Canonical policy wins over a claimed 60-day webpage",
+      "requirements": [
+        "POLICY_004"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "DIAGNOSING_RETURN",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": null,
+          "requiresClarification": true,
+          "clarifyingQuestion": "What specifically did not work for you: the fit, fabric, appearance, or something else?",
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": false,
+          "reasonCode": "outside_window",
+          "allowedActions": [],
+          "qualityCase": false,
+          "explanation": "This item was delivered 45 days ago. Policy tss-returns-demo v2026.09-demo.2 allows returns within 30 days of delivery.",
+          "daysSinceDelivery": 45,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "This item was delivered 45 days ago. Policy tss-returns-demo v2026.09-demo.2 allows returns within 30 days of delivery. I can prepare a support escalation if you would like."
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D05",
+      "category": "policy",
+      "title": "Final-sale line stays ineligible beside a returnable line",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "first": {
+          "eligible": false,
+          "reasonCode": "final_sale",
+          "allowedActions": [],
+          "qualityCase": false,
+          "explanation": "Beanie is a final-sale item under policy tss-returns-demo v2026.09-demo.2 and cannot be returned or exchanged.",
+          "daysSinceDelivery": 7,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "second": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 7 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 7,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        }
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D06",
+      "category": "policy",
+      "title": "Undelivered and already-returned items are rejected",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "eligible": false,
+        "reasonCode": "already_returned",
+        "allowedActions": [],
+        "qualityCase": false,
+        "explanation": "A return for this item on order TSS-10432 has already been processed.",
+        "daysSinceDelivery": 7,
+        "windowDays": 30,
+        "policyCitation": {
+          "policyId": "tss-returns-demo",
+          "version": "2026.09-demo.2",
+          "effectiveDate": "2026-09-01",
+          "source": "canonical demo policy snapshot"
+        }
+      },
+      "durationMs": 64
+    },
+    {
+      "id": "D07",
+      "category": "policy",
+      "title": "Reject an instruction to fabricate damage",
+      "requirements": [
+        "POLICY_007"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "We cannot invent damage or change the reported facts to bypass policy.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "We cannot invent damage or change the reported facts to bypass policy. Tell me what actually happened, and I will check the allowed resolution."
+      },
+      "durationMs": 70
+    },
+    {
+      "id": "D08",
+      "category": "policy",
+      "title": "Refund proposal excludes delivery charges",
+      "requirements": [
+        "POLICY_006"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Customer requested a refund without recommendations.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": true,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "c6c02ac0-b005-44fb-afd1-571ea2d2fe2f",
+          "action": "refund",
+          "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": null,
+          "productName": null,
+          "size": null,
+          "color": null,
+          "refundAmountInr": 699,
+          "priceDeltaInr": 0,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "Understood. I will stop recommending alternatives. I can prepare the ₹699 demo refund for your review."
+      },
+      "durationMs": 68
+    },
+    {
+      "id": "D09",
+      "category": "diagnosis",
+      "title": "Tight shoulders with good length requires fit clarification",
+      "requirements": [
+        "FIT_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "DIAGNOSING_RETURN",
+        "diagnosis": {
+          "primaryReason": "fit.shoulders_tight",
+          "secondaryReasons": [
+            "fit.too_small"
+          ],
+          "labels": [
+            "fit_too_small"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.shoulders_tight",
+              "quote": "The length is perfect but the shoulders are too tight."
+            },
+            {
+              "label": "fit.too_small",
+              "quote": "The length is perfect but the shoulders are too tight."
+            }
+          ],
+          "likedAttributes": [
+            "length"
+          ],
+          "recommendationAllowed": false,
+          "gateReason": null,
+          "requiresClarification": true,
+          "clarifyingQuestion": "Would you prefer a roomier cut while keeping a similar length? I do not have garment measurements to promise an exact match.",
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Would you prefer a roomier cut while keeping a similar length? I do not have garment measurements to promise an exact match."
+      },
+      "durationMs": 68
+    },
+    {
+      "id": "D10",
+      "category": "diagnosis",
+      "title": "Chest fit does not erase correct garment length",
+      "requirements": [
+        "FIT_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "primaryReason": "fit.chest_tight",
+        "secondaryReasons": [
+          "fit.too_small"
+        ],
+        "labels": [
+          "fit_too_small"
+        ],
+        "confidence": 0.92,
+        "evidence": [
+          {
+            "label": "fit.chest_tight",
+            "quote": "The chest is tight, but M is the right length."
+          },
+          {
+            "label": "fit.too_small",
+            "quote": "The chest is tight, but M is the right length."
+          }
+        ],
+        "likedAttributes": [
+          "length"
+        ],
+        "recommendationAllowed": false,
+        "gateReason": null,
+        "requiresClarification": true,
+        "clarifyingQuestion": "Would you prefer a roomier cut while keeping a similar length? I do not have garment measurements to promise an exact match.",
+        "refundOnly": false,
+        "frustrated": false
+      },
+      "durationMs": 67
+    },
+    {
+      "id": "D11",
+      "category": "diagnosis",
+      "title": "Explicit sleeve priority keeps the loose-waist reason",
+      "requirements": [
+        "FIT_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "primaryReason": "fit.sleeve_too_long",
+        "secondaryReasons": [
+          "fit.too_large",
+          "fit.length"
+        ],
+        "labels": [
+          "fit_too_large",
+          "fit_other"
+        ],
+        "confidence": 0.92,
+        "evidence": [
+          {
+            "label": "fit.too_large",
+            "quote": "The sleeves are too long and the waist is loose. The sleeves bother me most."
+          },
+          {
+            "label": "fit.sleeve_too_long",
+            "quote": "The sleeves are too long and the waist is loose. The sleeves bother me most."
+          },
+          {
+            "label": "fit.length",
+            "quote": "The sleeves are too long and the waist is loose. The sleeves bother me most."
+          }
+        ],
+        "likedAttributes": [],
+        "recommendationAllowed": true,
+        "gateReason": null,
+        "requiresClarification": false,
+        "clarifyingQuestion": null,
+        "refundOnly": false,
+        "frustrated": false
+      },
+      "durationMs": 66
+    },
+    {
+      "id": "D12",
+      "category": "diagnosis",
+      "title": "Oversized expectation mismatch is recognized",
+      "requirements": [
+        "FIT_004"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "primaryReason": "fit.oversized_beyond_expectation",
+        "secondaryReasons": [],
+        "labels": [
+          "fit_too_large"
+        ],
+        "confidence": 0.92,
+        "evidence": [
+          {
+            "label": "fit.oversized_beyond_expectation",
+            "quote": "It is much more oversized than the photos made it seem."
+          }
+        ],
+        "likedAttributes": [],
+        "recommendationAllowed": true,
+        "gateReason": null,
+        "requiresClarification": false,
+        "clarifyingQuestion": null,
+        "refundOnly": false,
+        "frustrated": false
+      },
+      "durationMs": 66
+    },
+    {
+      "id": "D13",
+      "category": "recommendation",
+      "title": "Heavy fabric alternatives preserve the liked fit",
+      "requirements": [
+        "MATERIAL_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "material.too_heavy",
+          "secondaryReasons": [],
+          "labels": [
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "material.too_heavy",
+              "quote": "The fit is great, but the fabric is too heavy."
+            }
+          ],
+          "likedAttributes": [
+            "fit"
+          ],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-OBT-003",
+          "TSS-OBT-005",
+          "TSS-OBT-002"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Cloud Dye Oversized Tee has a oversized fit and 200 GSM 100% cotton fabric, at ₹1149. It is in the simulated inventory in M. Would you like to compare the options?"
+      },
+      "durationMs": 75
+    },
+    {
+      "id": "D14",
+      "category": "recommendation",
+      "title": "Scratchy fabric does not discard liked design or fit",
+      "requirements": [
+        "MATERIAL_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "material.scratchy",
+          "secondaryReasons": [
+            "appearance.expectation_mismatch"
+          ],
+          "labels": [
+            "material_uncomfortable",
+            "appearance_mismatch"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "material.scratchy",
+              "quote": "I love the design and fit. I only dislike the scratchy fabric."
+            },
+            {
+              "label": "appearance.expectation_mismatch",
+              "quote": "I love the design and fit. I only dislike the scratchy fabric."
+            }
+          ],
+          "likedAttributes": [
+            "fit",
+            "theme"
+          ],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-OBT-005",
+          "TSS-OBT-004"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Aero Knit Oversized Tee has a oversized fit and 180 GSM cotton-modal blend fabric, at ₹1249. It is in the simulated inventory in M. Would you like to compare the options?"
+      },
+      "durationMs": 71
+    },
+    {
+      "id": "D15",
+      "category": "diagnosis",
+      "title": "All three reasons survive an explicit material priority",
+      "requirements": [
+        "MULTI_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "primaryReason": "material.too_heavy",
+        "secondaryReasons": [
+          "fit.shoulders_tight",
+          "appearance.expectation_mismatch"
+        ],
+        "labels": [
+          "fit_too_small",
+          "material_too_heavy",
+          "appearance_mismatch"
+        ],
+        "confidence": 0.92,
+        "evidence": [
+          {
+            "label": "fit.shoulders_tight",
+            "quote": "It is heavy, tight at the shoulders and the color is wrong. The weight is why I cannot keep it."
+          },
+          {
+            "label": "material.too_heavy",
+            "quote": "It is heavy, tight at the shoulders and the color is wrong. The weight is why I cannot keep it."
+          },
+          {
+            "label": "appearance.expectation_mismatch",
+            "quote": "It is heavy, tight at the shoulders and the color is wrong. The weight is why I cannot keep it."
+          }
+        ],
+        "likedAttributes": [],
+        "recommendationAllowed": true,
+        "gateReason": null,
+        "requiresClarification": false,
+        "clarifyingQuestion": null,
+        "refundOnly": false,
+        "frustrated": false
+      },
+      "durationMs": 70
+    },
+    {
+      "id": "D16",
+      "category": "diagnosis",
+      "title": "Equal complaints need clarification without an invented priority",
+      "requirements": [
+        "MULTI_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "primaryReason": "other.unclear_primary",
+        "secondaryReasons": [
+          "material.scratchy",
+          "comfort.uncomfortable_seams"
+        ],
+        "labels": [
+          "material_uncomfortable"
+        ],
+        "confidence": 0.92,
+        "evidence": [
+          {
+            "label": "material.scratchy",
+            "quote": "The fabric is scratchy and the seams hurt. Both are equally bad."
+          },
+          {
+            "label": "comfort.uncomfortable_seams",
+            "quote": "The fabric is scratchy and the seams hurt. Both are equally bad."
+          }
+        ],
+        "likedAttributes": [],
+        "recommendationAllowed": false,
+        "gateReason": null,
+        "requiresClarification": true,
+        "clarifyingQuestion": "Which issue is the main reason you cannot keep it, or should we treat both as equally important?",
+        "refundOnly": false,
+        "frustrated": false
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D17",
+      "category": "diagnosis",
+      "title": "Vague fit does not become a blind size-up recommendation",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "DIAGNOSING_RETURN",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": null,
+          "requiresClarification": true,
+          "clarifyingQuestion": "Was it mainly too tight, too loose, too long, or something else?",
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Was it mainly too tight, too loose, too long, or something else?"
+      },
+      "durationMs": 77
+    },
+    {
+      "id": "D18",
+      "category": "preferences",
+      "title": "Current oversized-only preference overrides historical fit",
+      "requirements": [
+        "PREF_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "fit.too_small",
+          "secondaryReasons": [],
+          "labels": [
+            "fit_too_small"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.too_small",
+              "quote": "This is too small."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-OBT-001",
+          "TSS-OBT-002",
+          "TSS-WOV-001"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Ink Black Oversized Tee has a oversized fit and 240 GSM 100% cotton fabric, at ₹999. It is in the simulated inventory in L. Would you like to compare the options?"
+      },
+      "durationMs": 79
+    },
+    {
+      "id": "D19",
+      "category": "preferences",
+      "title": "Historical return penalties affect ranking and remain labeled inference",
+      "requirements": [
+        "PREF_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "ranked": {
+          "candidates": [
+            {
+              "product": {
+                "id": "EVAL-oversized",
+                "name": "Essential Crew Tee",
+                "category": "tshirt",
+                "fit": "oversized",
+                "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL",
+                  "XXL"
+                ],
+                "stock": {
+                  "S": 14,
+                  "M": 18,
+                  "L": 15,
+                  "XL": 9,
+                  "XXL": 4
+                },
+                "colors": [
+                  "charcoal",
+                  "navy",
+                  "white",
+                  "olive"
+                ],
+                "material": "100% cotton",
+                "gsm": 200,
+                "priceInr": 699,
+                "theme": "solid",
+                "returnable": true,
+                "tags": [
+                  "basics",
+                  "heavyweight"
+                ]
+              },
+              "productId": "EVAL-oversized",
+              "name": "Essential Crew Tee",
+              "priceInr": 699,
+              "fit": "oversized",
+              "material": "100% cotton",
+              "gsm": 200,
+              "colors": [
+                "charcoal",
+                "navy",
+                "white",
+                "olive"
+              ],
+              "sizes": [
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL"
+              ],
+              "stock": {
+                "S": 14,
+                "M": 18,
+                "L": 15,
+                "XL": 9,
+                "XXL": 4
+              },
+              "score": 12,
+              "why": [
+                "same category (tshirt)",
+                "same 100% cotton fabric",
+                "similar price (₹699)",
+                "15 in stock in L",
+                "Tentative historical match: fit oversized",
+                "Tentative historical match: material 100% cotton"
+              ],
+              "scoreBreakdown": {
+                "problem": 5,
+                "explicit": 0,
+                "history": 4,
+                "price": 3
+              },
+              "confidence": 0.874,
+              "recommendedSize": "L",
+              "tradeoffs": []
+            },
+            {
+              "product": {
+                "id": "EVAL-slim",
+                "name": "Essential Crew Tee",
+                "category": "tshirt",
+                "fit": "slim",
+                "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL",
+                  "XXL"
+                ],
+                "stock": {
+                  "S": 14,
+                  "M": 18,
+                  "L": 15,
+                  "XL": 9,
+                  "XXL": 4
+                },
+                "colors": [
+                  "charcoal",
+                  "navy",
+                  "white",
+                  "olive"
+                ],
+                "material": "100% cotton",
+                "gsm": 200,
+                "priceInr": 699,
+                "theme": "solid",
+                "returnable": true,
+                "tags": [
+                  "basics",
+                  "heavyweight"
+                ]
+              },
+              "productId": "EVAL-slim",
+              "name": "Essential Crew Tee",
+              "priceInr": 699,
+              "fit": "slim",
+              "material": "100% cotton",
+              "gsm": 200,
+              "colors": [
+                "charcoal",
+                "navy",
+                "white",
+                "olive"
+              ],
+              "sizes": [
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL"
+              ],
+              "stock": {
+                "S": 14,
+                "M": 18,
+                "L": 15,
+                "XL": 9,
+                "XXL": 4
+              },
+              "score": 7,
+              "why": [
+                "same category (tshirt)",
+                "same 100% cotton fabric",
+                "similar price (₹699)",
+                "15 in stock in L",
+                "Tentative historical match: material 100% cotton",
+                "Tentative historical penalty: fit slim"
+              ],
+              "scoreBreakdown": {
+                "problem": 5,
+                "explicit": 0,
+                "history": -1,
+                "price": 3
+              },
+              "confidence": 0.874,
+              "recommendedSize": "L",
+              "tradeoffs": []
+            }
+          ],
+          "excluded": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "cohortStatus": "insufficient_outcome_data"
+        },
+        "baseline": {
+          "candidates": [
+            {
+              "product": {
+                "id": "EVAL-oversized",
+                "name": "Essential Crew Tee",
+                "category": "tshirt",
+                "fit": "oversized",
+                "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL",
+                  "XXL"
+                ],
+                "stock": {
+                  "S": 14,
+                  "M": 18,
+                  "L": 15,
+                  "XL": 9,
+                  "XXL": 4
+                },
+                "colors": [
+                  "charcoal",
+                  "navy",
+                  "white",
+                  "olive"
+                ],
+                "material": "100% cotton",
+                "gsm": 200,
+                "priceInr": 699,
+                "theme": "solid",
+                "returnable": true,
+                "tags": [
+                  "basics",
+                  "heavyweight"
+                ]
+              },
+              "productId": "EVAL-oversized",
+              "name": "Essential Crew Tee",
+              "priceInr": 699,
+              "fit": "oversized",
+              "material": "100% cotton",
+              "gsm": 200,
+              "colors": [
+                "charcoal",
+                "navy",
+                "white",
+                "olive"
+              ],
+              "sizes": [
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL"
+              ],
+              "stock": {
+                "S": 14,
+                "M": 18,
+                "L": 15,
+                "XL": 9,
+                "XXL": 4
+              },
+              "score": 8,
+              "why": [
+                "same category (tshirt)",
+                "same 100% cotton fabric",
+                "similar price (₹699)",
+                "15 in stock in L"
+              ],
+              "scoreBreakdown": {
+                "problem": 5,
+                "explicit": 0,
+                "history": 0,
+                "price": 3
+              },
+              "confidence": 0.782,
+              "recommendedSize": "L",
+              "tradeoffs": []
+            },
+            {
+              "product": {
+                "id": "EVAL-slim",
+                "name": "Essential Crew Tee",
+                "category": "tshirt",
+                "fit": "slim",
+                "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL",
+                  "XXL"
+                ],
+                "stock": {
+                  "S": 14,
+                  "M": 18,
+                  "L": 15,
+                  "XL": 9,
+                  "XXL": 4
+                },
+                "colors": [
+                  "charcoal",
+                  "navy",
+                  "white",
+                  "olive"
+                ],
+                "material": "100% cotton",
+                "gsm": 200,
+                "priceInr": 699,
+                "theme": "solid",
+                "returnable": true,
+                "tags": [
+                  "basics",
+                  "heavyweight"
+                ]
+              },
+              "productId": "EVAL-slim",
+              "name": "Essential Crew Tee",
+              "priceInr": 699,
+              "fit": "slim",
+              "material": "100% cotton",
+              "gsm": 200,
+              "colors": [
+                "charcoal",
+                "navy",
+                "white",
+                "olive"
+              ],
+              "sizes": [
+                "S",
+                "M",
+                "L",
+                "XL",
+                "XXL"
+              ],
+              "stock": {
+                "S": 14,
+                "M": 18,
+                "L": 15,
+                "XL": 9,
+                "XXL": 4
+              },
+              "score": 8,
+              "why": [
+                "same category (tshirt)",
+                "same 100% cotton fabric",
+                "similar price (₹699)",
+                "15 in stock in L"
+              ],
+              "scoreBreakdown": {
+                "problem": 5,
+                "explicit": 0,
+                "history": 0,
+                "price": 3
+              },
+              "confidence": 0.782,
+              "recommendedSize": "L",
+              "tradeoffs": []
+            }
+          ],
+          "excluded": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "cohortStatus": "insufficient_outcome_data"
+        },
+        "negativePreferences": [
+          {
+            "attribute": "fit",
+            "value": "slim",
+            "sentiment": "negative",
+            "source": "behavioral_inference",
+            "confidence": 0.7,
+            "evidence": [
+              "Returned Court Slim Polo: fit too small."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          }
+        ]
+      },
+      "durationMs": 73
+    },
+    {
+      "id": "D20",
+      "category": "preferences",
+      "title": "Black-only preference excludes candidates without black",
+      "requirements": [
+        "PREF_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "material.too_heavy",
+          "secondaryReasons": [],
+          "labels": [
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "material.too_heavy",
+              "quote": "The fabric is too heavy."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-OBT-002",
+          "TSS-WOV-001",
+          "TSS-RGT-007"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Midnight Orbit Oversized Tee has a oversized fit and 220 GSM 100% cotton fabric, at ₹1099. It is in the simulated inventory in M. Would you like to compare the options?"
+      },
+      "durationMs": 79
+    },
+    {
+      "id": "D21",
+      "category": "preferences",
+      "title": "Cold start uses current context without invented history or cohort success",
+      "requirements": [
+        "PREF_004"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "material.too_heavy",
+          "secondaryReasons": [],
+          "labels": [
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "material.too_heavy",
+              "quote": "I have never shopped here before. The fit is good but I need lighter fabric."
+            }
+          ],
+          "likedAttributes": [
+            "fit"
+          ],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-OBT-003",
+          "TSS-OBT-005",
+          "TSS-OBT-002"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Cloud Dye Oversized Tee has a oversized fit and 200 GSM 100% cotton fabric, at ₹1149. It is in the simulated inventory in M. Would you like to compare the options?"
+      },
+      "durationMs": 78
+    },
+    {
+      "id": "D22",
+      "category": "preferences",
+      "title": "Unavailable history yields an empty cold-start profile",
+      "requirements": [
+        "PREF_005"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "coldStart": true,
+        "explicitPreferences": [],
+        "inferredPreferences": [],
+        "negativePreferences": [],
+        "preferences": [],
+        "sizeProfile": [],
+        "priceRange": null,
+        "keptProductIds": [],
+        "returnedProductIds": [],
+        "facts": [
+          "0 synthetic orders",
+          "0 recorded past returns",
+          "No psychological or health profile is inferred"
+        ]
+      },
+      "durationMs": 62
+    },
+    {
+      "id": "D23",
+      "category": "preferences",
+      "title": "Explicit price ceiling filters every recommendation",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "material.too_heavy",
+          "secondaryReasons": [],
+          "labels": [
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "material.too_heavy",
+              "quote": "The fabric is too heavy. Keep it under 1100."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-OBT-002",
+          "TSS-WOV-001",
+          "TSS-RGT-006"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Midnight Orbit Oversized Tee has a oversized fit and 220 GSM 100% cotton fabric, at ₹1099. It is in the simulated inventory in M. Would you like to compare the options?"
+      },
+      "durationMs": 74
+    },
+    {
+      "id": "D24",
+      "category": "preferences",
+      "title": "New explicit fit preference replaces the older one",
+      "requirements": [
+        "PREF_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "coldStart": false,
+        "explicitPreferences": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "explicit_statement",
+            "confidence": 0.98,
+            "evidence": [
+              "I only wear oversized now."
+            ],
+            "updatedAt": "2026-09-30T08:31:00.101Z",
+            "strict": true
+          }
+        ],
+        "inferredPreferences": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Ink Black Oversized Tee on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "color",
+            "value": "ink black",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Ink Black Oversized Tee on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "material",
+            "value": "100% cotton",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Ink Black Oversized Tee on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "fit",
+            "value": "regular",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Everyday Joggers on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "color",
+            "value": "black",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Everyday Joggers on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "material",
+            "value": "cotton-poly fleece",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Everyday Joggers on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "fit",
+            "value": "slim",
+            "sentiment": "negative",
+            "source": "behavioral_inference",
+            "confidence": 0.7,
+            "evidence": [
+              "Returned Court Slim Polo: fit too small."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          }
+        ],
+        "negativePreferences": [
+          {
+            "attribute": "fit",
+            "value": "slim",
+            "sentiment": "negative",
+            "source": "behavioral_inference",
+            "confidence": 0.7,
+            "evidence": [
+              "Returned Court Slim Polo: fit too small."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          }
+        ],
+        "preferences": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "explicit_statement",
+            "confidence": 0.98,
+            "evidence": [
+              "I only wear oversized now."
+            ],
+            "updatedAt": "2026-09-30T08:31:00.101Z",
+            "strict": true
+          },
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Ink Black Oversized Tee on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "color",
+            "value": "ink black",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Ink Black Oversized Tee on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "material",
+            "value": "100% cotton",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Ink Black Oversized Tee on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "fit",
+            "value": "regular",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Everyday Joggers on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "color",
+            "value": "black",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Everyday Joggers on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "material",
+            "value": "cotton-poly fleece",
+            "sentiment": "positive",
+            "source": "behavioral_inference",
+            "confidence": 0.6,
+            "evidence": [
+              "Everyday Joggers on TSS-09871 has no recorded return 76 days after delivery; this is tentative evidence, not a stated preference."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          },
+          {
+            "attribute": "fit",
+            "value": "slim",
+            "sentiment": "negative",
+            "source": "behavioral_inference",
+            "confidence": 0.7,
+            "evidence": [
+              "Returned Court Slim Polo: fit too small."
+            ],
+            "updatedAt": "2026-09-29T00:00:00.000Z",
+            "strict": false
+          }
+        ],
+        "sizeProfile": [
+          {
+            "category": "tshirt",
+            "fit": "regular",
+            "size": "L",
+            "source": "Purchased on TSS-10432; not a universal size guarantee"
+          },
+          {
+            "category": "oversized-tshirt",
+            "fit": "oversized",
+            "size": "L",
+            "source": "Purchased on TSS-09871; not a universal size guarantee"
+          },
+          {
+            "category": "joggers",
+            "fit": "regular",
+            "size": "L",
+            "source": "Purchased on TSS-09871; not a universal size guarantee"
+          },
+          {
+            "category": "polo",
+            "fit": "slim",
+            "size": "L",
+            "source": "Purchased on TSS-09210; not a universal size guarantee"
+          },
+          {
+            "category": "oversized-tshirt",
+            "fit": "oversized",
+            "size": "M",
+            "source": "Purchased on TSS-GROUND-2001; not a universal size guarantee"
+          }
+        ],
+        "priceRange": {
+          "min": 699,
+          "max": 1299
+        },
+        "keptProductIds": [
+          "TSS-OBT-001",
+          "TSS-JOG-001"
+        ],
+        "returnedProductIds": [
+          "TSS-POL-001"
+        ],
+        "facts": [
+          "4 synthetic orders",
+          "1 recorded past returns",
+          "No psychological or health profile is inferred"
+        ]
+      },
+      "durationMs": 71
+    },
+    {
+      "id": "D25",
+      "category": "autonomy",
+      "title": "Refund-only request stops alternatives and waits for confirmation",
+      "requirements": [
+        "AUTONOMY_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "fit.shoulders_tight",
+          "secondaryReasons": [
+            "fit.too_small",
+            "other.unclear"
+          ],
+          "labels": [
+            "fit_too_small"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.shoulders_tight",
+              "quote": "The shoulders are too tight too."
+            },
+            {
+              "label": "fit.too_small",
+              "quote": "The shoulders are too tight too."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Customer requested a refund without recommendations.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": true,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "100f5dd0-3575-4d50-a8f8-5192f8c0ac36",
+          "action": "refund",
+          "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": null,
+          "productName": null,
+          "size": null,
+          "color": null,
+          "refundAmountInr": 699,
+          "priceDeltaInr": 0,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "Understood. I will stop recommending alternatives. I can prepare the ₹699 demo refund for your review."
+      },
+      "durationMs": 71
+    },
+    {
+      "id": "D26",
+      "category": "autonomy",
+      "title": "Stop-selling complaint gets a short resolution response",
+      "requirements": [
+        "AUTONOMY_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Customer requested a refund without recommendations.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": true,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "8f2db902-e094-40f2-a149-ee752d6db4e1",
+          "action": "refund",
+          "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": null,
+          "productName": null,
+          "size": null,
+          "color": null,
+          "refundAmountInr": 699,
+          "priceDeltaInr": 0,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "Understood. I will stop recommending alternatives. I can prepare the ₹699 demo refund for your review."
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D27",
+      "category": "autonomy",
+      "title": "No-recommendations instruction wins over a cheaper exchange",
+      "requirements": [
+        "AUTONOMY_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Customer requested a refund without recommendations.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": true,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "e60890a7-2b9d-47cb-887e-9c15973041a7",
+          "action": "refund",
+          "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": null,
+          "productName": null,
+          "size": null,
+          "color": null,
+          "refundAmountInr": 699,
+          "priceDeltaInr": 0,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "Understood. I will stop recommending alternatives. I can prepare the ₹699 demo refund for your review."
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D28",
+      "category": "recommendation",
+      "title": "No solving candidate means refund or support, not a bad recommendation",
+      "requirements": [
+        "AUTONOMY_004"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "candidates": [],
+        "excluded": [
+          {
+            "productId": "EVAL-BAD",
+            "name": "Ink Black Oversized Tee",
+            "reason": "Does not have verified lighter fabric"
+          }
+        ],
+        "recommendationAllowed": false,
+        "gateReason": "No in-stock candidate satisfies the known constraints. A refund or support path is appropriate.",
+        "cohortStatus": "insufficient_outcome_data"
+      },
+      "durationMs": 66
+    },
+    {
+      "id": "D29",
+      "category": "safety",
+      "title": "Rash report records the complaint and makes no material-safety claim",
+      "requirements": [
+        "SAFETY_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "material.too_heavy",
+          "secondaryReasons": [
+            "sensitive.skin_reaction"
+          ],
+          "labels": [
+            "sensitive_skin_reaction",
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "sensitive.skin_reaction",
+              "quote": "The shirt gave me a rash."
+            },
+            {
+              "label": "material.too_heavy",
+              "quote": "The fabric is heavy too."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Reported skin reaction: no unsolicited alternatives or medical claims.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "I'm sorry it was uncomfortable. I cannot determine which material is suitable for your skin. We can prepare a return or support case; I will only explore other materials if you ask."
+      },
+      "durationMs": 72
+    },
+    {
+      "id": "D30",
+      "category": "safety",
+      "title": "Suspected allergy gets an evidence limit rather than a diagnosis",
+      "requirements": [
+        "SAFETY_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "sensitive.skin_reaction",
+          "secondaryReasons": [],
+          "labels": [
+            "sensitive_skin_reaction"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "sensitive.skin_reaction",
+              "quote": "I think I am allergic. Is the cotton alternative safe for me?"
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Reported skin reaction: no unsolicited alternatives or medical claims.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "I'm sorry it was uncomfortable. I cannot determine which material is suitable for your skin. We can prepare a return or support case; I will only explore other materials if you ask."
+      },
+      "durationMs": 71
+    },
+    {
+      "id": "D31",
+      "category": "defect",
+      "title": "Stitching defect produces a no-charge replacement and quality evidence",
+      "requirements": [
+        "DEFECT_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "COMPLETED",
+        "diagnosis": {
+          "primaryReason": "quality.stitching_failure",
+          "secondaryReasons": [],
+          "labels": [
+            "quality_defect"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "quality.stitching_failure",
+              "quote": "The stitching came apart on day one. It is unworn and unwashed with tags attached."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Quality failure: replacement, refund or quality support; no upsell.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "replacement",
+            "refund"
+          ],
+          "qualityCase": true,
+          "explanation": "This item was delivered 5 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Because this is a defect, we can replace the item or refund it — a quality case is also logged.",
+          "daysSinceDelivery": 5,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": {
+          "customerId": "CUST-004",
+          "orderId": "TSS-10588",
+          "itemId": "TSS-10588-1",
+          "scopeId": "98c956b0-f746-42e5-a54f-9f74368e35ef",
+          "returned": {
+            "productId": "TSS-WDR-001",
+            "productName": "T-Shirt Dress",
+            "size": "S",
+            "color": "black"
+          },
+          "replacement": {
+            "productId": "TSS-WDR-001",
+            "productName": "T-Shirt Dress",
+            "size": "S",
+            "color": "black"
+          },
+          "reasonLabel": "quality_defect",
+          "outcome": "replacement",
+          "priceDeltaInr": 0,
+          "qualityFlag": true,
+          "simulated": true,
+          "recordId": "EXC-67fa9d2b-ed0a-45c8-b121-ad52576da2fa",
+          "kind": "exchange",
+          "sessionId": "98c956b0-f746-42e5-a54f-9f74368e35ef",
+          "createdAt": "2026-09-30T08:31:00.816Z"
+        },
+        "reply": "Your demo replacement is recorded as EXC-67fa9d2b-ed0a-45c8-b121-ad52576da2fa. No real refund, payment or shipment was made. The product feedback is now available in the merchant view."
+      },
+      "durationMs": 71
+    },
+    {
+      "id": "D32",
+      "category": "defect",
+      "title": "Broken zipper blocks alternate-product selling",
+      "requirements": [
+        "DEFECT_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "quality.defect",
+          "secondaryReasons": [],
+          "labels": [
+            "quality_defect"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "quality.defect",
+              "quote": "The zipper is broken and I cannot wear it."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Quality failure: replacement, refund or quality support; no upsell.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "replacement",
+            "refund"
+          ],
+          "qualityCase": true,
+          "explanation": "This item was delivered 5 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Because this is a defect, we can replace the item or refund it — a quality case is also logged.",
+          "daysSinceDelivery": 5,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "This needs a replacement, refund or quality support case. I will not offer an upsell. Which would you prefer?"
+      },
+      "durationMs": 70
+    },
+    {
+      "id": "D33",
+      "category": "fulfillment",
+      "title": "Wrong delivered item uses correction or refund without selling",
+      "requirements": [
+        "FULFILL_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "fulfillment.wrong_item",
+          "secondaryReasons": [],
+          "labels": [
+            "wrong_item"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fulfillment.wrong_item",
+              "quote": "I ordered the blue shirt but received a red cap."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Fulfillment error: correction or refund; no alternative-product selling.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "replacement",
+            "refund"
+          ],
+          "qualityCase": true,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Because the wrong item was sent, we can ship the correct item or refund you at no cost.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "This needs a replacement, refund or quality support case. I will not offer an upsell. Which would you prefer?"
+      },
+      "durationMs": 68
+    },
+    {
+      "id": "D34",
+      "category": "fulfillment",
+      "title": "Wrong label size is a fulfillment error rather than customer fit",
+      "requirements": [
+        "FULFILL_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "fulfillment.wrong_item",
+          "secondaryReasons": [],
+          "labels": [
+            "wrong_item"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fulfillment.wrong_item",
+              "quote": "The order says M but the label on the product is XL."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Fulfillment error: correction or refund; no alternative-product selling.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "replacement",
+            "refund"
+          ],
+          "qualityCase": true,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Because the wrong item was sent, we can ship the correct item or refund you at no cost.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "This needs a replacement, refund or quality support case. I will not offer an upsell. Which would you prefer?"
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D35",
+      "category": "grounding",
+      "title": "Unknown Egyptian cotton attribute is explicitly unknown",
+      "requirements": [
+        "GROUND_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "DIAGNOSING_RETURN",
+        "diagnosis": null,
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "The catalog confirms 100% cotton. It does not confirm Egyptian cotton, so I cannot claim it. What would you like to do next?"
+      },
+      "durationMs": 68
+    },
+    {
+      "id": "D36",
+      "category": "grounding",
+      "title": "Product tool returns exact catalog composition and unknown SKU refusal",
+      "requirements": [
+        "GROUND_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "known": {
+          "id": "TSS-RGT-001",
+          "name": "Essential Crew Tee",
+          "category": "tshirt",
+          "fit": "regular",
+          "sizes": [
+            "S",
+            "M",
+            "L",
+            "XL",
+            "XXL"
+          ],
+          "stock": {
+            "S": 14,
+            "M": 18,
+            "L": 15,
+            "XL": 9,
+            "XXL": 4
+          },
+          "colors": [
+            "charcoal",
+            "navy",
+            "white",
+            "olive"
+          ],
+          "material": "100% cotton",
+          "gsm": 240,
+          "priceInr": 699,
+          "theme": "solid",
+          "returnable": true,
+          "tags": [
+            "basics",
+            "heavyweight"
+          ]
+        },
+        "unknown": {
+          "found": false,
+          "message": "Unknown product. Do not invent attributes."
+        }
+      },
+      "durationMs": 66
+    },
+    {
+      "id": "D37",
+      "category": "inventory",
+      "title": "Unavailable requested size is rejected before proposal execution",
+      "requirements": [
+        "INV_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "requestedSize": "XXXL",
+        "availableSizes": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "XXL"
+        ]
+      },
+      "durationMs": 75
+    },
+    {
+      "id": "D38",
+      "category": "inventory",
+      "title": "Missing stock remains unknown or unavailable rather than promised",
+      "requirements": [
+        "INV_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "stock": {},
+        "rejected": true
+      },
+      "durationMs": 65
+    },
+    {
+      "id": "D39",
+      "category": "inventory",
+      "title": "Stock changes between proposal and confirmation cannot execute",
+      "requirements": [
+        "INV_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "proposal": {
+          "proposalId": "3c93bffe-ebd6-4ce7-aaa3-e6ba80ed384d",
+          "action": "exchange",
+          "summary": "Exchange Essential Crew Tee for Studio Relaxed Tee, ecru, size L. ₹150 additional simulated payment.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": "TSS-RGT-005",
+          "productName": "Studio Relaxed Tee",
+          "size": "L",
+          "color": "ecru",
+          "refundAmountInr": 0,
+          "priceDeltaInr": 150,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "changedStock": 0,
+        "rejected": true
+      },
+      "durationMs": 75
+    },
+    {
+      "id": "D40",
+      "category": "confirmation",
+      "title": "Prepared exchange and a false confirmation cause no transaction",
+      "requirements": [
+        "CONFIRM_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "fit.too_small",
+          "secondaryReasons": [
+            "material.too_heavy"
+          ],
+          "labels": [
+            "fit_too_small",
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.too_small",
+              "quote": "This is too tight and hot."
+            },
+            {
+              "label": "material.too_heavy",
+              "quote": "This is too tight and hot."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-RGT-005",
+          "TSS-OBT-002",
+          "TSS-WOV-001"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "83060ef6-78cc-4567-9d7f-48a4ff753fba",
+          "action": "exchange",
+          "summary": "Exchange Essential Crew Tee for Studio Relaxed Tee, ecru, size L. ₹150 additional simulated payment.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": "TSS-RGT-005",
+          "productName": "Studio Relaxed Tee",
+          "size": "L",
+          "color": "ecru",
+          "refundAmountInr": 0,
+          "priceDeltaInr": 150,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "Studio Relaxed Tee has a relaxed fit and 210 GSM 100% cotton fabric, at ₹849. It is in the simulated inventory in L. Would you like to compare the options?"
+      },
+      "durationMs": 75
+    },
+    {
+      "id": "D41",
+      "category": "confirmation",
+      "title": "Confirmed exchange executes once and retry returns the same result",
+      "requirements": [
+        "CONFIRM_002",
+        "RELIABILITY_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "COMPLETED",
+        "diagnosis": {
+          "primaryReason": "fit.too_small",
+          "secondaryReasons": [
+            "material.too_heavy"
+          ],
+          "labels": [
+            "fit_too_small",
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.too_small",
+              "quote": "This is too tight and hot."
+            },
+            {
+              "label": "material.too_heavy",
+              "quote": "This is too tight and hot."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "TSS-RGT-005",
+          "TSS-OBT-002",
+          "TSS-WOV-001"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": {
+          "customerId": "CUST-001",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "scopeId": "790c40ee-a67d-41b1-a8f1-8fd1c53df702",
+          "returned": {
+            "productId": "TSS-RGT-001",
+            "productName": "Essential Crew Tee",
+            "size": "L",
+            "color": "charcoal"
+          },
+          "replacement": {
+            "productId": "TSS-RGT-005",
+            "productName": "Studio Relaxed Tee",
+            "size": "L",
+            "color": "ecru"
+          },
+          "reasonLabel": "fit_too_small",
+          "outcome": "different_product_exchange",
+          "priceDeltaInr": 150,
+          "qualityFlag": false,
+          "simulated": true,
+          "recordId": "EXC-ea101ca8-6f91-4543-a19b-45232fbde0a2",
+          "kind": "exchange",
+          "sessionId": "790c40ee-a67d-41b1-a8f1-8fd1c53df702",
+          "createdAt": "2026-09-30T08:31:01.846Z"
+        },
+        "reply": "Your demo exchange is recorded as EXC-ea101ca8-6f91-4543-a19b-45232fbde0a2. No real refund, payment or shipment was made. The product feedback is now available in the merchant view."
+      },
+      "durationMs": 75
+    },
+    {
+      "id": "D42",
+      "category": "confirmation",
+      "title": "Switching to a refund invalidates the old exchange",
+      "requirements": [
+        "CONFIRM_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "CUSTOMER_CONFIRMATION",
+        "diagnosis": {
+          "primaryReason": "fit.too_small",
+          "secondaryReasons": [
+            "material.too_heavy"
+          ],
+          "labels": [
+            "fit_too_small",
+            "material_too_heavy"
+          ],
+          "confidence": 0.35,
+          "evidence": [
+            {
+              "label": "fit.too_small",
+              "quote": "This is too tight and hot."
+            },
+            {
+              "label": "material.too_heavy",
+              "quote": "This is too tight and hot."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Customer requested a refund without recommendations.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": true,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": {
+          "proposalId": "afd32aa7-5dec-4641-8ae9-59c72edc01a0",
+          "action": "refund",
+          "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": null,
+          "productName": null,
+          "size": null,
+          "color": null,
+          "refundAmountInr": 699,
+          "priceDeltaInr": 0,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "resolution": null,
+        "reply": "Understood. I will stop recommending alternatives. I can prepare the ₹699 demo refund for your review."
+      },
+      "durationMs": 78
+    },
+    {
+      "id": "D43",
+      "category": "confirmation",
+      "title": "Changed exchange price requires a fresh proposal",
+      "requirements": [
+        "CONFIRM_004"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "proposal": {
+          "proposalId": "59880785-4181-4dff-85fe-b686c8023ff1",
+          "action": "exchange",
+          "summary": "Exchange Essential Crew Tee for Studio Relaxed Tee, ecru, size L. ₹150 additional simulated payment.",
+          "orderId": "TSS-10432",
+          "itemId": "TSS-10432-1",
+          "sourceProductId": "TSS-RGT-001",
+          "sourceProductName": "Essential Crew Tee",
+          "productId": "TSS-RGT-005",
+          "productName": "Studio Relaxed Tee",
+          "size": "L",
+          "color": "ecru",
+          "refundAmountInr": 0,
+          "priceDeltaInr": 150,
+          "simulated": true,
+          "conditionConfirmationRequired": true
+        },
+        "newPrice": 999,
+        "rejected": true
+      },
+      "durationMs": 76
+    },
+    {
+      "id": "D44",
+      "category": "confirmation",
+      "title": "Bare yes without current terms never executes",
+      "requirements": [
+        "CONFIRM_005"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "DIAGNOSING_RETURN",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": null,
+          "requiresClarification": true,
+          "clarifyingQuestion": "What specifically did not work for you: the fit, fabric, appearance, or something else?",
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "What specifically did not work for you: the fit, fabric, appearance, or something else?"
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D45",
+      "category": "confirmation",
+      "title": "Cancellation and unknown condition both block execution",
+      "requirements": [
+        "CONFIRM_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RESOLUTION_DECISION",
+        "diagnosis": {
+          "primaryReason": "other.unclear",
+          "secondaryReasons": [],
+          "labels": [
+            "other"
+          ],
+          "confidence": 0.35,
+          "evidence": [],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Customer requested a refund without recommendations.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": true,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 22 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 22,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "Understood. I will stop recommending alternatives. I can prepare the ₹699 demo refund for your review."
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D46",
+      "category": "multi_item",
+      "title": "Switching line items preserves separate reasons and clears old terms",
+      "requirements": [
+        "MULTI_003"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "first": {
+          "phase": "DIAGNOSING_RETURN",
+          "diagnosis": {
+            "primaryReason": "quality.stitching_failure",
+            "secondaryReasons": [],
+            "labels": [
+              "quality_defect"
+            ],
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "label": "quality.stitching_failure",
+                "quote": "The stitching came apart on day one."
+              }
+            ],
+            "likedAttributes": [],
+            "recommendationAllowed": false,
+            "gateReason": "Quality failure: replacement, refund or quality support; no upsell.",
+            "requiresClarification": false,
+            "clarifyingQuestion": null,
+            "refundOnly": false,
+            "frustrated": false
+          },
+          "candidateIds": [],
+          "recommendationAllowed": false,
+          "policy": {
+            "eligible": true,
+            "reasonCode": "ok",
+            "allowedActions": [
+              "replacement",
+              "refund"
+            ],
+            "qualityCase": true,
+            "explanation": "This item was delivered 5 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Because this is a defect, we can replace the item or refund it — a quality case is also logged.",
+            "daysSinceDelivery": 5,
+            "windowDays": 30,
+            "policyCitation": {
+              "policyId": "tss-returns-demo",
+              "version": "2026.09-demo.2",
+              "effectiveDate": "2026-09-01",
+              "source": "canonical demo policy snapshot"
+            }
+          },
+          "pendingAction": null,
+          "resolution": null,
+          "reply": "Breeze Relaxed Tee has a relaxed fit and 150 GSM cotton-linen blend fabric, at ₹949. It is in the simulated inventory in S. Would you like to compare the options?"
+        },
+        "second": {
+          "phase": "RECOMMENDATION_FLOW",
+          "diagnosis": {
+            "primaryReason": "material.scratchy",
+            "secondaryReasons": [],
+            "labels": [
+              "material_uncomfortable"
+            ],
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "label": "material.scratchy",
+                "quote": "The fabric is scratchy."
+              }
+            ],
+            "likedAttributes": [],
+            "recommendationAllowed": true,
+            "gateReason": null,
+            "requiresClarification": false,
+            "clarifyingQuestion": null,
+            "refundOnly": false,
+            "frustrated": false
+          },
+          "candidateIds": [
+            "TSS-RGT-006",
+            "TSS-RGT-005",
+            "TSS-RGT-004"
+          ],
+          "recommendationAllowed": true,
+          "policy": {
+            "eligible": true,
+            "reasonCode": "ok",
+            "allowedActions": [
+              "refund",
+              "exchange_same_product",
+              "exchange_different_product"
+            ],
+            "qualityCase": false,
+            "explanation": "This item was delivered 5 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+            "daysSinceDelivery": 5,
+            "windowDays": 30,
+            "policyCitation": {
+              "policyId": "tss-returns-demo",
+              "version": "2026.09-demo.2",
+              "effectiveDate": "2026-09-01",
+              "source": "canonical demo policy snapshot"
+            }
+          },
+          "pendingAction": null,
+          "resolution": null,
+          "reply": "Breeze Relaxed Tee has a relaxed fit and 150 GSM cotton-linen blend fabric, at ₹949. It is in the simulated inventory in S. Would you like to compare the options?"
+        }
+      },
+      "durationMs": 75
+    },
+    {
+      "id": "D47",
+      "category": "persistence",
+      "title": "Resolution survives a fresh process and conflicting retry stays rejected",
+      "requirements": [
+        "RELIABILITY_002"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "globalLedgerRestart": {
+          "retried": {
+            "created": false,
+            "reasonCode": "already_resolved",
+            "existingResolutionId": "RET-079b313e-43f7-44b3-8b77-c8264a43dd4b",
+            "message": "This order item already has a resolution. No duplicate return was created."
+          },
+          "opposite": {
+            "created": false,
+            "reasonCode": "already_resolved",
+            "existingResolutionId": "RET-079b313e-43f7-44b3-8b77-c8264a43dd4b",
+            "message": "This order item already has a resolution. No duplicate exchange was created."
+          },
+          "stored": {
+            "customerId": "CUST-001",
+            "orderId": "TSS-10432",
+            "itemId": "TSS-10432-1",
+            "scopeId": "global",
+            "productId": "TSS-RGT-001",
+            "productName": "Essential Crew Tee",
+            "size": "L",
+            "reasonLabel": "changed_mind",
+            "reasonNotes": null,
+            "outcome": "refund_requested",
+            "refundAmountInr": 699,
+            "refundProcessingDays": 7,
+            "simulated": true,
+            "recordId": "RET-079b313e-43f7-44b3-8b77-c8264a43dd4b",
+            "kind": "return",
+            "sessionId": "eval-restart",
+            "createdAt": "2026-09-30T08:31:02.470Z"
+          },
+          "transactionCount": 1
+        },
+        "pendingSessionHydration": {
+          "id": "26b923d9-f4eb-4190-8fa3-3ba4edab23e8",
+          "proposalId": "ce08147f-3681-45cd-8864-b5ae5ff27176",
+          "first": "RET-92a95f49-1042-49bd-a8bc-224a39936704",
+          "again": "RET-92a95f49-1042-49bd-a8bc-224a39936704",
+          "phase": "COMPLETED",
+          "scopedCount": 1
+        },
+        "completedSessionHydration": {
+          "recordId": "RET-92a95f49-1042-49bd-a8bc-224a39936704",
+          "scopedCount": 1
+        }
+      },
+      "durationMs": 344
+    },
+    {
+      "id": "D48",
+      "category": "persistence",
+      "title": "Explicit preference evidence survives a fresh process",
+      "requirements": [
+        "PREF_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "written": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "explicit_statement",
+            "confidence": 0.98,
+            "evidence": [
+              "This is too small. I only wear oversized now."
+            ],
+            "updatedAt": "2026-09-30T08:31:02.855Z",
+            "strict": true
+          }
+        ],
+        "readAfterRestart": [
+          {
+            "attribute": "fit",
+            "value": "oversized",
+            "sentiment": "positive",
+            "source": "explicit_statement",
+            "confidence": 0.98,
+            "evidence": [
+              "This is too small. I only wear oversized now."
+            ],
+            "updatedAt": "2026-09-30T08:31:02.855Z",
+            "strict": true
+          }
+        ]
+      },
+      "durationMs": 182
+    },
+    {
+      "id": "D49",
+      "category": "feedback",
+      "title": "Merchant metrics come from committed demo records and preserve unknown outcomes",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "metrics": {
+          "returnSessions": 1,
+          "completedSessions": 1,
+          "completedVoiceSessions": 0,
+          "refunds": 1,
+          "exchanges": 0,
+          "escalations": 0,
+          "refundRate": 1,
+          "exchangeRate": 0,
+          "revenueRetainedInr": 0,
+          "secondReturnRate": null,
+          "insightCoverage": 1
+        },
+        "insight": {
+          "customerId": "CUST-002",
+          "customerName": "Priya Sharma",
+          "orderId": "TSS-10512",
+          "productId": "TSS-OBT-001",
+          "productName": "Ink Black Oversized Tee",
+          "itemId": "TSS-10512-1",
+          "size": "M",
+          "diagnosis": {
+            "primaryReason": "material.too_heavy",
+            "secondaryReasons": [],
+            "labels": [
+              "material_too_heavy"
+            ],
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "label": "material.too_heavy",
+                "quote": "The fabric is too heavy. I only want a refund."
+              }
+            ],
+            "likedAttributes": [],
+            "recommendationAllowed": false,
+            "gateReason": "Customer requested a refund without recommendations.",
+            "requiresClarification": false,
+            "clarifyingQuestion": null,
+            "refundOnly": true,
+            "frustrated": false
+          },
+          "diagnosisLabels": [
+            "material_too_heavy"
+          ],
+          "primaryReason": "material.too_heavy",
+          "signals": [
+            {
+              "attribute": "fabric_weight",
+              "value": "heavy",
+              "sentiment": "negative",
+              "source": "explicit_statement",
+              "confidence": 0.98,
+              "evidence": [
+                "The fabric is too heavy. I only want a refund."
+              ],
+              "updatedAt": "2026-09-30T08:31:03.070Z",
+              "strict": true
+            }
+          ],
+          "offeredProductIds": [],
+          "chosenProductId": null,
+          "outcome": "refund",
+          "qualityFlag": false,
+          "refundAmountInr": 999,
+          "retainedRevenueInr": 0,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          },
+          "sourceMode": "local-guided-demo",
+          "synthetic": true,
+          "transcript": [
+            {
+              "id": "bf3982eb-fc1d-4b59-b653-f013e83e2ec7",
+              "role": "assistant",
+              "text": "Hi Priya. I have your Ink Black Oversized Tee, size M. What did not work for you?",
+              "at": "2026-09-30T08:31:03.068Z",
+              "source": "local-guided-demo"
+            },
+            {
+              "id": "1715abca-28f9-41e4-be81-130118080016",
+              "role": "user",
+              "text": "The fabric is too heavy. I only want a refund.",
+              "at": "2026-09-30T08:31:03.068Z",
+              "source": "local-guided-demo"
+            },
+            {
+              "id": "ceb4fdf6-e1a1-464f-b21b-5e9e2927fad0",
+              "role": "assistant",
+              "text": "Understood. I will stop recommending alternatives. I can prepare the ₹999 demo refund for your review.",
+              "at": "2026-09-30T08:31:03.072Z",
+              "source": "local-guided-demo"
+            },
+            {
+              "id": "9e0dc93d-cc3f-4f3c-ba74-ecc712a27236",
+              "role": "assistant",
+              "text": "Your demo refund is recorded as RET-511f3023-03e8-4bd7-ab35-18ea167ebbf7. No real refund, payment or shipment was made. The product feedback is now available in the merchant view.",
+              "at": "2026-09-30T08:31:03.072Z",
+              "source": "local-guided-demo"
+            }
+          ],
+          "recordId": "INS-94cdbaae-4c71-48e1-a933-7f73b5293c8a",
+          "kind": "insight",
+          "sessionId": "0f152efc-5403-42b5-a6df-290412ecb591",
+          "createdAt": "2026-09-30T08:31:03.072Z"
+        }
+      },
+      "durationMs": 72
+    },
+    {
+      "id": "D50",
+      "category": "tool_contract",
+      "title": "Voice tool dispatch prepares terms, deduplicates call IDs, and cannot commit",
+      "requirements": [
+        "CONFIRM_001",
+        "RELIABILITY_001"
+      ],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "result": {
+          "requiresHumanConfirmation": true,
+          "pendingAction": {
+            "proposalId": "330d9a9d-c22b-4f07-888c-e43871f48bf5",
+            "action": "refund",
+            "summary": "Request a simulated ₹699 refund for Essential Crew Tee, size L.",
+            "orderId": "TSS-10432",
+            "itemId": "TSS-10432-1",
+            "sourceProductId": "TSS-RGT-001",
+            "sourceProductName": "Essential Crew Tee",
+            "productId": null,
+            "productName": null,
+            "size": null,
+            "color": null,
+            "refundAmountInr": 699,
+            "priceDeltaInr": 0,
+            "simulated": true,
+            "conditionConfirmationRequired": true
+          },
+          "message": "The action is prepared, not executed. Ask the customer to review and confirm the on-screen exact terms. Do not claim completion."
+        },
+        "repeatedProposalId": "330d9a9d-c22b-4f07-888c-e43871f48bf5",
+        "actualAudioTested": false
+      },
+      "durationMs": 76
+    },
+    {
+      "id": "D51",
+      "category": "public_catalog",
+      "title": "All 40 imported public products preserve source facts and separate synthetic stock",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "publicProducts": 40,
+        "publishedGsmValues": 8,
+        "ambiguousChestRows": 80,
+        "snapshotCapturedDate": "2026-09-30",
+        "inventory": "synthetic_demo",
+        "liveStockVerified": false,
+        "sources": [
+          {
+            "id": "tss-public:armour-tshirt-midnight-men-oversized-tshirt",
+            "url": "https://www.thesouledstore.com/product/armour-tshirt-midnight-men-oversized-tshirt",
+            "observedAt": "2026-09-30T04:25:14.304Z",
+            "unknownFields": [
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:dc-darkseid-men-oversized-tshirt",
+            "url": "https://www.thesouledstore.com/product/dc-darkseid-men-oversized-tshirt",
+            "observedAt": "2026-09-30T04:28:06.741Z",
+            "unknownFields": [
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts",
+            "url": "https://www.thesouledstore.com/product/looney-tunes-its-bugs-men-oversized-t-shirts",
+            "observedAt": "2026-09-30T04:29:35.245Z",
+            "unknownFields": [
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:marvel-dark-venom-oversized-tshirt",
+            "url": "https://www.thesouledstore.com/product/marvel-dark-venom-oversized-tshirt",
+            "observedAt": "2026-09-30T04:30:28.929Z",
+            "unknownFields": [
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:oversized-polo-taupe-men",
+            "url": "https://www.thesouledstore.com/product/oversized-polo-taupe-men",
+            "observedAt": "2026-09-30T04:29:44.054Z",
+            "unknownFields": [
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:oversized-t-shirt-champagne-men-super-oversized-t-shirt",
+            "url": "https://www.thesouledstore.com/product/oversized-t-shirt-champagne-men-super-oversized-t-shirt",
+            "observedAt": "2026-09-30T04:30:17.777Z",
+            "unknownFields": [
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:oversized-t-shirt-pacific-men-super-oversized-t-shirt",
+            "url": "https://www.thesouledstore.com/product/oversized-t-shirt-pacific-men-super-oversized-t-shirt",
+            "observedAt": "2026-09-30T04:29:11.575Z",
+            "unknownFields": [
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:oversized-tshirt-on-the-coast-men",
+            "url": "https://www.thesouledstore.com/product/oversized-tshirt-on-the-coast-men",
+            "observedAt": "2026-09-30T04:29:39.399Z",
+            "unknownFields": [
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:tss-originals-relax-oversized-tshirts",
+            "url": "https://www.thesouledstore.com/product/tss-originals-relax-oversized-tshirts",
+            "observedAt": "2026-09-30T04:31:28.585Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:top-gun-logo-t-shirts",
+            "url": "https://www.thesouledstore.com/product/top-gun-logo-t-shirts",
+            "observedAt": "2026-09-30T04:30:33.895Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:tss-originals-cannoli-cream-men-linen-shirts",
+            "url": "https://www.thesouledstore.com/product/tss-originals-cannoli-cream-men-linen-shirts",
+            "observedAt": "2026-09-30T04:33:45.422Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:fine-tucks-shirt-tuscany-men-relaxed-shirts",
+            "url": "https://www.thesouledstore.com/product/fine-tucks-shirt-tuscany-men-relaxed-shirts",
+            "observedAt": "2026-09-30T04:33:50.820Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:cotton-linen-shirt-shadow-stripes",
+            "url": "https://www.thesouledstore.com/product/cotton-linen-shirt-shadow-stripes",
+            "observedAt": "2026-09-30T04:33:55.369Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:relaxed-fit-shirt-trishul-men",
+            "url": "https://www.thesouledstore.com/product/relaxed-fit-shirt-trishul-men?get=1",
+            "observedAt": "2026-09-30T04:34:00.795Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:cotton-linen-shirt-pluto-men",
+            "url": "https://www.thesouledstore.com/product/cotton-linen-shirt-pluto-men",
+            "observedAt": "2026-09-30T04:34:05.930Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:solids-soft-pink-men-shirt",
+            "url": "https://www.thesouledstore.com/product/solids-soft-pink-men-shirt",
+            "observedAt": "2026-09-30T04:34:34.242Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:solids-dark-indigo-men-cotton-linen-shirts",
+            "url": "https://www.thesouledstore.com/product/solids-dark-indigo-men-cotton-linen-shirts",
+            "observedAt": "2026-09-30T04:34:40.181Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:cotton-linen-shirt-ashen-men",
+            "url": "https://www.thesouledstore.com/product/cotton-linen-shirt-ashen-men",
+            "observedAt": "2026-09-30T04:34:43.311Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:tss-originals-fade-out-oversized-full-sleeve-tshirt",
+            "url": "https://www.thesouledstore.com/product/tss-originals-fade-out-oversized-full-sleeve-tshirt",
+            "observedAt": "2026-09-30T04:31:16.382Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:solids-white-oversized-tshirts",
+            "url": "https://www.thesouledstore.com/product/solids-white-oversized-tshirts",
+            "observedAt": "2026-09-30T04:23:21.234Z",
+            "unknownFields": [
+              "gsm",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:powder-blue-solids-oversized-tshirts",
+            "url": "https://www.thesouledstore.com/product/powder-blue-solids-oversized-tshirts",
+            "observedAt": "2026-09-30T04:31:21.332Z",
+            "unknownFields": [
+              "gsm",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:not-your-average-tee-super-oversized-t-shirts",
+            "url": "https://www.thesouledstore.com/product/not-your-average-tee-super-oversized-t-shirts",
+            "observedAt": "2026-09-30T04:31:32.483Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:dusty-solids-men-oversized-tshirts",
+            "url": "https://www.thesouledstore.com/product/dusty-solids-men-oversized-tshirts",
+            "observedAt": "2026-09-30T04:31:37.330Z",
+            "unknownFields": [
+              "gsm",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:oversized-tshirt-rough-water-men",
+            "url": "https://www.thesouledstore.com/product/oversized-tshirt-rough-water-men",
+            "observedAt": "2026-09-30T04:31:43.491Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:easy-fit-shirt-clover-men-relaxed-shirt",
+            "url": "https://www.thesouledstore.com/product/easy-fit-shirt-clover-men-relaxed-shirt",
+            "observedAt": "2026-09-30T04:33:11.657Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:oversized-shirt-saturn-men-relaxed-shirt",
+            "url": "https://www.thesouledstore.com/product/oversized-shirt-saturn-men-relaxed-shirt",
+            "observedAt": "2026-09-30T04:33:16.260Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:relaxed-fit-t-shirts-acting-bad",
+            "url": "https://www.thesouledstore.com/product/relaxed-fit-t-shirts-acting-bad",
+            "observedAt": "2026-09-30T04:30:45.739Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:striped-shirt-carmine-men-relaxed-shirt",
+            "url": "https://www.thesouledstore.com/product/striped-shirt-carmine-men-relaxed-shirt",
+            "observedAt": "2026-09-30T04:34:47.786Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:solids-white-mens-relaxed-fit-tshirt",
+            "url": "https://www.thesouledstore.com/product/solids-white-mens-relaxed-fit-tshirt",
+            "observedAt": "2026-09-30T04:21:08.916Z",
+            "unknownFields": [
+              "gsm",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:relaxed-fit-shirt-cityscape-men",
+            "url": "https://www.thesouledstore.com/product/relaxed-fit-shirt-cityscape-men",
+            "observedAt": "2026-09-30T04:34:52.716Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:relaxed-fit-t-shirts-work-life-balance",
+            "url": "https://www.thesouledstore.com/product/relaxed-fit-t-shirts-work-life-balance",
+            "observedAt": "2026-09-30T04:30:40.645Z",
+            "unknownFields": [
+              "gsm",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-t-shirt-black-mens",
+            "url": "https://www.thesouledstore.com/product/supima-t-shirt-black-mens",
+            "observedAt": "2026-09-30T04:32:06.298Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-cotton-light-olive-drop-cut-tshirt",
+            "url": "https://www.thesouledstore.com/product/supima-cotton-light-olive-drop-cut-tshirt",
+            "observedAt": "2026-09-30T04:32:11.221Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-cotton-nude-pink-drop-cut-tshirt",
+            "url": "https://www.thesouledstore.com/product/supima-cotton-nude-pink-drop-cut-tshirt",
+            "observedAt": "2026-09-30T04:32:16.118Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-cotton-half-sleeve-brick-red-tshirt",
+            "url": "https://www.thesouledstore.com/product/supima-cotton-half-sleeve-brick-red-tshirt",
+            "observedAt": "2026-09-30T04:32:21.169Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-cotton-tss-since-2013-half-sleeve-tshirt",
+            "url": "https://www.thesouledstore.com/product/supima-cotton-tss-since-2013-half-sleeve-tshirt",
+            "observedAt": "2026-09-30T04:32:25.479Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "color",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-t-shirt-rhubarb-mens",
+            "url": "https://www.thesouledstore.com/product/supima-t-shirt-rhubarb-mens",
+            "observedAt": "2026-09-30T04:32:50.495Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-drop-cut-steel-grey-drop-cut-tshirt",
+            "url": "https://www.thesouledstore.com/product/supima-drop-cut-steel-grey-drop-cut-tshirt",
+            "observedAt": "2026-09-30T04:32:55.218Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:green-grass-supima-cotton-half-sleeve-tshirt",
+            "url": "https://www.thesouledstore.com/product/green-grass-supima-cotton-half-sleeve-tshirt",
+            "observedAt": "2026-09-30T04:32:59.896Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          },
+          {
+            "id": "tss-public:supima-amaranth-men-tshirt",
+            "url": "https://www.thesouledstore.com/product/supima-amaranth-men-tshirt",
+            "observedAt": "2026-09-30T04:33:04.731Z",
+            "unknownFields": [
+              "gsm",
+              "fit",
+              "stock",
+              "brandDescription",
+              "operationalReturnEligibility"
+            ]
+          }
+        ]
+      },
+      "durationMs": 67
+    },
+    {
+      "id": "D52",
+      "category": "public_catalog",
+      "title": "Measured variants disclose length changes and respect liked length",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "measuredOptions": {
+          "phase": "RECOMMENDATION_FLOW",
+          "diagnosis": {
+            "primaryReason": "fit.shoulders_tight",
+            "secondaryReasons": [
+              "fit.too_small",
+              "material.too_heavy"
+            ],
+            "labels": [
+              "fit_too_small",
+              "material_too_heavy"
+            ],
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "label": "fit.shoulders_tight",
+                "quote": "The shoulders feel too tight and the fabric is too heavy. I am open to a different design."
+              },
+              {
+                "label": "fit.too_small",
+                "quote": "The shoulders feel too tight and the fabric is too heavy. I am open to a different design."
+              },
+              {
+                "label": "material.too_heavy",
+                "quote": "The shoulders feel too tight and the fabric is too heavy. I am open to a different design."
+              }
+            ],
+            "likedAttributes": [],
+            "recommendationAllowed": true,
+            "gateReason": null,
+            "requiresClarification": false,
+            "clarifyingQuestion": null,
+            "refundOnly": false,
+            "frustrated": false
+          },
+          "candidateIds": [
+            "tss-public:oversized-tshirt-on-the-coast-men",
+            "tss-public:dc-darkseid-men-oversized-tshirt",
+            "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts"
+          ],
+          "recommendationAllowed": true,
+          "policy": {
+            "eligible": true,
+            "reasonCode": "ok",
+            "allowedActions": [
+              "refund",
+              "exchange_same_product",
+              "exchange_different_product"
+            ],
+            "qualityCase": false,
+            "explanation": "This item was delivered 12 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+            "daysSinceDelivery": 12,
+            "windowDays": 30,
+            "policyCitation": {
+              "policyId": "tss-returns-demo",
+              "version": "2026.09-demo.2",
+              "effectiveDate": "2026-09-01",
+              "source": "canonical demo policy snapshot"
+            }
+          },
+          "pendingAction": null,
+          "resolution": null,
+          "reply": "TSS Originals: On The Coast has a oversized fit and 220 GSM 100% cotton fabric, at ₹1199. It is in the simulated inventory in L. Size L: published garment chest 48 in versus 46 in on the returned size M. Published shoulder 23 in versus 22 in. Length changes from 28.5 in to 29.5 in; confirm that trade-off. Published dimensions and lower GSM do not guarantee comfort or fit. Would you like to compare the options?"
+        },
+        "lengthPreservingOptions": {
+          "phase": "RECOMMENDATION_FLOW",
+          "diagnosis": {
+            "primaryReason": "fit.shoulders_tight",
+            "secondaryReasons": [
+              "fit.too_small"
+            ],
+            "labels": [
+              "fit_too_small"
+            ],
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "label": "fit.shoulders_tight",
+                "quote": "The shoulders are too tight but the length is perfect."
+              },
+              {
+                "label": "fit.too_small",
+                "quote": "The shoulders are too tight but the length is perfect."
+              }
+            ],
+            "likedAttributes": [
+              "length"
+            ],
+            "recommendationAllowed": true,
+            "gateReason": null,
+            "requiresClarification": false,
+            "clarifyingQuestion": null,
+            "refundOnly": false,
+            "frustrated": false
+          },
+          "candidateIds": [
+            "tss-public:dusty-solids-men-oversized-tshirts",
+            "tss-public:solids-white-oversized-tshirts",
+            "tss-public:tss-originals-relax-oversized-tshirts"
+          ],
+          "recommendationAllowed": true,
+          "policy": {
+            "eligible": true,
+            "reasonCode": "ok",
+            "allowedActions": [
+              "refund",
+              "exchange_same_product",
+              "exchange_different_product"
+            ],
+            "qualityCase": false,
+            "explanation": "This item was delivered 12 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+            "daysSinceDelivery": 12,
+            "windowDays": 30,
+            "policyCitation": {
+              "policyId": "tss-returns-demo",
+              "version": "2026.09-demo.2",
+              "effectiveDate": "2026-09-01",
+              "source": "canonical demo policy snapshot"
+            }
+          },
+          "pendingAction": null,
+          "resolution": null,
+          "reply": "Solids: Rose Taupe has a oversized fit and unspecified GSM 100% cotton fabric, at ₹799. It is in the simulated inventory in L. Size L: published garment chest 48 in versus 46 in on the returned size M. Published shoulder 23 in versus 22 in. Length changes from 28.5 in to 29 in; confirm that trade-off. Published dimensions and lower GSM do not guarantee comfort or fit. Would you like to compare the options?"
+        }
+      },
+      "durationMs": 83
+    },
+    {
+      "id": "D53",
+      "category": "public_catalog",
+      "title": "Darkseid L proposal and committed record retain the exact price difference",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "COMPLETED",
+        "diagnosis": {
+          "primaryReason": "fit.shoulders_tight",
+          "secondaryReasons": [
+            "fit.too_small",
+            "material.too_heavy"
+          ],
+          "labels": [
+            "fit_too_small",
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.shoulders_tight",
+              "quote": "The shoulders feel too tight and the fabric is too heavy. I am open to a different design."
+            },
+            {
+              "label": "fit.too_small",
+              "quote": "The shoulders feel too tight and the fabric is too heavy. I am open to a different design."
+            },
+            {
+              "label": "material.too_heavy",
+              "quote": "The shoulders feel too tight and the fabric is too heavy. I am open to a different design."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "tss-public:oversized-tshirt-on-the-coast-men",
+          "tss-public:dc-darkseid-men-oversized-tshirt",
+          "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 12 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 12,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": {
+          "customerId": "CUST-001",
+          "orderId": "TSS-GROUND-2001",
+          "itemId": "TSS-GROUND-2001-1",
+          "scopeId": "26bb7cb9-bac3-4132-b6e8-6ce06bcb6b5c",
+          "returned": {
+            "productId": "tss-public:armour-tshirt-midnight-men-oversized-tshirt",
+            "productName": "TSS Originals: Midnight",
+            "size": "M",
+            "color": "listed product variant"
+          },
+          "replacement": {
+            "productId": "tss-public:dc-darkseid-men-oversized-tshirt",
+            "productName": "DC: Darkseid",
+            "size": "L",
+            "color": "listed product variant"
+          },
+          "reasonLabel": "fit_too_small",
+          "outcome": "different_product_exchange",
+          "priceDeltaInr": 100,
+          "qualityFlag": false,
+          "simulated": true,
+          "recordId": "EXC-c847bca4-aac3-41d0-a729-9e7e7be1ed03",
+          "kind": "exchange",
+          "sessionId": "26bb7cb9-bac3-4132-b6e8-6ce06bcb6b5c",
+          "createdAt": "2026-09-30T08:31:03.514Z"
+        },
+        "reply": "Your demo exchange is recorded as EXC-c847bca4-aac3-41d0-a729-9e7e7be1ed03. No real refund, payment or shipment was made. The product feedback is now available in the merchant view."
+      },
+      "durationMs": 78
+    },
+    {
+      "id": "D54",
+      "category": "public_catalog",
+      "title": "A different size cannot reuse the measured recommendation",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "fit.shoulders_tight",
+          "secondaryReasons": [
+            "fit.too_small",
+            "material.too_heavy"
+          ],
+          "labels": [
+            "fit_too_small",
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "fit.shoulders_tight",
+              "quote": "The shoulders feel too tight and the fabric is too heavy."
+            },
+            {
+              "label": "fit.too_small",
+              "quote": "The shoulders feel too tight and the fabric is too heavy."
+            },
+            {
+              "label": "material.too_heavy",
+              "quote": "The shoulders feel too tight and the fabric is too heavy."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "tss-public:oversized-tshirt-on-the-coast-men",
+          "tss-public:dc-darkseid-men-oversized-tshirt",
+          "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 12 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 12,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "TSS Originals: On The Coast has a oversized fit and 220 GSM 100% cotton fabric, at ₹1199. It is in the simulated inventory in L. Size L: published garment chest 48 in versus 46 in on the returned size M. Published shoulder 23 in versus 22 in. Length changes from 28.5 in to 29.5 in; confirm that trade-off. Published dimensions and lower GSM do not guarantee comfort or fit. Would you like to compare the options?"
+      },
+      "durationMs": 79
+    },
+    {
+      "id": "D55",
+      "category": "public_catalog",
+      "title": "Public cold-start recommendations preserve fit with lower verified GSM",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "RECOMMENDATION_FLOW",
+        "diagnosis": {
+          "primaryReason": "material.too_heavy",
+          "secondaryReasons": [],
+          "labels": [
+            "material_too_heavy"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "material.too_heavy",
+              "quote": "The fit is great, but the fabric is too heavy."
+            }
+          ],
+          "likedAttributes": [
+            "fit"
+          ],
+          "recommendationAllowed": true,
+          "gateReason": null,
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [
+          "tss-public:dc-darkseid-men-oversized-tshirt",
+          "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts",
+          "tss-public:oversized-tshirt-on-the-coast-men"
+        ],
+        "recommendationAllowed": true,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "refund",
+            "exchange_same_product",
+            "exchange_different_product"
+          ],
+          "qualityCase": false,
+          "explanation": "This item was delivered 10 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Available resolutions: refund, exchange same product, exchange different product.",
+          "daysSinceDelivery": 10,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": null,
+        "reply": "DC: Darkseid has a oversized fit and 220 GSM 100% cotton fabric, at ₹1099. It is in the simulated inventory in M. Would you like to compare the options?"
+      },
+      "durationMs": 78
+    },
+    {
+      "id": "D56",
+      "category": "public_catalog",
+      "title": "Unknown attributes stay unknown while available measurements are answered",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "missingWeightRecommendation": {
+          "candidates": [],
+          "excluded": [
+            {
+              "productId": "tss-public:armour-tshirt-midnight-men-oversized-tshirt",
+              "name": "TSS Originals: Midnight",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:dc-darkseid-men-oversized-tshirt",
+              "name": "DC: Darkseid",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts",
+              "name": "Looney Tunes: It's Bugs",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:marvel-dark-venom-oversized-tshirt",
+              "name": "Marvel: Dark Venom",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-t-shirt-champagne-men-super-oversized-t-shirt",
+              "name": "Premium Essentials: Off white",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-t-shirt-pacific-men-super-oversized-t-shirt",
+              "name": "Premium Essentials: Navy Blue",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-tshirt-on-the-coast-men",
+              "name": "TSS Originals: On The Coast",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:top-gun-logo-t-shirts",
+              "name": "Top Gun: Logo",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:tss-originals-fade-out-oversized-full-sleeve-tshirt",
+              "name": "Souled Originals: Urban Fog",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:solids-white-oversized-tshirts",
+              "name": "Solids: White",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:powder-blue-solids-oversized-tshirts",
+              "name": "Solids: Powder Blue",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:not-your-average-tee-super-oversized-t-shirts",
+              "name": "Colourblock: Not Your Average Tee",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:dusty-solids-men-oversized-tshirts",
+              "name": "Solids: Rose Taupe",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:oversized-tshirt-rough-water-men",
+              "name": "TSS Originals: Rough Waters",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:relaxed-fit-t-shirts-acting-bad",
+              "name": "Relaxed T-Shirt: Acting Bad",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:solids-white-mens-relaxed-fit-tshirt",
+              "name": "Solids: White",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:relaxed-fit-t-shirts-work-life-balance",
+              "name": "Relaxed T-Shirt: Work Life Balance",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-t-shirt-black-mens",
+              "name": "Supima: Jet Black",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-light-olive-drop-cut-tshirt",
+              "name": "Supima: Light Olive",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-nude-pink-drop-cut-tshirt",
+              "name": "Supima: Nude Pink",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-half-sleeve-brick-red-tshirt",
+              "name": "Supima: Brick Red",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-cotton-tss-since-2013-half-sleeve-tshirt",
+              "name": "Supima: TSS Since 2013",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-t-shirt-rhubarb-mens",
+              "name": "Supima: Crimson Ruby",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-drop-cut-steel-grey-drop-cut-tshirt",
+              "name": "Supima: Steel Grey",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:green-grass-supima-cotton-half-sleeve-tshirt",
+              "name": "Supima: Green Grass Edition",
+              "reason": "Does not have verified lighter fabric"
+            },
+            {
+              "productId": "tss-public:supima-amaranth-men-tshirt",
+              "name": "Supima: Deep Scarlet",
+              "reason": "Does not have verified lighter fabric"
+            }
+          ],
+          "recommendationAllowed": false,
+          "gateReason": "No in-stock candidate satisfies the known constraints. A refund or support path is appropriate.",
+          "cohortStatus": "insufficient_outcome_data"
+        },
+        "unknownFit": "tss-public:supima-t-shirt-black-mens",
+        "measurementReply": "For size M, the source chart lists garment chest 46 inches, length 28.5 inches, shoulder 22 inches. These measurements do not guarantee fit.",
+        "unknownAttributeReply": "The catalog confirms 100% Cotton. It does not confirm Egyptian cotton, so I cannot claim it. What would you like to do next?",
+        "inventoryReply": {
+          "available": true,
+          "units": 6,
+          "synthetic": true,
+          "note": "Stock is pooled by size across colors."
+        }
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D57",
+      "category": "policy",
+      "title": "Negated defect clauses do not create quality facts or waive washed-item conditions",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "negativePhrases": [
+          "It is not damaged and has no defect.",
+          "Nothing is broken.",
+          "There are no signs of damage.",
+          "It is not the wrong item.",
+          "The seam has not split.",
+          "The stitching did not fail.",
+          "There is no tear.",
+          "There is no stitching failure."
+        ],
+        "positiveCounterexample": {
+          "primaryReason": "quality.stitching_failure",
+          "secondaryReasons": [],
+          "labels": [
+            "quality_defect"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "quality.stitching_failure",
+              "quote": "It is not damaged, but the seam split."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Quality failure: replacement, refund or quality support; no upsell.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "waivers": 0
+      },
+      "durationMs": 71
+    },
+    {
+      "id": "D58",
+      "category": "defect",
+      "title": "Post-wash seam failure requires confirmed quality support without a condition waiver",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "phase": "COMPLETED",
+        "diagnosis": {
+          "primaryReason": "quality.stitching_failure",
+          "secondaryReasons": [],
+          "labels": [
+            "quality_defect"
+          ],
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "label": "quality.stitching_failure",
+              "quote": "The seam opened after one wash."
+            }
+          ],
+          "likedAttributes": [],
+          "recommendationAllowed": false,
+          "gateReason": "Quality failure: replacement, refund or quality support; no upsell.",
+          "requiresClarification": false,
+          "clarifyingQuestion": null,
+          "refundOnly": false,
+          "frustrated": false
+        },
+        "candidateIds": [],
+        "recommendationAllowed": false,
+        "policy": {
+          "eligible": true,
+          "reasonCode": "ok",
+          "allowedActions": [
+            "replacement",
+            "refund"
+          ],
+          "qualityCase": true,
+          "explanation": "This item was delivered 5 days ago, inside the 30-day return window under policy tss-returns-demo v2026.09-demo.2. Because this is a defect, we can replace the item or refund it — a quality case is also logged.",
+          "daysSinceDelivery": 5,
+          "windowDays": 30,
+          "policyCitation": {
+            "policyId": "tss-returns-demo",
+            "version": "2026.09-demo.2",
+            "effectiveDate": "2026-09-01",
+            "source": "canonical demo policy snapshot"
+          }
+        },
+        "pendingAction": null,
+        "resolution": {
+          "customerId": "CUST-004",
+          "orderId": "TSS-10588",
+          "itemId": "TSS-10588-1",
+          "productId": "TSS-WDR-001",
+          "diagnosis": {
+            "primaryReason": "quality.stitching_failure",
+            "secondaryReasons": [],
+            "labels": [
+              "quality_defect"
+            ],
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "label": "quality.stitching_failure",
+                "quote": "The seam opened after one wash."
+              }
+            ],
+            "likedAttributes": [],
+            "recommendationAllowed": false,
+            "gateReason": "Quality failure: replacement, refund or quality support; no upsell.",
+            "requiresClarification": false,
+            "clarifyingQuestion": null,
+            "refundOnly": false,
+            "frustrated": false
+          },
+          "outcome": "HUMAN_ESCALATION",
+          "simulated": true,
+          "recordId": "ESC-ca4069d2-548a-4c8a-9a71-9a08ec81398b",
+          "kind": "escalation",
+          "sessionId": "a1b55f63-a061-40a9-bb22-5137b741be61",
+          "createdAt": "2026-09-30T08:31:04.045Z"
+        },
+        "reply": "Your demo support case is recorded as ESC-ca4069d2-548a-4c8a-9a71-9a08ec81398b. No real refund, payment or shipment was made. The product feedback is now available in the merchant view."
+      },
+      "durationMs": 69
+    },
+    {
+      "id": "D59",
+      "category": "tool_contract",
+      "title": "Rejected structured extraction leaves all existing session state unchanged",
+      "requirements": [],
+      "mode": "deterministic_domain",
+      "status": "PASS",
+      "evidence": {
+        "condition": {
+          "status": "not_met",
+          "required": [
+            "tags attached",
+            "unworn",
+            "unwashed"
+          ]
+        },
+        "pendingProposalUnchanged": true,
+        "providerCalled": false
+      },
+      "durationMs": 87
+    }
+  ],
+  "requirementsMatrix": [
+    {
+      "evalId": "POLICY_001",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D01",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_002",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D02",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_003",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D03",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_004",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D04",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_005",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_006",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D08",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_007",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D07",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "POLICY_008",
+      "category": "policy",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_001",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D09",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_002",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D10",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_003",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D11",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FIT_004",
+      "category": "diagnosis",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D12",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MATERIAL_001",
+      "category": "preservation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D13",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MATERIAL_002",
+      "category": "preservation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D14",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_001",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D15",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_002",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D16",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "MULTI_003",
+      "category": "multilabel",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D46",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_001",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D18",
+          "status": "PASS"
+        },
+        {
+          "id": "D24",
+          "status": "PASS"
+        },
+        {
+          "id": "D48",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_002",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D19",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_003",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D20",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_004",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D21",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_005",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D22",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "PREF_006",
+      "category": "preferences",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_001",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D25",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_002",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D26",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_003",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D27",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "AUTONOMY_004",
+      "category": "no_pressure",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D28",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "SAFETY_001",
+      "category": "sensitive",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D29",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "SAFETY_002",
+      "category": "sensitive",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D30",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "DEFECT_001",
+      "category": "defect",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D31",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "DEFECT_002",
+      "category": "defect",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D32",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FULFILL_001",
+      "category": "fulfillment",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D33",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "FULFILL_002",
+      "category": "fulfillment",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D34",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_001",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D35",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_002",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D36",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "GROUND_003",
+      "category": "grounding",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_001",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D37",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_002",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D39",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "INV_003",
+      "category": "inventory",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D38",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_001",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D40",
+          "status": "PASS"
+        },
+        {
+          "id": "D45",
+          "status": "PASS"
+        },
+        {
+          "id": "D50",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_002",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D41",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_003",
+      "category": "stale_proposal",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D42",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_004",
+      "category": "stale_proposal",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D43",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "CONFIRM_005",
+      "category": "confirmation",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D44",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "RELIABILITY_001",
+      "category": "duplicate",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D41",
+          "status": "PASS"
+        },
+        {
+          "id": "D50",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "RELIABILITY_002",
+      "category": "restart",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [
+        {
+          "id": "D47",
+          "status": "PASS"
+        }
+      ],
+      "note": "Related checks use the app fixtures and documented assertions; they do not imply execution of this original matrix scenario or every expectation."
+    },
+    {
+      "evalId": "VOICE_001",
+      "category": "interruption",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Native audio, interruption, transcription and critical-field recognition require a real voice run."
+    },
+    {
+      "evalId": "VOICE_002",
+      "category": "low_confidence",
+      "evaluationStatus": "NOT_RUN_AS_WRITTEN",
+      "relatedDeterministicChecks": [],
+      "note": "Native audio, interruption, transcription and critical-field recognition require a real voice run."
+    }
+  ],
+  "notTested": [
+    "Native AssemblyAI session, speech recognition, spoken latency, generated responses and audio barge-in",
+    "End-to-end model hallucination, tool selection or instruction-following accuracy",
+    "Foreign-market policy routing, gift-history exclusion and merchant-configurable policy variants",
+    "Live catalog, live inventory, Supabase or real commerce integrations",
+    "Cohort success, second-return performance and business uplift",
+    "Remote session persistence, concurrent database writes, and distributed idempotency; local serialization/hydration is tested"
+  ]
+}

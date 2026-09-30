@@ -1,0 +1,9 @@
+# Direct-user server configuration
+
+Run `zsh scripts/configure-private-server.zsh` personally in a local terminal from the project root. It accepts hidden AssemblyAI API key and Supabase server secret key fields, plus the project URL, and writes only ignored `.private/server.env` with permissions 600. No credentials are transmitted or echoed. Existing configuration is preserved rather than overwritten. The agent must not read the resulting file, clipboard or keychain. Do not put credentials in chat, Git, source bundles or screenshots.
+
+This prepares configuration only. Voice approval remains false and reserved-usage cap zero. Loading this file does not approve live calls. User must review the actual AssemblyAI account's free credits and absence of paid upgrades/autopay. The parent coordinates the sole database writer: verify existing migration versions and the persistent global budget before setting an explicitly approved 600-second total test cap, retaining 180 seconds per call and the managed native model. Do not blindly push older migration timestamps, use a paid LLM gateway, create more provider credentials or enable billing.
+
+Before provider use, add and test a sanitizer that sends only permitted product, size and order-status history. Current private history/replay adapters remain disconnected from provider configuration; they block approved-voice/hosted use. No name, contact, address, payment, account identifier or full account-history payload may be transmitted. Customer feedback, sensitive symptoms and audio need their applicable explicit consent. Genuine managed provider reply.audio is required for recorded agent output; automated local TTS/recorded customer input is separately labeled and is not a microphone test or voice clone.
+
+No provider request, key entry, remote SQL or voice activation was performed for this handoff. Live UI design is frozen pending a new explicit selection.

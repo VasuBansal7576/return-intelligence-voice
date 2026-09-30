@@ -1,0 +1,3733 @@
+{
+  "capturedDate": "2026-09-30",
+  "notice": "Public product attributes captured from official pages. Stock and operational eligibility are unknown; runtime demo inventory/policy are separate synthetic fixtures. No affiliation or image reproduction rights are claimed.",
+  "products": [
+    {
+      "id": "tss-public:armour-tshirt-midnight-men-oversized-tshirt",
+      "name": "TSS Originals: Midnight",
+      "productUrl": "https://www.thesouledstore.com/product/armour-tshirt-midnight-men-oversized-tshirt",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": 250,
+      "priceInr": 999,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton. Fabric weight 250 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 27,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 28,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29.5,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:25:14.304Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:25:14.304Z"
+    },
+    {
+      "id": "tss-public:dc-darkseid-men-oversized-tshirt",
+      "name": "DC: Darkseid",
+      "productUrl": "https://www.thesouledstore.com/product/dc-darkseid-men-oversized-tshirt",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": 220,
+      "priceInr": 1099,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton. Fabric weight 220 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 27,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 28,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29.5,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:28:06.741Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:28:06.741Z"
+    },
+    {
+      "id": "tss-public:looney-tunes-its-bugs-men-oversized-t-shirts",
+      "name": "Looney Tunes: It's Bugs",
+      "productUrl": "https://www.thesouledstore.com/product/looney-tunes-its-bugs-men-oversized-t-shirts",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": 220,
+      "priceInr": 1099,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton. Fabric weight 220 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 27,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 28,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29.5,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:29:35.245Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:29:35.245Z"
+    },
+    {
+      "id": "tss-public:marvel-dark-venom-oversized-tshirt",
+      "name": "Marvel: Dark Venom",
+      "productUrl": "https://www.thesouledstore.com/product/marvel-dark-venom-oversized-tshirt",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": 220,
+      "priceInr": 1699,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized Full Sleeve T-Shirts. 100% Cotton. Fabric weight 220 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Fit To Chest": 34,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "Fit To Chest": 36,
+            "Garment Chest": 42,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "Fit To Chest": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "Fit To Chest": 40,
+            "Garment Chest": 46,
+            "Length": 28,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "Fit To Chest": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "Fit To Chest": 44,
+            "Garment Chest": 50,
+            "Length": 29.5,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "Fit To Chest": 46,
+            "Garment Chest": 52,
+            "Length": 30,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "Fit To Chest": 48,
+            "Garment Chest": 54,
+            "Length": 30.5,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:30:28.929Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:30:28.929Z"
+    },
+    {
+      "id": "tss-public:oversized-polo-taupe-men",
+      "name": "Oversized Polo: Taupe",
+      "productUrl": "https://www.thesouledstore.com/product/oversized-polo-taupe-men",
+      "category": "polo",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": 250,
+      "priceInr": 1399,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Taupe"
+      ],
+      "care": "Machine Wash",
+      "description": "Oversized Polos. 100% Cotton. Fabric weight 250 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 20.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 28,
+            "Shoulder": 21
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29,
+            "Shoulder": 21.5
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 29.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 23
+          }
+        ],
+        "observedAt": "2026-09-30T04:29:44.054Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:29:44.054Z"
+    },
+    {
+      "id": "tss-public:oversized-t-shirt-champagne-men-super-oversized-t-shirt",
+      "name": "Premium Essentials: Off white",
+      "productUrl": "https://www.thesouledstore.com/product/oversized-t-shirt-champagne-men-super-oversized-t-shirt",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "80% Cotton 20%Polyester",
+      "gsm": 300,
+      "priceInr": 949,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Off white"
+      ],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 80% Cotton 20%Polyester. Fabric weight 300 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 26,
+            "Shoulder": 19.75
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 26.5,
+            "Shoulder": 20.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21.25
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:30:17.777Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:30:17.777Z"
+    },
+    {
+      "id": "tss-public:oversized-t-shirt-pacific-men-super-oversized-t-shirt",
+      "name": "Premium Essentials: Navy Blue",
+      "productUrl": "https://www.thesouledstore.com/product/oversized-t-shirt-pacific-men-super-oversized-t-shirt",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "80% Cotton 20%Polyester",
+      "gsm": 300,
+      "priceInr": 899,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Navy Blue"
+      ],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 80% Cotton 20%Polyester. Fabric weight 300 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 26,
+            "Shoulder": 19.75
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 26.5,
+            "Shoulder": 20.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21.25
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:29:11.575Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:29:11.575Z"
+    },
+    {
+      "id": "tss-public:oversized-tshirt-on-the-coast-men",
+      "name": "TSS Originals: On The Coast",
+      "productUrl": "https://www.thesouledstore.com/product/oversized-tshirt-on-the-coast-men",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": 220,
+      "priceInr": 1199,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton. Fabric weight 220 GSM.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 27,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 28,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29.5,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:29:39.399Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:29:39.399Z"
+    },
+    {
+      "id": "tss-public:tss-originals-relax-oversized-tshirts",
+      "name": "TSS Originals: Relaksa",
+      "productUrl": "https://www.thesouledstore.com/product/tss-originals-relax-oversized-tshirts",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 599,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 29.5,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 30.5,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:31:28.585Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:31:28.585Z"
+    },
+    {
+      "id": "tss-public:top-gun-logo-t-shirts",
+      "name": "Top Gun: Logo",
+      "productUrl": "https://www.thesouledstore.com/product/top-gun-logo-t-shirts",
+      "category": "tshirt",
+      "fit": "relaxed",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 849,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Men Relaxed Fit T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 36,
+            "Length": 24.5,
+            "Shoulder": 17
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Length": 25.5,
+            "Shoulder": 17.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 18
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 18.5
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Length": 28.5,
+            "Shoulder": 19
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 47,
+            "Length": 29.5,
+            "Shoulder": 20
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 49,
+            "Length": 30,
+            "Shoulder": 20.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 51,
+            "Length": 30,
+            "Shoulder": 21
+          }
+        ],
+        "observedAt": "2026-09-30T04:30:33.895Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:30:33.895Z"
+    },
+    {
+      "id": "tss-public:tss-originals-cannoli-cream-men-linen-shirts",
+      "name": "Cotton Linen: Striped Sienna",
+      "productUrl": "https://www.thesouledstore.com/product/tss-originals-cannoli-cream-men-linen-shirts",
+      "category": "shirt",
+      "fit": null,
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1799,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Length": 29,
+            "Shoulder": 18.25
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Length": 29.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Length": 30,
+            "Shoulder": 19.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Length": 30.5,
+            "Shoulder": 19.75
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 46,
+            "Length": 31,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 48,
+            "Length": 31.5,
+            "Shoulder": 20.75
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 50,
+            "Length": 32,
+            "Shoulder": 21.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:33:45.422Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:33:45.422Z"
+    },
+    {
+      "id": "tss-public:fine-tucks-shirt-tuscany-men-relaxed-shirts",
+      "name": "Cotton Linen: Tuscany",
+      "productUrl": "https://www.thesouledstore.com/product/fine-tucks-shirt-tuscany-men-relaxed-shirts",
+      "category": "shirt",
+      "fit": "relaxed",
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1699,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 28.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 28.5,
+            "Shoulder": 19.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 29,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 30.5,
+            "Shoulder": 21.75
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 31,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 23.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:33:50.820Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:33:50.820Z"
+    },
+    {
+      "id": "tss-public:cotton-linen-shirt-shadow-stripes",
+      "name": "Cotton Linen Stripes: Nautical",
+      "productUrl": "https://www.thesouledstore.com/product/cotton-linen-shirt-shadow-stripes",
+      "category": "shirt",
+      "fit": null,
+      "material": "69% Cotton 19% Polyester 12% Linen",
+      "gsm": null,
+      "priceInr": 1599,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 69% Cotton 19% Polyester 12% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Shoulder": 18.25,
+            "Length": 29.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Shoulder": 19.75,
+            "Length": 31
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 46,
+            "Shoulder": 20.25,
+            "Length": 31.5
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 49,
+            "Shoulder": 20.75,
+            "Length": 32
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 51,
+            "Shoulder": 21.25,
+            "Length": 32.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:33:55.369Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:33:55.369Z"
+    },
+    {
+      "id": "tss-public:relaxed-fit-shirt-trishul-men",
+      "name": "Cotton Linen: Trishul",
+      "productUrl": "https://www.thesouledstore.com/product/relaxed-fit-shirt-trishul-men?get=1",
+      "category": "shirt",
+      "fit": "relaxed",
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1799,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 28.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 28.5,
+            "Shoulder": 19.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 29,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 30.5,
+            "Shoulder": 21.75
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 31,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 23.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:00.795Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:00.795Z"
+    },
+    {
+      "id": "tss-public:cotton-linen-shirt-pluto-men",
+      "name": "Cotton Linen Stripes: Pluto",
+      "productUrl": "https://www.thesouledstore.com/product/cotton-linen-shirt-pluto-men",
+      "category": "shirt",
+      "fit": null,
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1499,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 28.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 28.5,
+            "Shoulder": 19.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 29,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 30.5,
+            "Shoulder": 21.75
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 31,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 23.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:05.930Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:05.930Z"
+    },
+    {
+      "id": "tss-public:solids-soft-pink-men-shirt",
+      "name": "Cotton Linen: Soft Pink",
+      "productUrl": "https://www.thesouledstore.com/product/solids-soft-pink-men-shirt",
+      "category": "shirt",
+      "fit": null,
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1599,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Length": 29,
+            "Shoulder": 18.25
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Length": 29.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Length": 30,
+            "Shoulder": 19.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Length": 30.5,
+            "Shoulder": 19.75
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 46,
+            "Length": 31,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 48,
+            "Length": 31.5,
+            "Shoulder": 20.75
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 50,
+            "Length": 32,
+            "Shoulder": 21.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:34.242Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:34.242Z"
+    },
+    {
+      "id": "tss-public:solids-dark-indigo-men-cotton-linen-shirts",
+      "name": "Cotton Linen: Twilight",
+      "productUrl": "https://www.thesouledstore.com/product/solids-dark-indigo-men-cotton-linen-shirts",
+      "category": "shirt",
+      "fit": null,
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1599,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Length": 29,
+            "Shoulder": 18.25
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Length": 29.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Length": 30,
+            "Shoulder": 19.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Length": 30.5,
+            "Shoulder": 19.75
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 46,
+            "Length": 31,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 48,
+            "Length": 31.5,
+            "Shoulder": 20.75
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 50,
+            "Length": 32,
+            "Shoulder": 21.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:40.181Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:40.181Z"
+    },
+    {
+      "id": "tss-public:cotton-linen-shirt-ashen-men",
+      "name": "Cotton Linen Stripes: Ashen",
+      "productUrl": "https://www.thesouledstore.com/product/cotton-linen-shirt-ashen-men",
+      "category": "shirt",
+      "fit": null,
+      "material": "85% Cotton 15% Linen",
+      "gsm": null,
+      "priceInr": 1199,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 85% Cotton 15% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Shoulder": 18.25,
+            "Length": 29.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Shoulder": 19.75,
+            "Length": 31
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 46,
+            "Shoulder": 20.25,
+            "Length": 31.5
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 49,
+            "Shoulder": 20.75,
+            "Length": 32
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 51,
+            "Shoulder": 21.25,
+            "Length": 32.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:43.311Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:43.311Z"
+    },
+    {
+      "id": "tss-public:tss-originals-fade-out-oversized-full-sleeve-tshirt",
+      "name": "Souled Originals: Urban Fog",
+      "productUrl": "https://www.thesouledstore.com/product/tss-originals-fade-out-oversized-full-sleeve-tshirt",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 1449,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized Full Sleeve T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "Fit To Chest": 36,
+            "Garment Chest": 42,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "Fit To Chest": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "Fit To Chest": 40,
+            "Garment Chest": 46,
+            "Length": 28,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "Fit To Chest": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "Fit To Chest": 44,
+            "Garment Chest": 50,
+            "Length": 29.5,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "Fit To Chest": 46,
+            "Garment Chest": 52,
+            "Length": 30,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "Fit To Chest": 48,
+            "Garment Chest": 54,
+            "Length": 30.5,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:31:16.382Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:31:16.382Z"
+    },
+    {
+      "id": "tss-public:solids-white-oversized-tshirts",
+      "name": "Solids: White",
+      "productUrl": "https://www.thesouledstore.com/product/solids-white-oversized-tshirts",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "White"
+      ],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 29.5,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 30.5,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:23:21.234Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:23:21.234Z"
+    },
+    {
+      "id": "tss-public:powder-blue-solids-oversized-tshirts",
+      "name": "Solids: Powder Blue",
+      "productUrl": "https://www.thesouledstore.com/product/powder-blue-solids-oversized-tshirts",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 599,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Powder Blue"
+      ],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 29.5,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 30.5,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:31:21.332Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:31:21.332Z"
+    },
+    {
+      "id": "tss-public:not-your-average-tee-super-oversized-t-shirts",
+      "name": "Colourblock: Not Your Average Tee",
+      "productUrl": "https://www.thesouledstore.com/product/not-your-average-tee-super-oversized-t-shirts",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 1099,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Super Oversized T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 27.5,
+            "Shoulder": 21.5
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 28,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 28.5,
+            "Shoulder": 23.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 29,
+            "Shoulder": 24.5
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 30,
+            "Shoulder": 25.5
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30.5,
+            "Shoulder": 26.5
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 27.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 28.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:31:32.483Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:31:32.483Z"
+    },
+    {
+      "id": "tss-public:dusty-solids-men-oversized-tshirts",
+      "name": "Solids: Rose Taupe",
+      "productUrl": "https://www.thesouledstore.com/product/dusty-solids-men-oversized-tshirts",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Rose Taupe"
+      ],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 27.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 29.5,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 30.5,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:31:37.330Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:31:37.330Z"
+    },
+    {
+      "id": "tss-public:oversized-tshirt-rough-water-men",
+      "name": "TSS Originals: Rough Waters",
+      "productUrl": "https://www.thesouledstore.com/product/oversized-tshirt-rough-water-men",
+      "category": "oversized-tshirt",
+      "fit": "oversized",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 1099,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Oversized T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "To Fit Your Chest Size": 34,
+            "Garment Chest": 40,
+            "Length": 27,
+            "Shoulder": 19
+          },
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 20
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 44,
+            "Length": 28,
+            "Shoulder": 21
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 46,
+            "Length": 28.5,
+            "Shoulder": 22
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 48,
+            "Length": 29.5,
+            "Shoulder": 23
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 50,
+            "Length": 30,
+            "Shoulder": 24
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 52,
+            "Length": 30.5,
+            "Shoulder": 25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 54,
+            "Length": 31,
+            "Shoulder": 26
+          }
+        ],
+        "observedAt": "2026-09-30T04:31:43.491Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:31:43.491Z"
+    },
+    {
+      "id": "tss-public:easy-fit-shirt-clover-men-relaxed-shirt",
+      "name": "Poplin Shirt: Clover",
+      "productUrl": "https://www.thesouledstore.com/product/easy-fit-shirt-clover-men-relaxed-shirt",
+      "category": "shirt",
+      "fit": "relaxed",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 1399,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Men Solid Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 28.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 28.5,
+            "Shoulder": 19.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 29,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 30.5,
+            "Shoulder": 21.75
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 31,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 23.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:33:11.657Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:33:11.657Z"
+    },
+    {
+      "id": "tss-public:oversized-shirt-saturn-men-relaxed-shirt",
+      "name": "Relaxed Shirt: Saturn",
+      "productUrl": "https://www.thesouledstore.com/product/oversized-shirt-saturn-men-relaxed-shirt",
+      "category": "shirt",
+      "fit": "relaxed",
+      "material": "65% Cotton 35% Polyester",
+      "gsm": null,
+      "priceInr": 1299,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Men Textured Shirts. 65% Cotton 35% Polyester.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 28.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 28.5,
+            "Shoulder": 19.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 29,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 30.5,
+            "Shoulder": 21.75
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 31,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 23.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:33:16.260Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:33:16.260Z"
+    },
+    {
+      "id": "tss-public:relaxed-fit-t-shirts-acting-bad",
+      "name": "Relaxed T-Shirt: Acting Bad",
+      "productUrl": "https://www.thesouledstore.com/product/relaxed-fit-t-shirts-acting-bad",
+      "category": "tshirt",
+      "fit": "relaxed",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 749,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "XXXL",
+            "Chest": 49,
+            "Shoulder": 19.75,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:30:45.739Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:30:45.739Z"
+    },
+    {
+      "id": "tss-public:striped-shirt-carmine-men-relaxed-shirt",
+      "name": "Cotton Linen Stripes: Moonlit",
+      "productUrl": "https://www.thesouledstore.com/product/striped-shirt-carmine-men-relaxed-shirt",
+      "category": "shirt",
+      "fit": "relaxed",
+      "material": "86% Cotton 14% Linen",
+      "gsm": null,
+      "priceInr": 1499,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Cotton Linen Shirts. 86% Cotton 14% Linen.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Shoulder": 18.25,
+            "Length": 29.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Shoulder": 19.75,
+            "Length": 31
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 46,
+            "Shoulder": 20.25,
+            "Length": 31.5
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 49,
+            "Shoulder": 20.75,
+            "Length": 32
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 51,
+            "Shoulder": 21.25,
+            "Length": 32.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:47.786Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:47.786Z"
+    },
+    {
+      "id": "tss-public:solids-white-mens-relaxed-fit-tshirt",
+      "name": "Solids: White",
+      "productUrl": "https://www.thesouledstore.com/product/solids-white-mens-relaxed-fit-tshirt",
+      "category": "tshirt",
+      "fit": "relaxed",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 599,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "White"
+      ],
+      "care": "Machine Wash",
+      "description": "T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 38,
+            "Length": 25.5,
+            "Shoulder": 17.5,
+            "Sleeves": 8.5
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 40,
+            "Length": 26.5,
+            "Shoulder": 18,
+            "Sleeves": 8.75
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 42,
+            "Length": 27.5,
+            "Shoulder": 18.5,
+            "Sleeves": 8.75
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 44,
+            "Length": 28.5,
+            "Shoulder": 19,
+            "Sleeves": 9
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 47,
+            "Length": 29.5,
+            "Shoulder": 20,
+            "Sleeves": 9
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 49,
+            "Length": 30,
+            "Shoulder": 20.5,
+            "Sleeves": 9.25
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 51,
+            "Length": 30,
+            "Shoulder": 21,
+            "Sleeves": 9.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:21:08.916Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:21:08.916Z"
+    },
+    {
+      "id": "tss-public:relaxed-fit-shirt-cityscape-men",
+      "name": "Relaxed-Fit Shirt: Cityscape",
+      "productUrl": "https://www.thesouledstore.com/product/relaxed-fit-shirt-cityscape-men",
+      "category": "shirt",
+      "fit": "relaxed",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 1699,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Men Printed Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "To Fit Your Chest Size": 36,
+            "Garment Chest": 40,
+            "Length": 28.5,
+            "Shoulder": 18.75
+          },
+          {
+            "size": "S",
+            "To Fit Your Chest Size": 38,
+            "Garment Chest": 42,
+            "Length": 28.5,
+            "Shoulder": 19.5
+          },
+          {
+            "size": "M",
+            "To Fit Your Chest Size": 40,
+            "Garment Chest": 44,
+            "Length": 29,
+            "Shoulder": 20.25
+          },
+          {
+            "size": "L",
+            "To Fit Your Chest Size": 42,
+            "Garment Chest": 46,
+            "Length": 29.5,
+            "Shoulder": 21
+          },
+          {
+            "size": "XL",
+            "To Fit Your Chest Size": 44,
+            "Garment Chest": 48,
+            "Length": 30.5,
+            "Shoulder": 21.75
+          },
+          {
+            "size": "XXL",
+            "To Fit Your Chest Size": 46,
+            "Garment Chest": 50,
+            "Length": 31,
+            "Shoulder": 22.5
+          },
+          {
+            "size": "XXXL",
+            "To Fit Your Chest Size": 48,
+            "Garment Chest": 52,
+            "Length": 31,
+            "Shoulder": 23.25
+          }
+        ],
+        "observedAt": "2026-09-30T04:34:52.716Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:34:52.716Z"
+    },
+    {
+      "id": "tss-public:relaxed-fit-t-shirts-work-life-balance",
+      "name": "Relaxed T-Shirt: Work Life Balance",
+      "productUrl": "https://www.thesouledstore.com/product/relaxed-fit-t-shirts-work-life-balance",
+      "category": "tshirt",
+      "fit": "relaxed",
+      "material": "100% Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Men Relaxed Fit T-Shirts. 100% Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "XXXL",
+            "Chest": 49,
+            "Shoulder": 19.75,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:30:40.645Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:30:40.645Z"
+    },
+    {
+      "id": "tss-public:supima-t-shirt-black-mens",
+      "name": "Supima: Jet Black",
+      "productUrl": "https://www.thesouledstore.com/product/supima-t-shirt-black-mens",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Jet Black"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "XXXL",
+            "Chest": 49,
+            "Shoulder": 19.75,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:06.298Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:06.298Z"
+    },
+    {
+      "id": "tss-public:supima-cotton-light-olive-drop-cut-tshirt",
+      "name": "Supima: Light Olive",
+      "productUrl": "https://www.thesouledstore.com/product/supima-cotton-light-olive-drop-cut-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 849,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Light Olive"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima Drop Cut T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.5,
+            "Length": 27
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 17,
+            "Length": 28
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.5,
+            "Length": 29
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 18,
+            "Length": 30
+          },
+          {
+            "size": "XL",
+            "Chest": 44,
+            "Shoulder": 18.5,
+            "Length": 30.5
+          },
+          {
+            "size": "XXL",
+            "Chest": 46,
+            "Shoulder": 19,
+            "Length": 31
+          },
+          {
+            "size": "XXXL",
+            "Chest": 48,
+            "Shoulder": 19.75,
+            "Length": 31
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:11.221Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:11.221Z"
+    },
+    {
+      "id": "tss-public:supima-cotton-nude-pink-drop-cut-tshirt",
+      "name": "Supima: Nude Pink",
+      "productUrl": "https://www.thesouledstore.com/product/supima-cotton-nude-pink-drop-cut-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 499,
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Nude Pink"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima Drop Cut T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.5,
+            "Length": 27
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 17,
+            "Length": 28
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.5,
+            "Length": 29
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 18,
+            "Length": 30
+          },
+          {
+            "size": "XL",
+            "Chest": 44,
+            "Shoulder": 18.5,
+            "Length": 30.5
+          },
+          {
+            "size": "XXL",
+            "Chest": 46,
+            "Shoulder": 19,
+            "Length": 31
+          },
+          {
+            "size": "XXXL",
+            "Chest": 48,
+            "Shoulder": 19.75,
+            "Length": 31
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:16.118Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:16.118Z"
+    },
+    {
+      "id": "tss-public:supima-cotton-half-sleeve-brick-red-tshirt",
+      "name": "Supima: Brick Red",
+      "productUrl": "https://www.thesouledstore.com/product/supima-cotton-half-sleeve-brick-red-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Brick Red"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:21.169Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:21.169Z"
+    },
+    {
+      "id": "tss-public:supima-cotton-tss-since-2013-half-sleeve-tshirt",
+      "name": "Supima: TSS Since 2013",
+      "productUrl": "https://www.thesouledstore.com/product/supima-cotton-tss-since-2013-half-sleeve-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [],
+      "care": "Machine Wash",
+      "description": "Supima T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:25.479Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "color",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:25.479Z"
+    },
+    {
+      "id": "tss-public:supima-t-shirt-rhubarb-mens",
+      "name": "Supima: Crimson Ruby",
+      "productUrl": "https://www.thesouledstore.com/product/supima-t-shirt-rhubarb-mens",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Crimson Ruby"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "XXXL",
+            "Chest": 49,
+            "Shoulder": 19.75,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:50.495Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:50.495Z"
+    },
+    {
+      "id": "tss-public:supima-drop-cut-steel-grey-drop-cut-tshirt",
+      "name": "Supima: Steel Grey",
+      "productUrl": "https://www.thesouledstore.com/product/supima-drop-cut-steel-grey-drop-cut-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 499,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Steel Grey"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima Drop Cut T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.5,
+            "Length": 27
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 17,
+            "Length": 28
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.5,
+            "Length": 29
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 18,
+            "Length": 30
+          },
+          {
+            "size": "XL",
+            "Chest": 44,
+            "Shoulder": 18.5,
+            "Length": 30.5
+          },
+          {
+            "size": "XXL",
+            "Chest": 46,
+            "Shoulder": 19,
+            "Length": 31
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:55.218Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:55.218Z"
+    },
+    {
+      "id": "tss-public:green-grass-supima-cotton-half-sleeve-tshirt",
+      "name": "Supima: Green Grass Edition",
+      "productUrl": "https://www.thesouledstore.com/product/green-grass-supima-cotton-half-sleeve-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Green Grass Edition"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:32:59.896Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:32:59.896Z"
+    },
+    {
+      "id": "tss-public:supima-amaranth-men-tshirt",
+      "name": "Supima: Deep Scarlet",
+      "productUrl": "https://www.thesouledstore.com/product/supima-amaranth-men-tshirt",
+      "category": "tshirt",
+      "fit": null,
+      "material": "100% Supima Cotton",
+      "gsm": null,
+      "priceInr": 799,
+      "sizes": [
+        "XXS",
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Deep Scarlet"
+      ],
+      "care": "Machine Wash",
+      "description": "Supima T-Shirts. 100% Supima Cotton.",
+      "sizeChart": {
+        "unit": "inches",
+        "rows": [
+          {
+            "size": "XXS",
+            "Chest": 34,
+            "Shoulder": 15.75,
+            "Length": 25
+          },
+          {
+            "size": "XS",
+            "Chest": 36,
+            "Shoulder": 16.25,
+            "Length": 26
+          },
+          {
+            "size": "S",
+            "Chest": 38,
+            "Shoulder": 16.75,
+            "Length": 27
+          },
+          {
+            "size": "M",
+            "Chest": 40,
+            "Shoulder": 17.25,
+            "Length": 28
+          },
+          {
+            "size": "L",
+            "Chest": 42,
+            "Shoulder": 17.75,
+            "Length": 29
+          },
+          {
+            "size": "XL",
+            "Chest": 45,
+            "Shoulder": 18.75,
+            "Length": 30
+          },
+          {
+            "size": "XXL",
+            "Chest": 47,
+            "Shoulder": 19.25,
+            "Length": 30.5
+          },
+          {
+            "size": "XXXL",
+            "Chest": 49,
+            "Shoulder": 19.75,
+            "Length": 30.5
+          }
+        ],
+        "observedAt": "2026-09-30T04:33:04.731Z",
+        "measurementSemantics": {
+          "To Fit Your Chest Size": "body chest target",
+          "Fit To Chest": "body chest target",
+          "Garment Chest": "garment chest as labeled by source",
+          "Chest": "ambiguous; do not equate to garment or body chest without clarification"
+        }
+      },
+      "unknownFields": [
+        "gsm",
+        "fit",
+        "stock",
+        "brandDescription",
+        "operationalReturnEligibility"
+      ],
+      "observedAt": "2026-09-30T04:33:04.731Z"
+    }
+  ]
+}

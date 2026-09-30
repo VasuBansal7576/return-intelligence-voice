@@ -1,0 +1,45 @@
+import { PGlite } from '@electric-sql/pglite';
+import { readFileSync, readdirSync } from 'node:fs';
+import assert from 'node:assert/strict';
+process.env.RIV_STORAGE='supabase';
+process.env.SUPABASE_URL='https://fixture.supabase.co';
+process.env.SUPABASE_SECRET_KEY='sb_secret_TEST_ONLY_NO_NETWORK';
+const db=new PGlite();await db.exec('create role anon;create role authenticated;create role service_role bypassrls;');for (const file of readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort()) await db.exec(readFileSync(`supabase/migrations/${file}`,'utf8'));await db.exec('set role service_role');
+const calls=[];
+globalThis.fetch=async (url,init)=>{
+ const name=String(url).split('/rpc/')[1];assert.ok(name,'Only local fake RPC calls allowed');calls.push(name);
+ const args=JSON.parse(init.body);
+ const keys=Object.keys(args);const bindings=keys.map((key,i)=>`${key} => $${i+1}`).join(',');
+ try{const result=await db.query(`select public.${name}(${bindings}) as result`,keys.map(k=>typeof args[k]==='object'&&args[k]!==null?JSON.stringify(args[k]):args[k]));return new Response(JSON.stringify(result.rows[0].result),{status:200,headers:{'content-type':'application/json'}});}
+ catch(error){const status=error.code?.startsWith('PT')?Number(error.code.slice(2)):500;return new Response('{}',{status});}
+};
+const {persisted}=await import('../server/storage/supabase.ts');const {withKnownOwner}=await import('../server/access.ts');const app=await import('../agent/lib/demo/service.ts');
+const owner='20000000-0000-4000-8000-000000000001',other='20000000-0000-4000-8000-000000000002';
+const run=(id,fn,mode)=>withKnownOwner(owner,()=>persisted(id,fn,mode));
+const s=await run(null,()=>app.startSession({customerId:'CUST-001'}));
+const d=await run(s.id,()=>app.addMessage(s.id,'The fit is too tight and the fabric is too hot.'));
+assert.ok(d.candidates.length);
+const c=d.candidates[0];const p=await run(s.id,()=>app.proposeResolution(s.id,{action:'exchange',productId:c.productId,size:d.item.size,color:c.colors[0]}));
+const completed=await run(s.id,()=>app.resolveProposal(s.id,{proposalId:p.pendingAction.proposalId,confirmed:true,conditionConfirmed:true}));assert.equal(completed.phase,'COMPLETED');
+const retry=await run(s.id,()=>app.resolveProposal(s.id,{proposalId:p.pendingAction.proposalId,confirmed:true,conditionConfirmed:true}));assert.equal(retry.resolution.recordId,completed.resolution.recordId);
+const read=await run(s.id,()=>app.getSessionSnapshot(s.id),'read');assert.equal(read.resolution.recordId,completed.resolution.recordId);
+await assert.rejects(()=>withKnownOwner(other,()=>persisted(s.id,()=>app.getSessionSnapshot(s.id),'read')),/unavailable/);
+const otherDashboard=await withKnownOwner(other,()=>persisted(null,()=>app.merchantInsights(),'all'));assert.equal(otherDashboard.insights.length,0);assert.equal(otherDashboard.sessions.length,0);
+const ledger=await db.query("select count(*)::integer n from riv_private.records where kind='exchange'");assert.equal(ledger.rows[0].n,1);
+console.log('PASS: real domain -> request-scoped store -> SQL RPC -> fresh request hydration -> idempotent confirmation; cross-owner session and merchant dashboard denied. All fetches intercepted locally; no Supabase account or network used.');
+const stopping=await run(null,()=>app.startSession({customerId:'CUST-001'}));
+await run(stopping.id,()=>app.addMessage(stopping.id,"The fit is too tight."));
+let active=true;const commitsBefore=calls.filter(n=>n==='riv_commit_session').length;
+await assert.rejects(()=>withKnownOwner(owner,()=>persisted(stopping.id,async()=>{const result=app.proposeResolution(stopping.id,{action:'refund'});active=false;return result;},'write',()=>{if(!active)throw new Error('voice stopped');})),/voice stopped/);
+assert.equal(calls.filter(n=>n==='riv_commit_session').length,commitsBefore,'stop before commit must not issue SQL commit');
+assert.equal((await run(stopping.id,()=>app.getSessionSnapshot(stopping.id),'read')).pendingAction,null);
+assert.equal((await run(s.id,()=>app.getSessionSnapshot(s.id),'read')).resolution.recordId,completed.resolution.recordId,'previously committed resolution preserved');
+console.log('PASS stop at actual SQL commit boundary aborts staged proposal and preserves previous committed actions');
+const replay=await import('../server/replay-session.ts');const {PUBLIC_CATALOG_EVIDENCE}=await import('../agent/lib/knowledge/public-catalog.ts');const pub=PUBLIC_CATALOG_EVIDENCE.products[0];const projection={historicalReplay:true,merchantIntegration:false,items:[{product:{name:pub.name,url:new URL(pub.productUrl).origin+new URL(pub.productUrl).pathname},size:'XL',orderStatus:'Refund Completed'}]};
+const rs=await run(null,()=>replay.startReplaySession(projection));
+const tool=(name,args={})=>run(rs.id,()=>replay.executeReplayTool(rs.id,{callId:crypto.randomUUID(),name,arguments:args}));
+await run(rs.id,()=>replay.replayTranscript(rs.id,{role:'user',text:'For this synthetic rehearsal the fabric feels heavy.',itemId:'provider-replay-item'}));await tool('diagnose_replay_feedback',{});const options=(await tool('search_replay_products')).result.products;
+const prepare=(await tool('request_replay_selection',{productRef:options[0].ref})).snapshot.pendingAction;const outcome=await run(rs.id,()=>replay.confirmReplaySelection(rs.id,{proposalId:prepare.proposalId,confirmed:true}));assert.equal(outcome.resolution.kind,'replay_selection');assert.equal(outcome.pendingAction,null);const again=await run(rs.id,()=>replay.confirmReplaySelection(rs.id,{proposalId:prepare.proposalId,confirmed:true}));assert.equal(again.resolution.recordId,outcome.resolution.recordId);
+assert.equal((await run(rs.id,()=>replay.replaySnapshot(rs.id),'read')).source.items[0].orderStatus,'Refund Completed');assert.equal((await db.query("select count(*)::integer n from riv_private.records where kind='outcome' and payload->>'eventKind'='replay_selection'")).rows[0].n,1);await assert.rejects(()=>withKnownOwner(other,()=>persisted(rs.id,()=>replay.replaySnapshot(rs.id),'read')),/unavailable/);
+console.log('PASS historical replay codec through actual owner-scoped SQL: hydrated lookup/current feedback, confirm-only app-owned selection, idempotency, immutable status, cross-owner denial');
+await db.close();
