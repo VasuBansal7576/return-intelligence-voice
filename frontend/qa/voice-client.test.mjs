@@ -9,6 +9,7 @@ const capabilities = { voice: { status: 'ready' } };
 const response = data => ({ ok: true, json: async () => data });
 
 function setup({ micPending = false, toolPending = false, connectionOverrides = {}, inputMode = "microphone" } = {}) {
+  const outputAudio = [];
   const sockets = [], contexts = [], worklets = [], requests = [], events = [];
   const track = { enabled: true, stopped: false, stop() { this.stopped = true; } };
   const stream = { getTracks: () => [track], getAudioTracks: () => [track] };
@@ -58,8 +59,8 @@ function setup({ micPending = false, toolPending = false, connectionOverrides = 
     throw new Error(`Unexpected request: ${path}`);
   };
   const statuses = [], transcripts = [], tools = [], errors = [], snapshots = [], timeline = [];
-  const client = createVoiceClient({ sessionId: 'session-1', capabilities, inputMode, onTimeline: value => timeline.push(value), onStatus: value => statuses.push(value), onTranscript: value => transcripts.push(value), onTool: value => tools.push(value), onError: value => errors.push(value), onSession: value => snapshots.push(value) });
-  return { client, sockets, contexts, worklets, track, requests, statuses, transcripts, tools, errors, snapshots, timeline, windowMock, micCalls: () => micCalls, grantMic: () => grantMic(), finishTool: () => finishTool() };
+  const client = createVoiceClient({ sessionId: 'session-1', capabilities, inputMode, onOutputAudio: value => outputAudio.push(value), onTimeline: value => timeline.push(value), onStatus: value => statuses.push(value), onTranscript: value => transcripts.push(value), onTool: value => tools.push(value), onError: value => errors.push(value), onSession: value => snapshots.push(value) });
+  return { outputAudio, client, sockets, contexts, worklets, track, requests, statuses, transcripts, tools, errors, snapshots, timeline, windowMock, micCalls: () => micCalls, grantMic: () => grantMic(), finishTool: () => finishTool() };
 }
 async function startReady(env) {
   const ready = env.client.start();
@@ -308,7 +309,8 @@ test('labeled automated test audio uses same proxy after ready without a physica
  socket.receive({type:'tool.call',call_id:'test-call',name:'get_order',arguments:{}});
  socket.receive({type:'app.tool.result',callId:'test-call',name:'get_order',result:{synthetic:true},isError:false});
  socket.receive({type:'app.snapshot',snapshot:{id:'session-1',phase:'RECOMMENDATION_FLOW',tools:[]}});
- socket.receive({type:'reply.audio',data:btoa(String.fromCharCode(0,0,0,0))});
+ socket.receive({type:'reply.audio',data:btoa(String.fromCharCode(1,0,255,255))});
+ assert.equal(env.outputAudio.length,1);assert.deepEqual([...new Uint8Array(env.outputAudio[0].pcm16le)],[1,0,255,255]);assert.equal(env.outputAudio[0].source,'provider.reply.audio');
  const timeline=env.client.getTimeline();assert.ok(timeline.some(e=>e.type==='session.ready'));assert.ok(timeline.some(e=>e.type==='input.audio'&&e.sampleRate===24000));assert.ok(timeline.some(e=>e.type==='output.audio'));assert.ok(timeline.some(e=>e.itemId==='test-transcript'));assert.ok(timeline.some(e=>e.type==='tool.result'&&e.callId==='test-call'));assert.ok(timeline.some(e=>e.type==='snapshot'));assert.ok(timeline.every(e=>e.inputMode==='test-audio'&&e.elapsedMs>=0));
  await close(env);
 });

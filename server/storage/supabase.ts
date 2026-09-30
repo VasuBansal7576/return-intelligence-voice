@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { assertHostingConfiguration, requestOwner } from "../access.ts";
-import { DomainError, currentSessionIds, hydrateSession, serializeSession, withSessionContext } from "../../agent/lib/demo/service.ts";
+import { DomainError } from "../../agent/lib/demo/service.ts";
+import { domainSessionIds as currentSessionIds, hydrateDomainSession as hydrateSession, serializeDomainSession as serializeSession, withDomainContext as withSessionContext } from "../session-domain.ts";
 import { parseStoredRecord, withRecordTransaction } from "../../agent/lib/engine/records.ts";
 
 const sessionRowSchema = z.object({ id: z.string().uuid(), revision: z.number().int(), state: z.unknown() });

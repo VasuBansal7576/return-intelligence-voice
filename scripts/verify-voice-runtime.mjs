@@ -5,7 +5,7 @@ import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 const dir=mkdtempSync(join(tmpdir(),'riv-voice-runtime-'));
-Object.assign(process.env,{RIV_STORAGE:'local',RIV_VOICE_APPROVED:'true',RIV_FREE_CREDIT_BALANCE_VERIFIED:'true',ASSEMBLYAI_API_KEY:'TEST_ONLY_NO_NETWORK',RIV_MAX_RESERVED_VOICE_SECONDS:'1080',RIV_VOICE_BUDGET_FILE:join(dir,'budget.json'),RIV_RECORDS_FILE:join(dir,'records.jsonl')});
+Object.assign(process.env,{RIV_STORAGE:'local',RIV_VOICE_APPROVED:'true',RIV_FREE_CREDIT_BALANCE_VERIFIED:'true',ASSEMBLYAI_API_KEY:'TEST_ONLY_NO_NETWORK',RIV_MAX_RESERVED_VOICE_SECONDS:'1260',RIV_VOICE_BUDGET_FILE:join(dir,'budget.json'),RIV_RECORDS_FILE:join(dir,'records.jsonl')});
 delete process.env.VERCEL; delete process.env.RIV_DEPLOYMENT;
 let currentClient; const providers=[]; const timers=[]; let providerRequests=0;
 class FakeSocket extends EventEmitter {
@@ -25,19 +25,21 @@ globalThis.fetch=async (input,init)=>{
 };
 const app=await import('../agent/lib/demo/service.ts');
 const voice=await import('../server/voice.ts');
+const historical=await import('../server/replay-session.ts');
 const realSetTimeout=globalThis.setTimeout,realClearTimeout=globalThis.clearTimeout;
 globalThis.setTimeout=(fn,delay)=>{const timer={fn,delay,cancelled:false,unref(){return this;}};timers.push(timer);return timer;};
 globalThis.clearTimeout=timer=>{if(timer)timer.cancelled=true;};
 const request={headers:{host:'127.0.0.1:8787',origin:'http://127.0.0.1:8787'},socket:{remoteAddress:'127.0.0.1'}};
 const flush=()=>new Promise(setImmediate);
-async function connection(){
- const s=app.startSession({customerId:'CUST-001'});const ticket=await voice.createVoiceTicket(request,s.id);
+async function connection(replay=false){
+ const s=replay?historical.startReplaySession({historicalReplay:true,merchantIntegration:false,items:[{product:null,size:'XL',orderStatus:'Refund Completed'}]}):app.startSession({customerId:'CUST-001'});const ticket=await voice.createVoiceTicket(request,s.id);
  assert.equal(ticket.maxDurationSeconds,180);assert.equal(ticket.proxyManagedTools,true);assert.equal(ticket.idleTimeoutSeconds,30);
  currentClient=new FakeSocket();const client=currentClient;
  await voice.upgradeVoice({...request,url:ticket.websocketUrl},{write(){},destroy(){}},Buffer.alloc(0));await flush();
  const provider=providers.at(-1);provider.emit('open');await flush();
  const config=provider.frames.find(f=>f.type==='session.update').session;
- assert.equal('llm' in config,false);assert.equal(config.tools.some(t=>t.name==='request_resolution'),true);
+ assert.equal('llm' in config,false);assert.equal(config.tools.some(t=>t.name==='request_resolution'),!replay);
+ if(replay){assert.equal(config.tools.some(t=>t.name==='lookup_historical_item'),true);assert.equal(config.tools.some(t=>t.name==='get_customer'),false);}
  return {client,provider,session:s};
 }
 try{
@@ -67,5 +69,15 @@ try{
  let rejected=false;await voice.upgradeVoice({...request,url:ticket.websocketUrl},{write(){rejected=true;},destroy(){}},Buffer.alloc(0));await flush();
  assert.equal(rejected,true);assert.equal(providerRequests,before);
  console.log('PASS REST stop does not claim acknowledgment; cancelled local ticket makes zero provider requests');
- console.log(`5 runtime checks passed; ${providerRequests} provider token operations mocked, zero network/provider usage`);
+ const replay=await connection(true);
+ replay.provider.emit('message',Buffer.from(JSON.stringify({type:'transcript.user',text:'The fabric feels heavy today.',item_id:'replay-user-1'})));
+ await flush();await flush();
+ assert.equal(historical.replaySnapshot(replay.session.id).source.items[0].orderStatus,'Refund Completed');
+ replay.provider.emit('message',Buffer.from(JSON.stringify({type:'tool.call',call_id:'replay-discount',name:'get_discount_policy',arguments:{}})));
+ await flush();await flush();
+ assert.ok(historical.replaySnapshot(replay.session.id).tools.some(t=>t.callId==='replay-discount'));
+ assert.equal(historical.replaySnapshot(replay.session.id).pendingAction,null);
+ replay.client.emit('message',Buffer.from('{"type":"session.end"}'));
+ console.log('PASS historical proxy config and dispatch stay distinct from fixture/customer/merchant tools');
+ console.log(`6 runtime checks passed; ${providerRequests} provider token operations mocked, zero network/provider usage`);
 }finally{globalThis.setTimeout=realSetTimeout;globalThis.clearTimeout=realClearTimeout;mock.restoreAll();}

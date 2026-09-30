@@ -63,7 +63,7 @@ function decodePCM(encoded) {
  */
 export function createVoiceClient({
   sessionId, capabilities, onStatus, onTranscript, onTool, onError, onSession,
-  inputMode = "microphone", onTimeline,
+  inputMode = "microphone", onTimeline, onOutputAudio,
 }) {
   let current = null;
   let destroyed = false;
@@ -280,7 +280,13 @@ export function createVoiceClient({
         break;
       case 'input.speech.stopped': update('thinking'); touch(run); break;
       case 'reply.started': update('thinking'); break;
-      case 'reply.audio': play(run, event.data); break;
+      case 'reply.audio': {
+        const samples = decodePCM(event.data);
+        const pcm = new ArrayBuffer(samples.length * 2); const view = new DataView(pcm);
+        samples.forEach((sample, index) => view.setInt16(index * 2, Math.round(sample * 32768), true));
+        emit(onOutputAudio, { pcm16le: pcm, sampleRate: PCM_RATE, channels: 1, source: 'provider.reply.audio' });
+        play(run, event.data); break;
+      }
       case 'reply.done':
         if (event.status === 'interrupted') {
           stopPlayback(run);

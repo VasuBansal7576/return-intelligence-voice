@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { getSessionSnapshot, type SessionSnapshot } from "../agent/lib/demo/service.ts";
+import { domainSnapshot as getSessionSnapshot } from "./session-domain.ts";
+type SessionSnapshot=ReturnType<typeof getSessionSnapshot>;
 import type { AppRecord } from "../agent/lib/engine/records.ts";
 import { requestOwner } from "./access.ts";
 import { persisted, rpc, usesSupabase } from "./storage/supabase.ts";

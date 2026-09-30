@@ -8,7 +8,10 @@ import { z } from "zod";
 import { persisted, readVoiceBudget, rpc, usesSupabase } from "./storage/supabase.ts";
 import { requestOwner, withKnownOwner } from "./access.ts";
 import { createVoiceObserver } from "./voice-control.ts";
-import { DomainError, executeVoiceTool, getSessionSnapshot, recordTranscript, structuredDiagnosisSchema } from "../agent/lib/demo/service.ts";
+import { DomainError, executeVoiceTool, getSessionSnapshot as fixtureSnapshot, recordTranscript, structuredDiagnosisSchema } from "../agent/lib/demo/service.ts";
+
+import { domainSnapshot as getSessionSnapshot } from "./session-domain.ts";
+import { isReplaySession, replayProviderConfig, replayTranscript, executeReplayTool, replayOutcomeForProvider } from "./replay-session.ts";
 
 const MAX_DURATION_SECONDS = 180;
 const IDLE_SECONDS = 30;
@@ -85,7 +88,8 @@ function toolDef(name: string, description: string, properties: Record<string, u
     parameters: { ...objectSchema, properties, required } };
 }
 export function managedSessionConfig(sessionId: string) {
-  const session = getSessionSnapshot(sessionId);
+  if(isReplaySession(sessionId))return replayProviderConfig(sessionId);
+  const session = fixtureSnapshot(sessionId);
   return { system_prompt: `You are an AI returns assistant in an independent synthetic prototype inspired by The Souled Store. There is no affiliation and no real refund/payment/shipment. Your customer has selected a synthetic account and order on screen. Your job is to understand what failed and find a legitimate resolution, sometimes a clean refund. Speak briefly, one question at a time. Allow interruption and respond to new information. For discount or coupon requests use get_discount_policy. No discretionary discount is authorized, and a discount request alone is not a reason to escalate. Use tools before any policy, product, price, stock, preference or status claim. Never invent a fact or call an unknown attribute safe. Keep current product positives and diagnose multiple reasons. Explicit new preferences override tentative history. Do not recommend after a refund-only request, anger, defect, fulfillment failure, or a skin reaction. For skin complaints give no diagnosis or material-safety assurance; discuss other materials only if asked. Fraud requests must not change recorded facts. Use get_customer and get_order first. Use diagnose_return with the customer's words, then check_return_eligibility and search_products. Never simply size up when only shoulders are tight and length is liked. If measurements are unavailable, say so. Only list grounded in-stock candidates, at most two. Tools read the authoritative canonical demo policy; do not use web policy from memory. request_resolution prepares exact on-screen terms and NEVER executes an action. Explain that the customer must press the confirmation button, including condition acknowledgement when required. Do not claim success until application evidence confirms execution. If the customer changes their mind, prepare the new proposal. Avoid sales pressure. Selected customer: ${session.customer.name}; order: ${session.order.orderId}; selected item: ${session.item.itemId}. All customers and orders are synthetic.`,
     greeting: `Hi ${session.customer.name.split(" ")[0]}. I'm an AI returns assistant for this demo. What did not work with your ${session.sourceProduct.name}?`,
     input: { format: { encoding: "audio/pcm" }, keyterms: ["The Souled Store", "oversized", "GSM", ...session.order.items.map((i) => i.productId)], language_codes: ["en"], transcription_mode: "balanced", turn_detection: { interrupt_response: true, interruption_delay: 100 } },
@@ -146,7 +150,7 @@ async function connectProvider(client: WebSocket, sessionId: string, ticketHash:
       if (finished) return;
       // This value was freshly read from the committed owner-scoped state.
       // An HTTP confirmation on another Vercel instance cannot be missed.
-      sendUpstream({ type: "conversation.message", role: "system", content: `The application confirms this simulated resolution executed: ${JSON.stringify(resolution)}. Briefly acknowledge only these verified details and note no real merchant transaction occurred.` });
+      sendUpstream({ type: "conversation.message", role: "system", content: `The application confirms this app-owned simulated outcome was recorded (a replay_selection is interest only; never a merchant transaction): ${JSON.stringify(resolution.kind === "outcome" && resolution.eventKind === "replay_selection" ? replayOutcomeForProvider(resolution) : resolution)}. Briefly acknowledge only these verified details and note no real merchant transaction occurred.` });
       sendUpstream({ type: "reply.create" });
     },
   });
@@ -219,14 +223,14 @@ async function connectProvider(client: WebSocket, sessionId: string, ticketHash:
       processing = processing.then(async () => {
         if (transcript.success) {
           const t = transcript.data;
-          const next = await withKnownOwner(owner, () => persisted(sessionId, () => recordTranscript(sessionId, { role: t.type === "transcript.user" ? "user" : "assistant", text: t.text, itemId: t.item_id, interrupted: t.interrupted })));
+          const next = await withKnownOwner(owner, () => persisted(sessionId, () => (isReplaySession(sessionId) ? replayTranscript : recordTranscript)(sessionId, { role: t.type === "transcript.user" ? "user" : "assistant", text: t.text, itemId: t.item_id, interrupted: t.interrupted })));
           sendClient({ type: "app.snapshot", snapshot: next }); resetIdle();
         }
         if (call.success) {
           const c = call.data;
           if (finished || arrivalGeneration !== generation) { sendClient({ type: "app.tool.discarded", callId: c.call_id, name: c.name }); return; }
           try {
-            const output = await withKnownOwner(owner, () => persisted(sessionId, () => executeVoiceTool(sessionId, { callId: c.call_id, name: c.name, arguments: c.arguments }), "write", () => { if (finished || arrivalGeneration !== generation) throw new DomainError("voice_stopped", "Voice tool cancelled before dispatch or commit.", 409); }));
+            const output = await withKnownOwner(owner, () => persisted<{result:unknown;snapshot:ReturnType<typeof getSessionSnapshot>}>(sessionId, () => (isReplaySession(sessionId) ? executeReplayTool : executeVoiceTool)(sessionId, { callId: c.call_id, name: c.name, arguments: c.arguments }), "write", () => { if (finished || arrivalGeneration !== generation) throw new DomainError("voice_stopped", "Voice tool cancelled before dispatch or commit.", 409); }));
             if (!interrupted && arrivalGeneration === generation) pending.set(c.call_id, { name: c.name, result: output.result, isError: false });
             else sendClient({ type: "app.tool.discarded", callId: c.call_id, name: c.name });
             sendClient({ type: "app.tool.result", callId: c.call_id, name: c.name, result: output.result, isError: false });

@@ -9,5 +9,5 @@ const sha256=Object.fromEntries(files.sort().map(path=>[path,createHash('sha256'
 mkdirSync('data',{recursive:true});writeFileSync('data/build-manifest.json',JSON.stringify({builtAt:new Date().toISOString(),sha256},null,2)+'\n');
 // Publish only the browser application, never the QA scripts or captured data.
 rmSync('dist/frontend',{recursive:true,force:true});mkdirSync('dist/frontend',{recursive:true});
-for(const file of ['index.html','styles.css','app.js','icons.js','art.js','voice-client.js','pcm-processor.js']) copyFileSync(`frontend/${file}`,`dist/frontend/${file}`);
+for(const file of ['index.html','styles.css','app.js','icons.js','art.js','voice-client.js','pcm-processor.js','demo-capture.js']) copyFileSync(`frontend/${file}`,`dist/frontend/${file}`);
 console.log('Local TypeScript build verified. No model catalog, Gateway, or paid service was contacted.');
