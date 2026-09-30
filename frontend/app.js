@@ -1,6 +1,10 @@
 import { icon } from './icons.js';
 import { productArt, catalogPhoto } from './art.js';
 import { createVoiceClient } from './voice-client.js';
+import { createDemoCapture } from './demo-capture.js';
+const rehearsalMode=['127.0.0.1','localhost'].includes(location.hostname)&&new URLSearchParams(location.search).get('testAudio')==='1';
+let rehearsalPcm=null, rehearsalCapture=null;
+function captureLinks(){if(!rehearsalCapture)return;const panel=document.querySelector('#rehearsal-downloads');if(!panel)return;panel.replaceChildren();for(const [name,blob] of Object.entries(rehearsalCapture.artifacts())){const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=name+(name==='outputWav'?'.wav':'.json');link.textContent=' Save '+name;panel.append(link);}}
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -355,17 +359,22 @@ async function startVoice() {
   try {
     state.dialog=null;$('#overlay-root').innerHTML='';document.body.style.overflow='';state.error='';
     if(state.replayReceipt&&!state.session)acceptSession(await api('/api/replay-voice-sessions',{receiptId:state.replayReceipt}));
-    state.voice=createVoiceClient({sessionId:sessionId(),capabilities:state.bootstrap.capabilities,
+    if(rehearsalMode&&!rehearsalPcm)throw new Error('Select labeled PCM16 mono24k customer rehearsal audio before starting.');
+    rehearsalCapture=rehearsalMode?createDemoCapture():null;
+    state.voice=createVoiceClient({sessionId:sessionId(),capabilities:state.bootstrap.capabilities,inputMode:rehearsalMode?'test-audio':'microphone',
+      onTimeline(event){rehearsalCapture?.onTimeline(event);},
+      onOutputAudio(event){rehearsalCapture?.onOutputAudio(event);},
       onStatus(event){state.voiceStatus=event.status;state.voiceMuted=Boolean(event.muted);state.voiceReady=Boolean(event.ready);render();if(['ended','error'].includes(event.status)){state.voice=null;state.voiceReady=false;state.voiceTranscript=[];render();}},
       onTool(event){state.voiceTools=state.voiceTools||new Map();state.voiceTools.set(event.callId,event);render();},
-      onTranscript(event){state.voiceTranscript=state.voiceTranscript.filter(m=>!event.itemId || m.itemId!==event.itemId || m.role!==event.role);state.voiceTranscript.push({...event,at:new Date().toISOString()});render();scrollTranscript();},
+      onTranscript(event){rehearsalCapture?.onTranscript(event);state.voiceTranscript=state.voiceTranscript.filter(m=>!event.itemId || m.itemId!==event.itemId || m.role!==event.role);state.voiceTranscript.push({...event,at:new Date().toISOString()});render();scrollTranscript();},
       onError(error){state.error=error.message||String(error);render();},
-      onSession(snapshot){acceptSession(snapshot);state.voiceTranscript=[];if(state.session.pendingAction&&!state.dialog)state.dialog={type:'confirm'};render();scrollTranscript();},
+      onSession(snapshot){rehearsalCapture?.onTimeline({type:'snapshot',observedAt:new Date().toISOString(),snapshot});acceptSession(snapshot);state.voiceTranscript=[];if(state.session.pendingAction&&!state.dialog)state.dialog={type:'confirm'};render();scrollTranscript();},
     });
     await state.voice.start();
+    if(rehearsalMode)await state.voice.injectTestAudio(rehearsalPcm,{sampleRate:24000,channels:1});
   } catch(error) {state.error=error.message||String(error);state.voiceStatus='error';state.voice=null;render();}
 }
-async function stopVoice(){const voice=state.voice;state.voice=null;if(voice)await voice.stop('user');state.voiceStatus='ended';state.voiceTranscript=[];render();}
+async function stopVoice(){captureLinks();const voice=state.voice;state.voice=null;if(voice)await voice.stop('user');state.voiceStatus='ended';state.voiceTranscript=[];render();}
 async function performAction(action) {
   switch(action) {
     case 'replay-sources':await withBusy(async()=>{state.replaySources=await api('/api/replays/sources');});openDialog('replay-sources');break;
@@ -432,3 +441,13 @@ async function initialize() {
   catch(error){$('#app').innerHTML=`<main class="reload-screen"><div class="brand-mark">r<span>↗</span></div><h1>The workspace needs its local service.</h1><p>${e(error.message)}<br>Start the project’s demo server, then reload this page.</p>${button('Try again','reload','primary','refresh')}</main>`;}
 }
 initialize();
+
+if(rehearsalMode){
+ const receipt=new URLSearchParams(location.search).get('receipt');
+ if(receipt&&/^[0-9a-f-]{36}$/.test(receipt))state.replayReceipt=receipt;
+ const panel=document.createElement('section');panel.style.cssText='position:fixed;bottom:0;left:0;right:0;z-index:200;background:#fff;color:#111;padding:8px;border:2px solid #111';
+ panel.innerHTML='<strong>Supervised automated customer audio · standard TTS · not voice clone or physical microphone proof</strong> <label>PCM16 mono24k file <input id="rehearsal-pcm" type="file" accept=".pcm"></label><button id="rehearsal-save" type="button">Prepare local capture downloads</button><span id="rehearsal-downloads"></span>';
+ document.body.append(panel);
+ panel.querySelector('input').addEventListener('change',async event=>{const file=event.target.files[0];if(!file)return;if(file.size>180*24000*2||file.size%2){state.error='Invalid PCM length';render();return;}rehearsalPcm=await file.arrayBuffer();});
+ panel.querySelector('button').addEventListener('click',captureLinks);
+}
