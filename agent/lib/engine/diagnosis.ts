@@ -1,3 +1,4 @@
+import {statedAttributes} from './stated-attributes.ts';
 import { z } from "zod";
 
 /**
@@ -111,12 +112,10 @@ export function diagnoseReturn(text: string): ReturnDiagnosis {
   const reasons = [...new Set(found.map((item) => item.reason))];
   const refundOnly = /\b(just.{0,12}refund|only.{0,12}refund|want (a |my )?refund|refund instead|don.t want (anything|alternatives|recommendations)|do not want (anything|alternatives|any recommendations)|no (alternatives|recommendations)|stop (selling|recommending|suggesting)|no thanks)\b/i.test(text);
   const frustrated = /\b(furious|angry|ridiculous|fed up|wasting my time|terrible service)\b/i.test(text);
-  const likedAttributes: string[] = [];
-  if (!/\b(did not|do not|don.t|didn.t|never)\b.{0,10}\blike\b.{0,15}\bfit\b/i.test(text)
-    && /\b(fit.{0,14}(fine|great|perfect|good)|love.{0,20}fit|like.{0,20}fit|keep.{0,12}(fit|oversized))\b/i.test(text)) likedAttributes.push("fit");
-  if (/\b(love.{0,18}(design|graphic|print)|like.{0,18}(design|graphic|print)|design.{0,12}(great|fine|good))\b/i.test(text)) likedAttributes.push("theme");
-  if (/\b(length.{0,12}(perfect|fine|right|good)|right length|like.{0,10}length)\b/i.test(text)) likedAttributes.push("length");
-  if (/\b(love.{0,12}colou?r|like.{0,12}colou?r)\b/i.test(text)) likedAttributes.push("color");
+  const stated=statedAttributes(text);
+  const likedAttributes=[...stated].filter(([,sentiment])=>sentiment==='positive').map(([attribute])=>attribute);
+  if(!stated.has('fit') && /\bfit.{0,14}(fine|great|perfect|good)\b/i.test(affirmativeText))likedAttributes.push('fit');
+  if(!stated.has('length') && /\b(length.{0,12}(perfect|fine|right|good)|right length)\b/i.test(affirmativeText))likedAttributes.push('length');
   let gateReason: string | null = null;
   if (fraudulent) gateReason = "We cannot invent damage or change the reported facts to bypass policy.";
   else if (refundOnly) gateReason = "Customer requested a refund without recommendations.";

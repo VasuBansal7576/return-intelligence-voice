@@ -1,3 +1,4 @@
+import {statedAttributes} from '../engine/stated-attributes.ts';
 import { revokesMaterialExploration } from "../engine/consent.ts";
 import { randomUUID } from "node:crypto";
 import { AsyncLocalStorage } from "node:async_hooks";
@@ -167,9 +168,10 @@ function updateUnderstanding(session: Session, text: string, structured?: z.infe
       const evidence = preference.evidence.join(" ").toLowerCase();
       const literal = evidence.includes(preference.value.toLowerCase());
       const groundedCurrentFit = preference.attribute === "fit" && preference.value === item.product.fit && structured.likedAttributes.includes("fit") && preference.sentiment === "positive";
+      const groundedCurrentColor = preference.attribute === "color" && preference.value === item.item.color && guard.likedAttributes.includes("color") && preference.sentiment === "positive";
       const groundedCurrentTheme = preference.attribute === "theme" && preference.value === item.product.theme && structured.likedAttributes.includes("theme") && preference.sentiment === "positive";
       const weightSynonym = preference.attribute === "fabric_weight" && preference.value === "heavy" && /\b(heavy|hot|warm|thick)\b/.test(evidence);
-      if (!literal && !groundedCurrentFit && !groundedCurrentTheme && !weightSynonym) throw new DomainError("inferred_preference_not_explicit", "Do not present an inferred preference as an explicit statement. Use the customer's words or omit it.", 409);
+      if (!literal && !groundedCurrentFit && !groundedCurrentTheme && !groundedCurrentColor && !weightSynonym) throw new DomainError("inferred_preference_not_explicit", "Do not present an inferred preference as an explicit statement. Use the customer's words or omit it.", 409);
     }
     if (guard.gateReason?.startsWith("We cannot") && structured.labels.includes("quality_defect")) throw new DomainError("fabricated_defect", "A request to invent damage cannot become a defect record.", 409);
     if (structured.labels.includes("quality_defect") && !guard.labels.includes("quality_defect") && /\b(not damaged|no defect|not defective|not broken)\b/i.test(text)) throw new DomainError("negated_defect", "The customer explicitly denied damage. Clarify rather than using a defect exception.", 409);
@@ -213,6 +215,8 @@ function updateUnderstanding(session: Session, text: string, structured?: z.infe
       refundOnly: false, gateReason: null, recommendationAllowed: !item.diagnosis.requiresClarification };
     if (previous.frustrated && !wantsRecommendations) item.diagnosis = { ...item.diagnosis, frustrated: true };
   }
+  const currentStated=statedAttributes(text);
+  item.diagnosis.likedAttributes=[...new Set([...item.diagnosis.likedAttributes,...guard.likedAttributes])].filter(a=>currentStated.get(a)!=="negative");
   const merged = item.diagnosis;
   const persistentGate = merged.refundOnly ? "Customer requested a refund without recommendations."
     : merged.frustrated ? "Prioritize a short resolution or human support for a frustrated customer."
@@ -227,7 +231,8 @@ function updateUnderstanding(session: Session, text: string, structured?: z.infe
     diagnosis = { ...diagnosis, clarifyingQuestion: `Your current size ${item.item.size} has a published garment chest of ${measurements.chestIn} inches and length of ${measurements.lengthIn} inches. Should I keep that length while looking for more room at the shoulders?` };
     item.diagnosis = diagnosis;
   }
-  const signals: PreferenceSignal[] = structured ? structured.preferences.map((p) => ({ ...p, source: "explicit_statement", updatedAt: now() })) : extractPreferences(text, item.product, diagnosis);
+  const groundedSignals=extractPreferences(text,item.product,guard,item.item.color);
+  const signals: PreferenceSignal[] = structured ? [...structured.preferences.map((p) => ({ ...p, source: "explicit_statement" as const, updatedAt: now() })),...groundedSignals] : groundedSignals;
   for (const signal of signals) {
     session.preferences.push(signal);
     appendRecord("preference", { customerId: session.customer.customerId, signal, synthetic: true }, session.id);

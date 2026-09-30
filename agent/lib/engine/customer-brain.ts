@@ -1,3 +1,4 @@
+import {statedAttributes} from './stated-attributes.ts';
 import { getProduct } from "../knowledge/catalog.ts";
 import type { Customer, Product } from "../knowledge/types.ts";
 import type { ReturnDiagnosis } from "./diagnosis.ts";
@@ -63,16 +64,17 @@ export function buildCustomerBrain(customer: Customer, explicit: PreferenceSigna
     const key = `${product.category}:${product.fit}:${item.size}`;
     if (!sizeProfile.has(key)) sizeProfile.set(key, { category: product.category, fit: product.fit, size: item.size, source: `Purchased on ${order.orderId}; not a universal size guarantee` });
   }
-  const preferences = [...explicitPreferences, ...inferred];
+  const effectiveInferred=inferred.filter(p=>!explicitPreferences.some(e=>e.attribute===p.attribute&&e.value===p.value));
+  const preferences = [...explicitPreferences, ...effectiveInferred];
   return { coldStart: kept.length === 0 && customer.returns.length === 0, explicitPreferences,
-    inferredPreferences: inferred, negativePreferences: preferences.filter((p) => p.sentiment === "negative"), preferences,
+    inferredPreferences: effectiveInferred, negativePreferences: preferences.filter((p) => p.sentiment === "negative"), preferences,
     sizeProfile: [...sizeProfile.values()], priceRange: prices.length ? { min: Math.min(...prices), max: Math.max(...prices) } : null,
     keptProductIds: [...new Set(kept.map((i) => i.item.productId))], returnedProductIds: [...returned],
     facts: [`${customer.orders.length} synthetic orders`, `${customer.returns.length} recorded past returns`, "No psychological or health profile is inferred"],
   };
 }
 
-export function extractPreferences(text: string, product: Product, diagnosis: ReturnDiagnosis): PreferenceSignal[] {
+export function extractPreferences(text: string, product: Product, diagnosis: ReturnDiagnosis, currentColor=product.colors[0]): PreferenceSignal[] {
   const signals: PreferenceSignal[] = [];
   const now = new Date().toISOString();
   function add(attribute: PreferenceSignal["attribute"], value: string, sentiment: PreferenceSignal["sentiment"], strict = false) {
@@ -88,7 +90,11 @@ export function extractPreferences(text: string, product: Product, diagnosis: Re
     if (new RegExp(`(?:don.t|do not|hate|avoid|dislike)\\b.{0,20}\\b${color}\\b`, "i").test(text)) add("color", color, "negative", true);
   }
   if (diagnosis.likedAttributes.includes("fit") && !signals.some((s) => s.attribute === "fit" && s.sentiment === "positive")) add("fit", product.fit, "positive", true);
-  if (diagnosis.likedAttributes.includes("theme")) add("theme", product.theme, "positive", true);
+  for(const [attribute,sentiment] of statedAttributes(text)) {
+    if(attribute==='theme')add('theme',product.theme,sentiment,true);
+    if(attribute==='color'&&currentColor)add('color',currentColor,sentiment,true);
+    if(attribute==='fit'&&sentiment==='negative')add('fit',product.fit,sentiment,true);
+  }
   if (diagnosis.labels.includes("material_too_heavy")) add("fabric_weight", "heavy", "negative", true);
   if (diagnosis.labels.includes("material_too_thin")) add("fabric_weight", "thin", "negative", true);
   const budget = text.match(/(?:under|below|within|at most|no more than|up to)\s*(?:rs\.?|inr|₹)?\s*(\d{3,5})/i);

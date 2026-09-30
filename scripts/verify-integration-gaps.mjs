@@ -75,3 +75,28 @@ for(const name of ['create_return','create_exchange']) {
  assert.throws(()=>new Function(body)(),/Legacy Eve transaction execution is disabled/);
 }
 console.log('PASS authored Eve transactional tool entrypoints fail closed');
+
+const {statedAttributes}=await import('../agent/lib/engine/stated-attributes.ts');
+for(const phrase of ['I like the theme and the color.','Keep the theme and keep the color.','I love this graphic, and the colour.','Preserve the design and color.']) {
+ const p=statedAttributes(phrase);assert.equal(p.get('theme'),'positive');assert.equal(p.get('color'),'positive');
+}
+for(const phrase of ["I don't like the theme or color.",'Do not keep the theme and color.','I no longer like the design and the colour.']) {
+ const p=statedAttributes(phrase);assert.notEqual(p.get('theme'),'positive');assert.notEqual(p.get('color'),'positive');
+}
+assert.equal(statedAttributes('The color is blue. The fabric is heavy.').size,0);
+for(const nativePath of [false,true]){
+ const session=startSession({customerId:'CUST-002'});
+ const positive='The shoulders are too tight, the length is too short, and the fabric is too heavy. I like the theme and the color. I am open to alternatives.';
+ const apply=async(text,id)=>{if(!nativePath)return addMessage(session.id,text);recordTranscript(session.id,{role:'user',text,itemId:id});return executeVoiceTool(session.id,{callId:id,name:'diagnose_return',arguments:{text,primaryReason:'material.too_heavy',secondaryReasons:[],labels:['material_too_heavy'],evidence:[{label:'material.too_heavy',quote:text}],likedAttributes:[],confidence:0.9,clarifyingQuestion:null,preferences:[]}});};
+ await apply(positive,'positive');
+ await apply('Keep the theme and keep the color. The fit is too small and the fabric is too heavy.','followup');
+ const saved=serializeSession(session.id);assert.ok(saved.preferences.some(p=>p.attribute==='theme'&&p.sentiment==='positive'));assert.ok(saved.preferences.some(p=>p.attribute==='color'&&p.sentiment==='positive'));
+ await apply('Do not keep the theme or color. The fabric is too heavy.','negative');
+ hydrateSession(JSON.parse(JSON.stringify(serializeSession(session.id))));
+ const snapshot=getSessionSnapshot(session.id);
+ assert.ok(!snapshot.diagnosis.likedAttributes.includes('theme'));assert.ok(!snapshot.diagnosis.likedAttributes.includes('color'));
+ const last=serializeSession(session.id).preferences.filter(p=>p.attribute==='color').at(-1);assert.equal(last.sentiment,'negative');
+ assert.ok(!snapshot.customerBrain.preferences.some(p=>p.attribute===last.attribute&&p.value===last.value&&p.sentiment==='positive'));
+ assert.ok(!snapshot.customerBrain.explicitPreferences.some(p=>['theme','color'].includes(p.attribute)&&p.sentiment==='positive'));
+}
+console.log('PASS coordinated explicit theme/color extraction, negation/revocation and native/text hydration semantics');
