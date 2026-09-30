@@ -16,12 +16,13 @@ try {
  const boot=await request('/api/bootstrap');assert.ok(boot.catalog.length>=30&&boot.catalog.length<=50);assert.equal(boot.customers.length,5);assert.equal(boot.capabilities.voice.status,'unconfigured');
  const appSource=(await readFile(`${root}/frontend/app.js`,'utf8')).replace(/^import.*\n/gm,'').replace(/initialize\(\);\s*$/,'');
  const iconSource=(await readFile(`${root}/frontend/icons.js`,'utf8')).replace('export function','function');
- const artSource=(await readFile(`${root}/frontend/art.js`,'utf8')).replace('export function','function');
+ const artSource=(await readFile(`${root}/frontend/art.js`,'utf8')).replace(/^import.*\n/gm,'').replace('export function','function');
+ const imageSource=(await readFile(`${root}/frontend/catalog-images.js`,'utf8')).replace('export const','const');
  const css=await readFile(`${root}/frontend/styles.css`,'utf8');
  const nodes={app:{innerHTML:''},'overlay-root':{innerHTML:''},'toast-root':{innerHTML:''}};
  const document={querySelector:selector=>nodes[selector.replace('#','')]||null,querySelectorAll:()=>[],addEventListener(){},body:{style:{}},activeElement:null};
  const ctx=vm.createContext({document,location:{hash:''},history:{pushState(){}},window:{addEventListener(){},scrollTo(){}},console,setTimeout,clearTimeout,requestAnimationFrame(){},fetch(){throw new Error('Snapshot renderer must not fetch');}});
- vm.runInContext(`${iconSource}\n${artSource}\n${appSource}\nglobalThis.makeCapture=(boot,session,insights,evaluations,view,dialog)=>{state.bootstrap=boot;state.session=session;state.customerId=session?.customer.customerId||'CUST-001';state.selectedScenario=session?boot.scenarios?.find(x=>x.orderId===session.order.orderId)||null:boot.scenarios?.find(x=>x.id==='grounded')||null;state.insights=insights;state.evaluations=evaluations;state.view=view;state.dialog=dialog;state.busy=false;state.error='';render();return {app:document.querySelector('#app').innerHTML,overlay:document.querySelector('#overlay-root').innerHTML};};`,ctx);
+ vm.runInContext(`${iconSource}\n${imageSource}\n${artSource}\n${appSource}\nglobalThis.makeCapture=(boot,session,insights,evaluations,view,dialog)=>{state.bootstrap=boot;state.session=session;state.customerId=session?.customer.customerId||'CUST-001';state.selectedScenario=session?boot.scenarios?.find(x=>x.orderId===session.order.orderId)||null:boot.scenarios?.find(x=>x.id==='grounded')||null;state.insights=insights;state.evaluations=evaluations;state.view=view;state.dialog=dialog;state.busy=false;state.error='';render();return {app:document.querySelector('#app').innerHTML,overlay:document.querySelector('#overlay-root').innerHTML};};`,ctx);
  let count=0;
  async function save(name,session,insights,view='workspace',dialog=null){
    const evaluations=await request('/api/evaluations');
