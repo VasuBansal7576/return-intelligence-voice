@@ -1,5 +1,5 @@
 **Findings**
-No remaining P0/P1/P2 findings in the implemented hybrid direction. This is a functional adaptation of the selected Signal Desk and Fit Stencil studies, not a pixel-identical static mock recreation.
+Status: blocked pending independent retest. Confirmed P2 layout, scroll, comparison interaction and simulated-stock wording fixes are implemented; fresh desktop/mobile evidence and remaining ordinary browser flows are being verified. This is a functional adaptation of the selected Signal Desk and Fit Stencil studies, not a pixel-identical static mock recreation.
 
 **Visual truth and evidence**
 - Source: authenticated owner browser, `https://riv-design-comparison.zippy17.chatgpt.site/images/signal-desk.png` and `/images/fit-stencil.png`. Both exact original images were opened and inspected before implementation.
@@ -13,7 +13,7 @@ No remaining P0/P1/P2 findings in the implemented hybrid direction. This is a fu
 - Typography: system sans fallback to the declared Inter stack, restrained headings, readable 16–17px transcript, compact source labels. Actual macOS font rendering inspected. History facts and comparison explanations were increased to 11px and lightened after review.
 - Layout: conversation first; alternatives reveal only with permitted session candidates. Evidence desk added beside it for the user-requested merchant facts/policy/tool visibility. Mobile stacks evidence and wraps controls. Scroll width equals viewport width at 390px after grid containment fix. All three returned alternatives remain accessible.
 - Colors: charcoal/olive backgrounds and lime semantic accents follow Signal Desk. Light inherited bubbles/composer and low-contrast history/policy colors were corrected. Focus outlines remain visible.
-- Images: five exact official product URL mappings use real corresponding catalog photos; no generated products, CSS garments, inferred stock or shape overlays. Actual catalog models/images differ from synthetic mock garments. Side-by-side evidence and published measurements replace the mock’s aligned garment wipe because those real photos do not establish an identical silhouette. Unmatched images explicitly show unavailable status.
+- Images: five exact official product URL mappings use real corresponding catalog photos; no generated products, CSS garments, inferred stock or shape overlays. Actual catalog models/images differ from synthetic mock garments. An accessible catalog-photo wipe compares unaligned official photography, explicitly without inferred garment geometry or virtual fit. Published measurements and unknowns precede the photos, and the full comparison remains available. Unmatched images explicitly show unavailable status.
 - Copy: actual saved/provider transcript and tool outputs; fixture data is disclosed. No agent-thinking narration. Audio labels derive from real voice-client status; no animated fake waveform. Prepared historical receipts say not live; historical Refund Completed is distinct from app-owned replay_selection.
 
 **Comparison history**
@@ -47,4 +47,11 @@ No remaining P0/P1/P2 findings in the implemented hybrid direction. This is a fu
 **Follow-up polish**
 - P3: tighter catalog model crops can be considered if verified official alternate photos better support comparison.
 
-final result: passed
+final result: blocked pending independent retest
+
+**Independent review correction snapshot**
+Confirmed P2s fixed: original plus three candidates share a desktop row; suggested responses retain page context; individual stock rationale says simulated units; customer words and KEEP/CHANGE plus sourced measurement deltas precede a keyboard-accessible photo wipe. The wipe uses exact verified photos and explicitly disclaims aligned geometry/virtual fit. Mobile review action is sticky, visible at y745–807 in an844px viewport, with measurement rail at y340–402. Document width390 equals viewport390. Preliminary focus finding was withdrawn and existing focus behavior preserved.
+
+Actual final Chrome checks: native range ArrowRight50→51, endpoint buttons0/100; all11 keyboard stops remained within dialog and returned to the starting control after a complete cycle; simulated exchange confirmation created EXC-f21b0d2f-24de-4e1d-bb07-dbb6afbeb1a4, survived reload, and claimed no real payment/refund/shipment. Full10 UI boundary tests include a changed-mind snapshot clearing a stale proposal during a busy update without Cancel. Live-provider interruption remains mocked by existing tests.
+
+Exact original reference captures and new desktop/mobile screenshots were inspected together. Signal Desk palette, conversation-first hierarchy, real evidence and keep/change emphasis are retained. Fit Stencil uses actual official photography instead of invented garment silhouettes; known measurement changes remain numerical, and missing measurements remain unknown. Final independent grades/retest are pending; this report does not supersede that gate.
