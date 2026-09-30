@@ -143,12 +143,18 @@ function updateItemCondition(item: ItemWork, text: string): void {
   if (/\b(tags?.{0,12}(attached|on)|with tags)\b/i.test(text) && /\b(unworn|unused)\b/i.test(text) && /\b(unwashed)\b/i.test(text)) item.condition = "confirmed";
   if (/\b(tags?.{0,12}(removed|missing|off)|removed.{0,12}tags?|i (wore|washed)|already (worn|washed)|after (one |a |the first )?wash)\b/i.test(text)) item.condition = "not_met";
 }
+/** Exact no-question sentinels from a tool boundary, never sentence rewriting. */
+export function normalizeClarifyingQuestion(value:string|null|undefined):string|null {
+  if(value==null)return null;
+  const text=value.trim();
+  return !text||/^(none|null|n\/a|no question|no clarification(?: needed|required)?|not needed)\.?$/i.test(text)?null:text;
+}
 export const structuredDiagnosisSchema = z.object({
   text: z.string().min(1).max(4000), primaryReason: diagnosisReasonSchema,
   secondaryReasons: z.array(diagnosisReasonSchema).max(8), labels: z.array(diagnosisLabelSchema).min(1).max(8),
   evidence: z.array(z.object({ label: z.string().max(100), quote: z.string().min(1).max(4000) })).min(1).max(12),
   likedAttributes: z.array(z.enum(["fit", "theme", "color", "length", "material"])).max(5), confidence: z.number().min(0).max(1),
-  clarifyingQuestion: z.string().max(250).nullable(), preferences: z.array(extractedPreferenceSchema).max(12),
+  clarifyingQuestion: z.string().max(250).nullable().optional().default(null).describe("Use JSON null or omit when no clarification is necessary. Never write the strings None, null or N/A. Otherwise provide the actual customer-facing question."), preferences: z.array(extractedPreferenceSchema).max(12),
 });
 function updateUnderstanding(session: Session, text: string, structured?: z.infer<typeof structuredDiagnosisSchema>): void {
   const item = active(session);
@@ -191,7 +197,8 @@ function updateUnderstanding(session: Session, text: string, structured?: z.infe
     if(unsupported(structured.primaryReason))throw new DomainError('contradicted_reason','A positive attribute statement cannot support a problem reason. Use actual complaint evidence.',409);
     const secondaryReasons=structured.secondaryReasons.filter(r=>!unsupported(r));
     const removed=secondaryReasons.length!==structured.secondaryReasons.length;
-    const clarification=removed&&structured.confidence>=0.7&&!guard.requiresClarification?null:structured.clarifyingQuestion;
+    const requestedQuestion=normalizeClarifyingQuestion(structured.clarifyingQuestion);
+    const clarification=removed&&structured.confidence>=0.7&&!guard.requiresClarification?null:requestedQuestion??(guard.requiresClarification?guard.clarifyingQuestion:null);
     current = { ...guard, primaryReason: structured.primaryReason, secondaryReasons,
       labels: structured.labels.filter(l=>!unsupported(l)), evidence: structured.evidence.filter(e=>!contradicts(e)), likedAttributes: structured.likedAttributes, confidence: structured.confidence,
       requiresClarification: structured.confidence < 0.7 || clarification !== null,
