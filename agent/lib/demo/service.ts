@@ -1,3 +1,4 @@
+import { revokesMaterialExploration } from "../engine/consent.ts";
 import { randomUUID } from "node:crypto";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { z } from "zod";
@@ -236,7 +237,7 @@ function updateUnderstanding(session: Session, text: string, structured?: z.infe
   item.eligibility = checkEligibility({ customer: session.customer, order: session.order, item: item.item, product: item.product,
     reasonLabel: diagnosis.labels.find((l) => l === "quality_defect" || l === "wrong_item") ?? diagnosis.labels[0] });
   tool(session, "check_return_eligibility", "Rechecked policy with the diagnosed reason", { reasonLabels: diagnosis.labels }, item.eligibility);
-  if (diagnosis.refundOnly || diagnosis.frustrated || /\b(stop|do not|don.t)\b.{0,30}\b(alternatives|materials|recommendations)\b/i.test(text)) item.sensitiveExplorationConsent = false;
+  if (diagnosis.refundOnly || diagnosis.frustrated || revokesMaterialExploration(text)) item.sensitiveExplorationConsent = false;
   else if (diagnosis.labels.includes("sensitive_skin_reaction") && /\b(show|explore|want).{0,20}(different material|alternatives)\b/i.test(text)) item.sensitiveExplorationConsent = true;
   const sensitiveExploration = item.sensitiveExplorationConsent;
   const recommendations = item.eligibility.eligible && item.eligibility.allowedActions.includes("exchange_different_product")

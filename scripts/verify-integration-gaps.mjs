@@ -49,7 +49,7 @@ for(const nativePath of [false,true]) {
  await say('It also arrived with a torn seam on day one.',['quality_defect'],'quality.defect','g-defect');
  assert.equal(getSessionSnapshot(gated.id).candidates.length,0);
  await withRecordTransaction([],()=>{hydrateSession(JSON.parse(JSON.stringify(serializeSession(gated.id))));assert.equal(getSessionSnapshot(gated.id).candidates.length,0);});
- await say('Do not show alternatives or materials',['other'],'other.unclear','g-revoke');
+ await say("Don't show alternatives with a different material",['other'],'other.unclear','g-revoke');
  assert.equal(serializeSession(gated.id).work[0].sensitiveExplorationConsent,false);
  hydrateSession(JSON.parse(JSON.stringify(serializeSession(gated.id))));assert.equal(getSessionSnapshot(gated.id).candidates.length,0);
 }
@@ -65,3 +65,10 @@ const actualHandler=new Function('state','render','event',body);
 const event={callId:'actual-binding',name:'request_resolution',status:'discarded'};
 actualHandler(state,render,event);assert.equal(state.voiceTools.get(event.callId),event);assert.equal(renders,1);
 console.log('PASS sensitive + defect text/native/transaction/hydration and executed actual frontend onTool duplicate guard');
+
+for(const name of ['create_return','create_exchange']) {
+ const source=readFileSync(new URL('../agent/tools/'+name+'.ts',import.meta.url),'utf8');
+ const body=source.match(/execute\(\)\s*\{([^}]+)\}/)[1];
+ assert.throws(()=>new Function(body)(),/Legacy Eve transaction execution is disabled/);
+}
+console.log('PASS authored Eve transactional tool entrypoints fail closed');

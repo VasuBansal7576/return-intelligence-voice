@@ -1,3 +1,4 @@
+import { revokesMaterialExploration } from "../../agent/lib/engine/consent.ts";
 import { randomUUID, createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync, existsSync, renameSync } from "node:fs";
 import { resolve } from "node:path";
@@ -29,7 +30,8 @@ function publicProduct(ref:string) {
 }
 function snapshot(state:ReplayState) {
   const {lookup,item}=source(state);const diagnosis=state.feedback?diagnoseReturn(state.feedback):null;
-  const gated=Boolean(diagnosis && (!diagnosis.recommendationAllowed && !(diagnosis.labels.includes("sensitive_skin_reaction")&&state.sensitiveExplorationConsent)));
+  const hardGate=Boolean(diagnosis && (diagnosis.refundOnly || diagnosis.frustrated || diagnosis.labels.some(label=>label==="quality_defect"||label==="wrong_item")));
+  const gated=hardGate || Boolean(diagnosis && (!diagnosis.recommendationAllowed && !(diagnosis.labels.includes("sensitive_skin_reaction")&&state.sensitiveExplorationConsent)));
   return {id:state.id,replay:true,nonTransactional:true,sourceItem:item,sourceProvenance:lookup.source,currentFeedback:state.feedback,diagnosis,
     currentMerchantEligibility:null,canonicalDiscountDecision:discountDecision(),selection:state.selection,
     alternatives:gated?[]:state.presentedProductRefs.map(ref=>({...publicProduct(ref),solvesComplaint:null,materialSafety:null})),
@@ -45,7 +47,7 @@ export function startReplay(input:{customerRef:string;itemRef:string;historyFile
 export function getReplay(id:string) { return snapshot(load(id)); }
 export function addReplayFeedback(id:string,text:string) {
   const state=load(id);if(state.selection)throw new Error("Replay selection already recorded.");const input=z.string().min(1).max(4000).parse(text);state.feedback=z.string().max(12000).parse(state.feedback ? state.feedback+"\n"+input : input);
-  const d=diagnoseReturn(state.feedback);if(d.refundOnly||d.frustrated)state.sensitiveExplorationConsent=false;
+  const d=diagnoseReturn(state.feedback);if(d.refundOnly||d.frustrated||revokesMaterialExploration(text))state.sensitiveExplorationConsent=false;
   else if(d.labels.includes("sensitive_skin_reaction")&&/\b(show|explore|want).{0,30}(alternatives|different material)\b/i.test(text))state.sensitiveExplorationConsent=true;
   state.presentedProductRefs=[];write(state);return snapshot(state);
 }

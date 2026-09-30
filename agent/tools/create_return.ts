@@ -1,11 +1,10 @@
 import { defineTool } from "eve/tools";
 import { always } from "eve/tools/approval";
-import { createReturn, returnInputSchema } from "../lib/engine/resolutions.ts";
+import { returnInputSchema } from "../lib/engine/resolutions.ts";
 
 export default defineTool({
-  description:
-    "Create a return and refund for an eligible order item. TRANSACTIONAL: only call after the customer has explicitly confirmed they want a refund, and after check_eligibility returned eligible. Eligibility is re-verified here — an ineligible item is refused even if you call.",
+  description: "DISABLED legacy transactional entrypoint. Use the guarded custom demo server with customer and condition confirmation.",
   inputSchema: returnInputSchema,
   approval: always(),
-  execute(input, ctx) { return createReturn(input, ctx.session.id); },
+  execute() { throw new Error("Legacy Eve transaction execution is disabled. Use the guarded custom demo server with explicit condition and customer confirmation."); },
 });

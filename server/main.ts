@@ -29,6 +29,10 @@ async function handleRequest(request: IncomingMessage, response: ServerResponse)
       assertSameOrigin(request);
       if (path.startsWith("/api/replays")) {
         assertPrivateLocalOnly();
+        const address=request.socket.localAddress?.replace(/^::ffff:/, "");
+        const port=request.socket.localPort;
+        const approvedHosts=address==="::1" ? [`[::1]:${port}`] : [`127.0.0.1:${port}`, `localhost:${port}`];
+        if (!approvedHosts.includes(request.headers.host ?? "") || (request.headers.origin !== undefined && request.headers.origin !== `http://${request.headers.host}`)) throw new app.DomainError("private_origin_denied", "Private replay requires the actual loopback application origin.", 403);
         if (process.env.RIV_PRIVATE_REPLAY_ENABLED !== "true" || !["127.0.0.1", "::1", "::ffff:127.0.0.1"].includes(request.socket.remoteAddress ?? "")) throw new app.DomainError("private_replay_disabled", "Private replay requires an explicitly enabled local-only adapter.", 403);
         if (request.method === "POST" && !request.headers["content-type"]?.startsWith("application/json")) throw new app.DomainError("json_required", "Use same-origin JSON input.", 415);
         if (path === "/api/replays" && request.method === "POST") {

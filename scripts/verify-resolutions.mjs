@@ -10,11 +10,14 @@ const { default: eligibility } = await import(new URL('agent/tools/check_eligibi
 const { listRecords } = await import(new URL('agent/lib/engine/records.ts', root));
 const ctx = { session: { id: 'regression' } };
 const input = { orderId: 'TSS-10588', returnProductId: 'TSS-WDR-001', replacementProductId: 'TSS-WDR-001', replacementSize: 'S', replacementColor: 'black', reasonLabel: 'quality_defect' };
-const first = await exchange.execute(input, ctx);
+const {createExchange,createReturn}=await import(new URL("agent/lib/engine/resolutions.ts",root));
+assert.throws(()=>exchange.execute(input,ctx),/Legacy Eve transaction execution is disabled/);
+assert.throws(()=>refund.execute({orderId:input.orderId,productId:input.returnProductId,reasonLabel:"quality_defect",reasonNotes:"I washed it."},ctx),/Legacy Eve transaction execution is disabled/);
+const first = await createExchange(input,ctx.session.id);
 assert.equal(first.created, true); assert.equal(first.outcome, 'REPLACEMENT'); assert.equal(first.priceDeltaInr, 0);
-const second = await exchange.execute(input, ctx);
+const second = await createExchange(input,ctx.session.id);
 assert.equal(second.created, false); assert.equal(second.reasonCode, 'already_resolved');
-const opposite = await refund.execute({ orderId: input.orderId, productId: input.returnProductId, reasonLabel: 'quality_defect' }, ctx);
+const opposite = await createReturn({ orderId: input.orderId, productId: input.returnProductId, reasonLabel: 'quality_defect' },ctx.session.id);
 assert.equal(opposite.created, false);
 const later = eligibility.execute({ orderId: input.orderId, productId: input.returnProductId, reasonLabel: 'quality_defect' });
 assert.equal(later.eligible, false);

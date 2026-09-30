@@ -39,3 +39,5 @@ This is a configured demo policy. It is not a statement of The Souled Store's op
 Before microphone access, the UI explains that AssemblyAI processes speech and requests fictional inputs only. The app retains finalized text transcripts, extracted preferences, and insights. The local adapter writes JSONL. The hosted adapter stores owner-scoped records in Supabase.
 
 Starting another demo does not delete those records. No app control claims to delete provider logs. Raw audio is not stored by this application. Do not submit personal, medical, payment, or account information.
+
+The legacy authored Eve create_return/create_exchange tools are disabled at their execution boundary. Run the custom server (`npm run dev:demo`) for guarded synthetic transactions; Eve deployment is not a supported transactional release path. Original engine source is retained for offline fixtures, not exposed as a merchant execution API.

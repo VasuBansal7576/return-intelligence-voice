@@ -42,6 +42,8 @@ await assert.rejects(db.query('select public.riv_consume_voice_ticket($1,$2,$3)'
 await db.query('select public.riv_consume_voice_ticket($1,$2,$3)',['a'.repeat(64),id,owner]);
 await assert.rejects(db.query('select public.riv_consume_voice_ticket($1,$2,$3)',['a'.repeat(64),id,owner]),/Invalid or expired/);mark('Voice ticket is single use');
 await db.query('select public.riv_release_voice($1)',['a'.repeat(64)]);
+// The lease ends at now(); allow a later clock tick before reserving anew.
+await new Promise(resolve=>setTimeout(resolve,5));
 let budget=(await db.query('select public.riv_voice_status() as result')).rows[0].result[0];assert.equal(budget.reserved_seconds,180);mark('Clean release never refunds reserved allowance');
 await db.query('select public.riv_reserve_voice($1,$2,$3,180,360)',[id,owner,'b'.repeat(64)]);
 await db.query('select public.riv_release_voice($1)',['b'.repeat(64)]);
