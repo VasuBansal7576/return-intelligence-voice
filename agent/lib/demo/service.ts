@@ -177,11 +177,27 @@ function updateUnderstanding(session: Session, text: string, structured?: z.infe
     if (guard.gateReason?.startsWith("We cannot") && structured.labels.includes("quality_defect")) throw new DomainError("fabricated_defect", "A request to invent damage cannot become a defect record.", 409);
     if (structured.labels.includes("quality_defect") && !guard.labels.includes("quality_defect") && /\b(not damaged|no defect|not defective|not broken)\b/i.test(text)) throw new DomainError("negated_defect", "The customer explicitly denied damage. Clarify rather than using a defect exception.", 409);
     if (structured.labels.includes("wrong_item") && !guard.labels.includes("wrong_item") && /\b(not (the )?wrong (item|product|size|colou?r))\b/i.test(text)) throw new DomainError("negated_fulfillment_error", "The customer denied a fulfillment error. Do not waive policy on that basis.", 409);
-    current = { ...guard, primaryReason: structured.primaryReason, secondaryReasons: structured.secondaryReasons,
-      labels: structured.labels, evidence: structured.evidence, likedAttributes: structured.likedAttributes, confidence: structured.confidence,
-      requiresClarification: structured.confidence < 0.7 || structured.clarifyingQuestion !== null,
-      clarifyingQuestion: structured.clarifyingQuestion ?? (structured.confidence < 0.7 ? "Could you clarify the detail that matters most before I suggest a resolution?" : null),
-      recommendationAllowed: guard.gateReason === null && structured.confidence >= 0.7 && structured.clarifyingQuestion === null };
+    // Exact quotation alone is not semantic support: a positive statement
+    // about an attribute cannot serve as evidence of a problem in that family.
+    const family=(key:string)=>key.startsWith('fit')?'fit':key.startsWith('material')||key.startsWith('comfort')?'material':key.startsWith('appearance')?'appearance':null;
+    const contradicts=(e:{label:string;quote:string})=>{
+      const f=family(e.label);if(!f)return false;
+      const q=diagnoseReturn(e.quote),liked=statedAttributes(e.quote);
+      const positive=f==='appearance'?liked.get('theme')==='positive':f==='fit'?liked.get('fit')==='positive'||liked.get('length')==='positive':liked.get('material')==='positive';
+      return positive&&!q.labels.some(l=>family(l)===f);
+    };
+    const badEvidence=structured.evidence.filter(contradicts);
+    const unsupported=(reason:string)=>{const f=family(reason);return f!==null&&badEvidence.some(e=>family(e.label)===f)&&!structured.evidence.some(e=>family(e.label)===f&&!contradicts(e));};
+    if(unsupported(structured.primaryReason))throw new DomainError('contradicted_reason','A positive attribute statement cannot support a problem reason. Use actual complaint evidence.',409);
+    const secondaryReasons=structured.secondaryReasons.filter(r=>!unsupported(r));
+    const removed=secondaryReasons.length!==structured.secondaryReasons.length;
+    const clarification=removed&&structured.confidence>=0.7&&!guard.requiresClarification?null:structured.clarifyingQuestion;
+    current = { ...guard, primaryReason: structured.primaryReason, secondaryReasons,
+      labels: structured.labels.filter(l=>!unsupported(l)), evidence: structured.evidence.filter(e=>!contradicts(e)), likedAttributes: structured.likedAttributes, confidence: structured.confidence,
+      requiresClarification: structured.confidence < 0.7 || clarification !== null,
+      clarifyingQuestion: clarification ?? (structured.confidence < 0.7 ? "Could you clarify the detail that matters most before I suggest a resolution?" : null),
+      recommendationAllowed: guard.gateReason === null && structured.confidence >= 0.7 && clarification === null };
+
   }
   // All structured evidence is validated before any session mutation, in
   // local mode as well as the database transaction path.
@@ -450,7 +466,7 @@ export async function executeVoiceTool(id: string, call: { callId: string; name:
       }
       result = { diagnosis: active(session).diagnosis, customerBrain: brain(session), eligibility: active(session).eligibility }; break;
     }
-    case "search_products": result = { candidates: item.candidates, excluded: item.excluded, recommendationAllowed: item.candidates.length > 0, gateReason: item.recommendationGate, sensitiveExplorationConsent: item.sensitiveExplorationConsent, safetyNote: item.diagnosis?.labels.includes("sensitive_skin_reaction") ? "Material suitability and skin comfort are unknown; alternatives are shown only with explicit consent, without any safety guarantee." : null, cohortDataAvailable: false }; break;
+    case "search_products": result = { searchStatus: item.diagnosis?.requiresClarification ? "clarification_required" : item.recommendationGate ? "policy_blocked" : item.candidates.length ? "candidates_found" : "no_matching_candidates", requiresClarification: Boolean(item.diagnosis?.requiresClarification), clarifyingQuestion: item.diagnosis?.clarifyingQuestion ?? null, inventoryConclusion: item.diagnosis?.requiresClarification || item.recommendationGate ? "not_evaluated" : "only_reported_candidate_stock", emptyResultExplanation: item.diagnosis?.requiresClarification ? "Search is gated pending clarification. Empty results do not indicate out-of-stock inventory." : item.recommendationGate ?? (item.candidates.length ? null : "No candidates matched verified constraints; this does not establish a general stock shortage."), candidates: item.candidates, excluded: item.excluded, recommendationAllowed: item.candidates.length > 0, gateReason: item.recommendationGate, sensitiveExplorationConsent: item.sensitiveExplorationConsent, safetyNote: item.diagnosis?.labels.includes("sensitive_skin_reaction") ? "Material suitability and skin comfort are unknown; alternatives are shown only with explicit consent, without any safety guarantee." : null, cohortDataAvailable: false }; break;
     case "compare_products": {
       const args = z.object({ productIds: z.array(z.string()).min(2).max(4) }).parse(call.arguments);
       result = { comparison: args.productIds.map((pid) => getProduct(pid) ?? { productId: pid, found: false }), note: "Missing attributes are unknown. Do not infer exact garment measurements." }; break;

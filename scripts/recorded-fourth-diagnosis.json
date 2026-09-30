@@ -1,0 +1,37 @@
+{
+  "clarifyingQuestion": "Just to clarify, since you mentioned you like the oversized fit, was there anything else about the fit that didn't work for you, or was it strictly the weight of the fabric?",
+  "confidence": 0.8,
+  "evidence": [
+    {
+      "label": "material_too_heavy",
+      "quote": "The fabric feels too heavy."
+    },
+    {
+      "label": "fit_too_small",
+      "quote": "I like the oversized fit."
+    }
+  ],
+  "labels": [
+    "material_too_heavy"
+  ],
+  "likedAttributes": [
+    "fit"
+  ],
+  "preferences": [
+    {
+      "attribute": "fit",
+      "confidence": 0.9,
+      "evidence": [
+        "I like the oversized fit."
+      ],
+      "sentiment": "positive",
+      "strict": true,
+      "value": "oversized"
+    }
+  ],
+  "primaryReason": "material.too_heavy",
+  "secondaryReasons": [
+    "fit.too_small"
+  ],
+  "text": "This is an automated synthetic customer test. I am calling about the TSS Originals Midnight Tee in my demo order. The fabric feels too heavy. I like the oversized fit. Please show source-backed alternatives with a lower published GSM and explain any trade-offs. I understand the order and inventory are simulated."
+}
